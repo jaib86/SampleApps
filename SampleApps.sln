@@ -47,7 +47,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPFUI", "CaliburnMicro\WPFU
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MahAppsMetro", "MahAppsMetro", "{918D4159-80C9-4FE5-AFB7-E2A3F18D8358}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPFUI", "MahAppsMetro\WPFUI\WPFUI.csproj", "{09ED8F04-63C3-444C-8DB2-02A3DBF49872}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MahAppsMetroSample", "MahAppsMetro\MahAppsMetroSample\MahAppsMetroSample.csproj", "{09ED8F04-63C3-444C-8DB2-02A3DBF49872}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
