@@ -1,12 +1,17 @@
-﻿<Window x:Class="WPFUI.MainWindow"
+﻿<metroControls:MetroWindow x:Class="WPFUI.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPFUI"
-        mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        
-    </Grid>
-</Window>
+        xmlns:metroControls="http://metro.mahapps.com/winfx/xaml/controls"
+        mc:Ignorable="d" d:DesignWidth="400" d:DesignHeight="300" 
+        ShowTitleBar="True" ShowIconOnTitleBar="True" 
+        ShowMinButton="False" ShowMaxRestoreButton="False" ShowCloseButton="False"
+        Title="Main Window">
+    <StackPanel Orientation="Vertical" Margin="30" HorizontalAlignment="Left">
+        <TextBlock Text="I am a label" Margin="10" />
+        <TextBox />
+        <Button Content="I am a button" Margin="10" />
+    </StackPanel>
+</metroControls:MetroWindow>
