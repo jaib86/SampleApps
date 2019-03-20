@@ -5,13 +5,26 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPFUI"
         xmlns:metroControls="http://metro.mahapps.com/winfx/xaml/controls"
+        xmlns:metroIconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
         mc:Ignorable="d" d:DesignWidth="400" d:DesignHeight="300" 
         ShowTitleBar="True" ShowIconOnTitleBar="True" 
         ShowMinButton="False" ShowMaxRestoreButton="False" ShowCloseButton="False"
         Title="Main Window">
-    <StackPanel Orientation="Vertical" Margin="30" HorizontalAlignment="Left">
-        <TextBlock Text="I am a label" Margin="10" />
-        <TextBox />
-        <Button Content="I am a button" Margin="10" />
-    </StackPanel>
+
+    <metroControls:MetroWindow.RightWindowCommands>
+        <metroControls:WindowCommands>
+            <Button Content="Settings" />
+            <Button>
+                <StackPanel Orientation="Horizontal">
+                    <metroIconPacks:PackIconModern Width="24" Height="24" Kind="FoodCupcake" />
+                    <TextBlock Margin="4 0 0 0" VerticalAlignment="Center" Text="deploy cupcakes" />
+                </StackPanel>
+            </Button>
+        </metroControls:WindowCommands>
+    </metroControls:MetroWindow.RightWindowCommands>
+
+    <Grid>
+        
+    </Grid>
+
 </metroControls:MetroWindow>
