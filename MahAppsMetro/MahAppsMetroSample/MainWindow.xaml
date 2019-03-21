@@ -6,9 +6,19 @@
         xmlns:local="clr-namespace:WPFUI"
         xmlns:metroControls="http://metro.mahapps.com/winfx/xaml/controls"
         xmlns:metroIconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
-        mc:Ignorable="d" d:DesignWidth="400" d:DesignHeight="300" 
-        ShowTitleBar="True" ShowIconOnTitleBar="True" 
-        ShowMinButton="False" ShowMaxRestoreButton="False" ShowCloseButton="False"
+        mc:Ignorable="d" d:DesignWidth="400" d:DesignHeight="300"
+
+        ShowTitleBar="True" ShowIconOnTitleBar="True"
+        ShowMinButton="False" ShowMaxRestoreButton="False" ShowCloseButton="True"
+
+        SaveWindowPosition="True"
+        WindowStartupLocation="CenterScreen"
+
+                           
+        GlowBrush="{DynamicResource AccentColorBrush}" 
+        BorderBrush="{DynamicResource AccentColorBrush}" 
+        BorderThickness="5"
+
         Title="Main Window">
 
     <metroControls:MetroWindow.RightWindowCommands>
@@ -24,7 +34,6 @@
     </metroControls:MetroWindow.RightWindowCommands>
 
     <Grid>
-        
-    </Grid>
 
+    </Grid>
 </metroControls:MetroWindow>

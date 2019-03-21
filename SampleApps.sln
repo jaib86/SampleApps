@@ -49,6 +49,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MahAppsMetro", "MahAppsMetr
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MahAppsMetroSample", "MahAppsMetro\MahAppsMetroSample\MahAppsMetroSample.csproj", "{09ED8F04-63C3-444C-8DB2-02A3DBF49872}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "KudVenkat", "KudVenkat", "{4917DF3E-E95B-42D1-9A23-55BE670CB7C1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmployeeManagement", "KudVenkat\EmployeeManagement\EmployeeManagement.csproj", "{B76BCEE8-6980-4979-9204-C78E54FA63DB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -127,6 +131,10 @@ Global
 		{09ED8F04-63C3-444C-8DB2-02A3DBF49872}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{09ED8F04-63C3-444C-8DB2-02A3DBF49872}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{09ED8F04-63C3-444C-8DB2-02A3DBF49872}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B76BCEE8-6980-4979-9204-C78E54FA63DB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B76BCEE8-6980-4979-9204-C78E54FA63DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B76BCEE8-6980-4979-9204-C78E54FA63DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B76BCEE8-6980-4979-9204-C78E54FA63DB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -146,6 +154,7 @@ Global
 		{E57BABB2-C1A5-4AF9-8487-2198B23825AF} = {06929CC3-F55F-4D71-81F0-8ED555F9E0E9}
 		{99A2C457-06F9-4C50-AF2B-53527C31A6CD} = {7247090E-6D58-4586-98F8-CE46EB3CE7EC}
 		{09ED8F04-63C3-444C-8DB2-02A3DBF49872} = {918D4159-80C9-4FE5-AFB7-E2A3F18D8358}
+		{B76BCEE8-6980-4979-9204-C78E54FA63DB} = {4917DF3E-E95B-42D1-9A23-55BE670CB7C1}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {2829B699-AA3B-47FF-ABEE-405B0FCD4E98}
