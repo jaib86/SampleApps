@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 
 namespace EmployeeManagement
 {
@@ -27,22 +28,32 @@ namespace EmployeeManagement
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILogger<Startup> logger)
         {
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
 
-            app.Run(async (context) =>
+            app.Use(async (context, next) =>
             {
-                await context.Response.WriteAsync("Message from 1st middleware!");
+                logger.LogInformation("MW1: Incoming Request " + DateTime.Now);
+                await next();
+                logger.LogInformation("MW1: Outgoing Response " + DateTime.Now);
+            });
+
+            app.Use(async (context, next) =>
+            {
+                logger.LogInformation("MW2: Incoming Request " + DateTime.Now);
+                await next();
+                logger.LogInformation("MW2: Outgoing Response " + DateTime.Now);
             });
 
             // Second middleware will not execute, first middleware is not allow to process next middleware in pipeline.
             app.Run(async (context) =>
             {
-                await context.Response.WriteAsync("Message from 2nd middleware!");
+                await context.Response.WriteAsync("MW3: Request handled and response produced " + DateTime.Now);
+                logger.LogInformation("MW3: Request handled and response produced " + DateTime.Now);
             });
         }
     }
