@@ -36,9 +36,13 @@ namespace EmployeeManagement
 
             app.Run(async (context) =>
             {
-                //await context.Response.WriteAsync(System.Diagnostics.Process.GetCurrentProcess().ProcessName);
-                //await context.Response.WriteAsync(configuration["MyKey"]);
-                await context.Response.WriteAsync("Hello World!");
+                await context.Response.WriteAsync("Message from 1st middleware!");
+            });
+
+            // Second middleware will not execute, first middleware is not allow to process next middleware in pipeline.
+            app.Run(async (context) =>
+            {
+                await context.Response.WriteAsync("Message from 2nd middleware!");
             });
         }
     }
