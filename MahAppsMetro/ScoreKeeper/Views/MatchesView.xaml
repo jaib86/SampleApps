@@ -1,0 +1,30 @@
+﻿<UserControl x:Class="ScoreKeeper.Views.MatchesView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+        </Grid.RowDefinitions>
+        <ListBox ItemsSource="{Binding Matches}" SelectedItem="{Binding SelectedMatch, Mode=TwoWay}">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Width="100" Text="{Binding Date}"></TextBlock>
+                        <TextBlock Width="150" Text="{Binding Opponents}"></TextBlock>
+                        <TextBlock Text="{Binding FinalScore}"></TextBlock>
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <StackPanel Grid.Row="1" Orientation="Horizontal">
+            <Button Command="{Binding NewMatch}" Margin="5" Width="80">New...</Button>
+            <Button Command="{Binding EditMatch}" CommandParameter="{Binding SelectedMatch}" Margin="5" Width="80">Edit...</Button>
+            <Button Command="{Binding DeleteMatch}" CommandParameter="{Binding SelectedMatch}" Margin="5" Width="80">Delete</Button>
+        </StackPanel>
+    </Grid>
+</UserControl>

@@ -1,0 +1,687 @@
+﻿[
+    {
+        "Date": "1989-09-23T00:00:00+00:00",
+        "Opponents": "Charlton Athletic",
+        "Venue": {
+            "VenueType": "Home",
+            "VenueName": "Highbury",
+            "Attendance": 34583
+        },
+        "Scores": [
+            {
+                "ScoreType": "HalfTime",
+                "GoalsFor": 0,
+                "GoalsAgainst": 0
+            },
+            {
+                "ScoreType": "FullTime",
+                "GoalsFor": 1,
+                "GoalsAgainst": 0
+            }
+        ],
+        "Competition": {
+            "CompetitionType": "League",
+            "CompetitionName": "Barclays League Division 1",
+            "CompetitionRound": null
+        },
+        "StartingEleven": [
+            "John Lukic",
+            "Lee Dixon",
+            "Nigel Winterburn",
+            "Tony Adams",
+            "David O'Leary",
+            "David Rocastle",
+            "Michael Thomas",
+            "Kevin Richardson",
+            "Brian Marwood",
+            "Paul Merson",
+            "Alan Smith"
+        ],
+        "Goals": [
+            {
+                "Scorer": "Brian Marwood",
+                "GoalType": "Penalty",
+                "Minute": null
+            }
+        ],
+        "Substitutions": [
+            {
+                "PlayerOff": "David Rocastle",
+                "PlayerOn": "Perry Groves",
+                "Minute": 80
+            }
+        ]
+    },
+    {
+        "Date": "1989-11-04T00:00:00+00:00",
+        "Opponents": "Norwich City",
+        "Venue": {
+            "VenueType": "Home",
+            "VenueName": "Highbury",
+            "Attendance": 35338
+        },
+        "Scores": [
+            {
+                "ScoreType": "HalfTime",
+                "GoalsFor": 0,
+                "GoalsAgainst": 2
+            },
+            {
+                "ScoreType": "FullTime",
+                "GoalsFor": 4,
+                "GoalsAgainst": 3
+            }
+        ],
+        "Competition": {
+            "CompetitionType": "League",
+            "CompetitionName": "Barclays League Division 1",
+            "CompetitionRound": null
+        },
+        "StartingEleven": [
+            "John Lukic",
+            "Lee Dixon",
+            "Nigel Winterburn",
+            "Tony Adams",
+            "David O'Leary",
+            "David Rocastle",
+            "Michael Thomas",
+            "Kevin Richardson",
+            "Niall Quinn",
+            "Paul Merson",
+            "Alan Smith"
+        ],
+        "Links": [
+            "http://www.arsenal.com/news/news-archive/o-leary-breaks-appearances-record",
+            "http://www.youtube.com/watch?v=1q0a-f9LmeE",
+            "http://www.youtube.com/watch?v=IGYEm2KTu8E"
+        ],
+        "Goals": [
+            {
+                "Scorer": "Lee Dixon",
+                "GoalType": "Penalty",
+                "Minute": null
+            },
+            {
+                "Scorer": "Lee Dixon",
+                "GoalType": "Goal",
+                "Minute": null
+            },
+            {
+                "Scorer": "David O'Leary",
+                "GoalType": "Goal",
+                "Minute": null
+            },
+            {
+                "Scorer": "Niall Quinn",
+                "GoalType": "Goal",
+                "Minute": null
+            }
+        ],
+        "Substitutions": [
+            {
+                "PlayerOff": "Paul Merson",
+                "PlayerOn": "Perry Groves",
+                "Minute": 81
+            }
+        ]
+    },
+    {
+        "Date": "1989-12-16T00:00:00+00:00",
+        "Opponents": "Luton Town",
+        "Venue": {
+            "VenueType": "Home",
+            "VenueName": "Highbury",
+            "Attendance": 28761
+        },
+        "Scores": [
+            {
+                "ScoreType": "HalfTime",
+                "GoalsFor": 1,
+                "GoalsAgainst": 1
+            },
+            {
+                "ScoreType": "FullTime",
+                "GoalsFor": 3,
+                "GoalsAgainst": 2
+            }
+        ],
+        "Competition": {
+            "CompetitionType": "League",
+            "CompetitionName": "Barclays League Division 1",
+            "CompetitionRound": null
+        },
+        "StartingEleven": [
+            "John Lukic",
+            "Lee Dixon",
+            "Nigel Winterburn",
+            "Tony Adams",
+            "David O'Leary",
+            "David Rocastle",
+            "Michael Thomas",
+            "Kevin Richardson",
+            "Brian Marwood",
+            "Perry Groves",
+            "Alan Smith"
+        ],
+        "Links": [
+            "https://www.youtube.com/watch?v=JpgqaWl407I"
+        ],
+        "Goals": [
+            {
+                "Scorer": "Alan Smith",
+                "GoalType": "Goal",
+                "Minute": null
+            },
+            {
+                "Scorer": "Brian Marwood",
+                "GoalType": "Goal",
+                "Minute": null
+            },
+            {
+                "Scorer": "Paul Merson",
+                "GoalType": "Goal",
+                "Minute": null
+            }
+        ],
+        "Substitutions": [
+            {
+                "PlayerOff":  "Alan Smith" ,
+                "PlayerOn":  "Paul Merson" ,
+                "Minute": 30
+            },
+            {
+                "PlayerOff":  "Perry Groves" ,
+                "PlayerOn":  "Siggi Jonsson" ,
+                "Minute": 85
+            }
+        ]
+    },
+    {
+        "Date": "1990-04-28T00:00:00+00:00",
+        "Opponents": "Millwall",
+        "Venue": {
+            "VenueType": "Home",
+            "VenueName": "Highbury",
+            "Attendance": 25607
+        },
+        "Scores": [
+            {
+                "ScoreType": "HalfTime",
+                "GoalsFor": 2,
+                "GoalsAgainst": 0
+            },
+            {
+                "ScoreType": "FullTime",
+                "GoalsFor": 2,
+                "GoalsAgainst": 0
+            }
+        ],
+        "Competition": {
+            "CompetitionType": "League",
+            "CompetitionName": "Barclays League Division 1",
+            "CompetitionRound": null
+        },
+        "StartingEleven": [
+            "John Lukic",
+            "Lee Dixon",
+            "Nigel Winterburn",
+            "Tony Adams",
+            "Steve Bould",
+            "David Rocastle",
+            "Michael Thomas",
+            "Paul Davis",
+            "Brian Marwood",
+            "Paul Merson",
+            "Alan Smith"
+        ],
+        "Links": [ ],
+        "Goals": [
+            {
+                "Scorer": "Paul Davis",
+                "GoalType": "Goal",
+                "Minute": null
+            },
+            {
+                "Scorer": "Paul Merson",
+                "GoalType": "Goal",
+                "Minute": null
+            }
+        ],
+        "Substitutions": [
+            {
+                "PlayerOff":  "Brian Marwood",
+                "PlayerOn":  "Kevin Campbell",
+                "Minute": 70
+            },
+            {
+                "PlayerOff": "Michael Thomas",
+                "PlayerOn": "Kevin Richardson",
+                "Minute": 80
+            }
+        ]
+    },
+    {
+        "Date": "1990-09-15T00:00:00+00:00",
+        "Opponents": "Chelsea",
+        "Venue": {
+            "VenueType": "Home",
+            "VenueName": "Highbury",
+            "Attendance": 40475
+        },
+        "Scores": [
+            {
+                "ScoreType": "HalfTime",
+                "GoalsFor": 0,
+                "GoalsAgainst": 0
+            },
+            {
+                "ScoreType": "FullTime",
+                "GoalsFor": 4,
+                "GoalsAgainst": 1
+            }
+        ],
+        "Competition": {
+            "CompetitionType": "League",
+            "CompetitionName": "Barclays League Division 1",
+            "CompetitionRound": null
+        },
+        "StartingEleven": [
+            "David Seaman",
+            "Lee Dixon",
+            "Nigel Winterburn",
+            "Tony Adams",
+            "Steve Bould",
+            "David Rocastle",
+            "Michael Thomas",
+            "Paul Davis",
+            "Anders Limpar",
+            "Paul Merson",
+            "Perry Groves"
+        ],
+        "Links": [ ],
+        "Goals": [
+            {
+                "Scorer": "Anders Limpar",
+                "GoalType": "Goal",
+                "Minute": null
+            },
+            {
+                "Scorer": "Lee Dixon",
+                "GoalType": "Penalty",
+                "Minute": null
+            },
+            {
+                "Scorer": "Paul Merson",
+                "GoalType": "Goal",
+                "Minute": null
+            },
+            {
+                "Scorer": "David Rocastle",
+                "GoalType": "Goal",
+                "Minute": null
+            }
+        ],
+        "Substitutions": [
+            {
+                "PlayerOff":  "Perry Groves",
+                "PlayerOn":  "Kevin Campbell",
+                "Minute": 75
+            },
+            {
+                "PlayerOff": "Steve Bould",
+                "PlayerOn": "Andy Linighan",
+                "Minute": 85
+            }
+        ]
+    },
+    {
+        "Date": "1990-10-27T00:00:00+00:00",
+        "Opponents": "Sunderland",
+        "Venue": {
+            "VenueType": "Home",
+            "VenueName": "Highbury",
+            "Attendance": 38485
+        },
+        "Scores": [
+            {
+                "ScoreType": "HalfTime",
+                "GoalsFor": 0,
+                "GoalsAgainst": 0
+            },
+            {
+                "ScoreType": "FullTime",
+                "GoalsFor": 1,
+                "GoalsAgainst": 0
+            }
+        ],
+        "Competition": {
+            "CompetitionType": "League",
+            "CompetitionName": "Barclays League Division 1",
+            "CompetitionRound": null
+        },
+        "StartingEleven": [
+            "David Seaman",
+            "Lee Dixon",
+            "Nigel Winterburn",
+            "Tony Adams",
+            "Steve Bould",
+            "David Rocastle",
+            "Michael Thomas",
+            "Paul Davis",
+            "Anders Limpar",
+            "Paul Merson",
+            "Alan Smith"
+        ],
+        "Links": [ ],
+        "Goals": [
+            {
+                "Scorer": "Lee Dixon",
+                "GoalType": "Penalty",
+                "Minute": null
+            }
+        ],
+        "Substitutions": [
+            {
+                "PlayerOff": "David Rocastle",
+                "PlayerOn": "Perry Groves",
+                "Minute": 70
+            }
+        ]
+    },
+    {
+        "Date": "1990-11-17T00:00:00+00:00",
+        "Opponents": "Southampton",
+        "Venue": {
+            "VenueType": "Home",
+            "VenueName": "Highbury",
+            "Attendance": 36229
+        },
+        "Scores": [
+            {
+                "ScoreType": "HalfTime",
+                "GoalsFor": 3,
+                "GoalsAgainst": 0
+            },
+            {
+                "ScoreType": "FullTime",
+                "GoalsFor": 4,
+                "GoalsAgainst": 0
+            }
+        ],
+        "Competition": {
+            "CompetitionType": "League",
+            "CompetitionName": "Barclays League Division 1",
+            "CompetitionRound": null
+        },
+        "StartingEleven": [
+            "David Seaman",
+            "Lee Dixon",
+            "Nigel Winterburn",
+            "Tony Adams",
+            "Steve Bould",
+            "Perry Groves",
+            "Michael Thomas",
+            "Paul Davis",
+            "Anders Limpar",
+            "Paul Merson",
+            "Alan Smith"
+        ],
+        "Links": [ ],
+        "Goals": [
+            {
+                "Scorer": "Alan Smith",
+                "GoalType": "Goal",
+                "Minute": null
+            },
+            {
+                "Scorer": "Alan Smith",
+                "GoalType": "Goal",
+                "Minute": null
+            },
+            {
+                "Scorer": "Paul Merson",
+                "GoalType": "Goal",
+                "Minute": null
+            },
+            {
+                "Scorer": "Anders Limpar",
+                "GoalType": "Goal",
+                "Minute": null
+            }
+        ],
+        "Substitutions": [
+            {
+                "PlayerOff": "Lee Dixon",
+                "PlayerOn": "David O'Leary",
+                "Minute": 65
+            },
+            {
+                "PlayerOff": "Perry Groves",
+                "PlayerOn": "Kevin Campbell",
+                "Minute": 77
+            }
+        ]
+    },
+    {
+        "Date": "1991-01-05T00:00:00+00:00",
+        "Opponents": "Sunderland",
+        "Venue": {
+            "VenueType": "Home",
+            "VenueName": "Highbury",
+            "Attendance": 35128
+        },
+        "Scores": [
+            {
+                "ScoreType": "HalfTime",
+                "GoalsFor": 2,
+                "GoalsAgainst": 0
+            },
+            {
+                "ScoreType": "FullTime",
+                "GoalsFor": 2,
+                "GoalsAgainst": 1
+            }
+        ],
+        "Competition": {
+            "CompetitionType": "FaCup",
+            "CompetitionName": "FA Cup 3rd Round",
+            "CompetitionRound": null
+        },
+        "StartingEleven": [
+            "David Seaman",
+            "Lee Dixon",
+            "Nigel Winterburn",
+            "Andy Linighan",
+            "Steve Bould",
+            "Perry Groves",
+            "Michael Thomas",
+            "Paul Davis",
+            "Anders Limpar",
+            "Paul Merson",
+            "Alan Smith"
+        ],
+        "Links": [ ],
+        "Goals": [
+            {
+                "Scorer": "Alan Smith",
+                "GoalType": "Goal",
+                "Minute": null
+            },
+            {
+                "Scorer": "Anders Limpar",
+                "GoalType": "Goal",
+                "Minute": null
+            }
+        ],
+        "Substitutions": [
+            {
+                "PlayerOff": "Anders Limpar",
+                "PlayerOn": "David O'Leary",
+                "Minute": 64
+            }
+        ]
+    },
+    {
+        "Date": "1991-04-03T00:00:00+00:00",
+        "Opponents": "Aston Villa",
+        "Venue": {
+            "VenueType": "Home",
+            "VenueName": "Highbury",
+            "Attendance": 41868
+        },
+        "Scores": [
+            {
+                "ScoreType": "HalfTime",
+                "GoalsFor": 1,
+                "GoalsAgainst": 0
+            },
+            {
+                "ScoreType": "FullTime",
+                "GoalsFor": 5,
+                "GoalsAgainst": 0
+            }
+        ],
+        "Competition": {
+            "CompetitionType": "League",
+            "CompetitionName": "Barclays League Division 1",
+            "CompetitionRound": null
+        },
+        "StartingEleven": [
+            "David Seaman",
+            "Lee Dixon",
+            "Nigel Winterburn",
+            "Tony Adams",
+            "Steve Bould",
+            "Paul Merson",
+            "David Hillier",
+            "Paul Davis",
+            "Anders Limpar",
+            "Kevin Campbell",
+            "Alan Smith"
+        ],
+        "Links": [ ],
+        "Goals": [
+            {
+                "Scorer": "Alan Smith",
+                "GoalType": "Goal",
+                "Minute": null
+            },
+            {
+                "Scorer": "Alan Smith",
+                "GoalType": "Goal",
+                "Minute": null
+            },
+            {
+                "Scorer": "Kevin Campbell",
+                "GoalType": "Goal",
+                "Minute": null
+            },
+            {
+                "Scorer": "Kevin Campbell",
+                "GoalType": "Goal",
+                "Minute": null
+            },
+            {
+                "Scorer": "Paul Davis",
+                "GoalType": "Goal",
+                "Minute": null
+            }
+        ],
+        "Substitutions": [
+            {
+                "PlayerOff": "David Hillier",
+                "PlayerOn": "Michael Thomas",
+                "Minute": 90
+            },
+            {
+                "PlayerOff": "Paul Merson",
+                "PlayerOn": "Perry Groves",
+                "Minute": 90
+            }
+        ]
+    },
+    {
+        "Date": "1991-05-11T00:00:00+00:00",
+        "Opponents": "Coventry",
+        "Venue": {
+            "VenueType": "Home",
+            "VenueName": "Highbury",
+            "Attendance": 41039
+        },
+        "Scores": [
+            {
+                "ScoreType": "HalfTime",
+                "GoalsFor": 2,
+                "GoalsAgainst": 1
+            },
+            {
+                "ScoreType": "FullTime",
+                "GoalsFor": 6,
+                "GoalsAgainst": 1
+            }
+        ],
+        "Competition": {
+            "CompetitionType": "League",
+            "CompetitionName": "Barclays League Division 1",
+            "CompetitionRound": null
+        },
+        "StartingEleven": [
+            "David Seaman",
+            "Lee Dixon",
+            "Nigel Winterburn",
+            "Tony Adams",
+            "Steve Bould",
+            "Paul Merson",
+            "David Hillier",
+            "Paul Davis",
+            "Anders Limpar",
+            "Kevin Campbell",
+            "Alan Smith"
+        ],
+        "Links": [ ],
+        "Goals": [
+            {
+                "Scorer": "Anders Limpar",
+                "GoalType": "Goal",
+                "Minute": null
+            },
+            {
+                "Scorer": "Anders Limpar",
+                "GoalType": "Goal",
+                "Minute": null
+            },
+            {
+                "Scorer": "Anders Limpar",
+                "GoalType": "Goal",
+                "Minute": null
+            },
+            {
+                "Scorer": "Alan Smith",
+                "GoalType": "Goal",
+                "Minute": null
+            },
+            {
+                "Scorer": "o.g.",
+                "GoalType": "OwnGoal",
+                "Minute": null
+            },
+            {
+                "Scorer": "Perry Groves",
+                "GoalType": "Goal",
+                "Minute": null
+            }
+        ],
+        "Substitutions": [
+            {
+                "PlayerOff": "Paul Merson",
+                "PlayerOn": "Andy Linighan",
+                "Minute": 79
+            },
+            {
+                "PlayerOff": "Kevin Campbell",
+                "PlayerOn": "Perry Groves",
+                "Minute": 80
+            }
+        ]
+    }
+]

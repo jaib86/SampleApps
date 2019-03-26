@@ -1,0 +1,26 @@
+﻿<mah:MetroWindow x:Class="ScoreKeeper.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
+        Title="ScoreKeeper" Height="500" Width="750"
+                 ShowTitleBar="False" TitleCaps="False">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Menu IsMainMenu="True" Grid.Row="0" >
+            <MenuItem Header="_File">
+                <MenuItem Header="_New Match" Command="{Binding NewMatch}"></MenuItem>
+                <MenuItem Header="_Publish..." Command="{Binding Publish}" ></MenuItem>
+                <MenuItem Header="_Settings" Command="{Binding Settings}"></MenuItem>
+                <MenuItem Header="E_xit" Command="{Binding Exit}"></MenuItem>
+            </MenuItem>
+            <MenuItem Header="_View">
+                <MenuItem Header="_Matches" Command="{Binding ViewMatches}"></MenuItem>
+                <MenuItem Header="_Stats" Command="{Binding ViewStats}"></MenuItem>
+            </MenuItem>
+        </Menu>
+        <ContentPresenter Grid.Row="1" x:Name="MainArea"></ContentPresenter>
+    </Grid>
+</mah:MetroWindow>
