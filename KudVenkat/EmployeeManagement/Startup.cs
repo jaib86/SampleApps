@@ -35,25 +35,13 @@ namespace EmployeeManagement
                 app.UseDeveloperExceptionPage();
             }
 
-            app.Use(async (context, next) =>
-            {
-                logger.LogInformation("MW1: Incoming Request " + DateTime.Now);
-                await next();
-                logger.LogInformation("MW1: Outgoing Response " + DateTime.Now);
-            });
+            logger.LogInformation("Hello World app started");
 
-            app.Use(async (context, next) =>
-            {
-                logger.LogInformation("MW2: Incoming Request " + DateTime.Now);
-                await next();
-                logger.LogInformation("MW2: Outgoing Response " + DateTime.Now);
-            });
+            app.UseStaticFiles();
 
-            // Second middleware will not execute, first middleware is not allow to process next middleware in pipeline.
             app.Run(async (context) =>
             {
-                await context.Response.WriteAsync("MW3: Request handled and response produced " + DateTime.Now);
-                logger.LogInformation("MW3: Request handled and response produced " + DateTime.Now);
+                await context.Response.WriteAsync("Hello World!");
             });
         }
     }
