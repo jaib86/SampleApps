@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid>
@@ -22,9 +23,18 @@
             </ListBox.ItemTemplate>
         </ListBox>
         <StackPanel Grid.Row="1" Orientation="Horizontal">
-            <Button Command="{Binding NewMatch}" Margin="5" Width="80">New...</Button>
-            <Button Command="{Binding EditMatch}" CommandParameter="{Binding SelectedMatch}" Margin="5" Width="80">Edit...</Button>
-            <Button Command="{Binding DeleteMatch}" CommandParameter="{Binding SelectedMatch}" Margin="5" Width="80">Delete</Button>
+            <Button Command="{Binding NewMatch}" 
+                    controls:ButtonHelper.PreserveTextCase="True" 
+                    Style="{DynamicResource AccentedSquareButtonStyle}"
+                    Margin="5" Width="80">New...</Button>
+            <Button Command="{Binding EditMatch}" CommandParameter="{Binding SelectedMatch}" 
+                    controls:ButtonHelper.PreserveTextCase="True" 
+                    Style="{DynamicResource AccentedSquareButtonStyle}"
+                    Margin="5" Width="80">Edit...</Button>
+            <Button Command="{Binding DeleteMatch}" CommandParameter="{Binding SelectedMatch}" 
+                    controls:ButtonHelper.PreserveTextCase="True" 
+                    Style="{DynamicResource AccentedSquareButtonStyle}"
+                    Margin="5" Width="80">Delete</Button>
         </StackPanel>
     </Grid>
 </UserControl>

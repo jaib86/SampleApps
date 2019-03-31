@@ -6,6 +6,13 @@
              mc:Ignorable="d" 
              MinWidth="300"
              d:DesignHeight="300" d:DesignWidth="300">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/FlatSlider.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
     <Grid>
            <Grid.ColumnDefinitions>
                <ColumnDefinition></ColumnDefinition>
@@ -30,7 +37,7 @@
         <Label Grid.Row="3">Include stats</Label>
         <CheckBox Grid.Column="1" Grid.Row="3" Margin="5"></CheckBox>
         <Label Grid.Row="4">Minimum appearances</Label>
-        <Slider Grid.Column="1" Grid.Row="4" Margin="5"></Slider>
+        <Slider Grid.Column="1" Grid.Row="4" Value="40" Margin="5 10" Style="{DynamicResource FlatSlider}"></Slider>
         <Button Command="{Binding OkCommand}" IsDefault="True" Grid.Column="1" Grid.Row="5" Margin="5" Width="80" HorizontalAlignment="Right">OK</Button>
     </Grid>
 </UserControl>

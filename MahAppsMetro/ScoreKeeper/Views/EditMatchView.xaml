@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:views="clr-namespace:ScoreKeeper.Views"
+             xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="600">
     <Grid>
@@ -31,7 +32,7 @@
         <Label Margin="5" Grid.Row="0" Grid.Column="0">Date:</Label>
         <DatePicker SelectedDate="{Binding Date, Mode=TwoWay}" Margin="5" Grid.Row="0" Grid.Column="1"/>
         <Label Margin="5" Grid.Row="1" Grid.Column="0">Opposition:</Label>
-        <TextBox Text="{Binding Opponents, Mode=TwoWay}" Margin="5" Grid.Row="1" Grid.Column="1"/>
+        <TextBox controls:TextBoxHelper.ClearTextButton="True" Text="{Binding Opponents, Mode=TwoWay}" Margin="5" Grid.Row="1" Grid.Column="1"/>
         <Label  Margin="5" Grid.Row="2" Grid.Column="0">Venue:</Label>
         <ComboBox Margin="5" ItemsSource="{Binding VenueTypes}" SelectedItem="{Binding VenueType, Mode=TwoWay}"  Grid.Row="2" Grid.Column="1"></ComboBox>
         <Label  Margin="5" Grid.Row="3" Grid.Column="0">Category:</Label>
@@ -61,7 +62,7 @@
         
         <!-- Starting 11 -->
         <Label Margin="5" Grid.Row="0" Grid.Column="2">Starting Eleven</Label>
-        <ItemsControl Margin="5"
+        <ItemsControl Margin="5" x:Name="StartingElevenControl"
                       Grid.Row="1" Grid.Column="2" Grid.RowSpan="7" 
                       ItemsSource="{Binding StartingEleven}">
             <ItemsControl.ItemTemplate>
@@ -74,9 +75,13 @@
                         <TextBlock Margin="5,2" 
                                    Text="{Binding Number}" 
                                    HorizontalAlignment="Right"></TextBlock>
-                        <TextBox Margin="5,2" 
-                                 Grid.Column="1" 
-                                 Text="{Binding Name, Mode=TwoWay}"></TextBox>
+                        <ComboBox Margin="5,2" 
+                                  IsEditable="True"
+                                  controls:TextBoxHelper.ClearTextButton="True"
+                                  controls:TextBoxHelper.Watermark="Full Player Name"
+                                  Grid.Column="1" 
+                                  ItemsSource="{Binding Path=DataContext.AllPlayers, ElementName=StartingElevenControl}"
+                                  Text="{Binding Name, Mode=TwoWay}"></ComboBox>
                     </Grid>
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
