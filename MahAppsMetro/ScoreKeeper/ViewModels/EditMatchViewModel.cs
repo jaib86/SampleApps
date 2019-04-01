@@ -9,6 +9,7 @@ namespace ScoreKeeper.ViewModels
 {
     class EditMatchViewModel : ViewModelBase
     {
+        public ObservableCollection<string> AllPlayers { get; private set; }
         private readonly Match match;
         private readonly ScoreViewModel halfTimeScore;
         private readonly ScoreViewModel fullTimeScore;
@@ -18,8 +19,9 @@ namespace ScoreKeeper.ViewModels
         private Goal selectedGoal;
         private Substitution selectedSubstitution;
 
-        public EditMatchViewModel(Match match)
+        public EditMatchViewModel(Match match, ObservableCollection<string> allPlayers)
         {
+            AllPlayers = allPlayers;
             this.match = match;
             VenueTypes = new[]
             {
@@ -90,11 +92,13 @@ namespace ScoreKeeper.ViewModels
         {
             var w = new Window();
             w.Width = 400;
-            w.Height = 250;
+            w.Height = 260;
             w.Title = "Add new goal";
+            w.WindowStartupLocation = WindowStartupLocation.CenterOwner;
             w.Content = new GoalView();
             var vm = new GoalViewModel();
             w.DataContext = vm;
+            w.Owner = Application.Current.MainWindow; 
             if (w.ShowDialog().GetValueOrDefault())
             {
                 Goals.Add(new Goal() { 
@@ -111,8 +115,10 @@ namespace ScoreKeeper.ViewModels
             w.Height = 250;
             w.Title = "Add new substitution";
             w.Content = new SubstitutionView();
+            w.WindowStartupLocation = WindowStartupLocation.CenterOwner; 
             var vm = new SubstitutionViewModel();
             w.DataContext = vm;
+            w.Owner = Application.Current.MainWindow;
             if (w.ShowDialog().GetValueOrDefault())
             {
                 Substitutions.Add(new Substitution()

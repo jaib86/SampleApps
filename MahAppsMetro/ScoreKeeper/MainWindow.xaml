@@ -1,52 +1,50 @@
-﻿<mah:MetroWindow x:Class="ScoreKeeper.MainWindow"
+﻿<controls:MetroWindow x:Class="ScoreKeeper.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
-        Title="Score Keeper" Height="500" Width="750"
-                 TitleCaps="False" ResizeMode="CanResizeWithGrip" 
-                 NonActiveBorderBrush="Green" NonActiveWindowTitleBrush="Green"
-                 Icon="Resources/Images/football48.png"
-                 GlowBrush="{DynamicResource AccentColorBrush}" BorderThickness="5">
-    <mah:MetroWindow.IconTemplate>
+        xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
+        xmlns:views="clr-namespace:ScoreKeeper.Views"
+        Title="ScoreKeeper" Height="500" Width="750"
+                      TitleCaps="False"
+                      ResizeMode="CanResizeWithGrip"
+                      GlowBrush="{DynamicResource AccentColorBrush}"
+                      Icon="Resources/football48.png"
+                      SaveWindowPosition="True"
+                      >
+    <controls:MetroWindow.RightWindowCommands>
+        <controls:WindowCommands>
+            <Button Command="{Binding Settings}">Settings</Button>
+            <Button Command="{Binding Publish}">Publish</Button>
+        </controls:WindowCommands>
+    </controls:MetroWindow.RightWindowCommands>
+    
+    <controls:MetroWindow.IconTemplate>
         <DataTemplate>
-            <Image Source="Resources/Images/football-transparent48.png"></Image>
+            <Image Source="Resources/football-transparent48.png"></Image>
         </DataTemplate>
-    </mah:MetroWindow.IconTemplate>
-    <mah:MetroWindow.RightWindowCommands>
-        <mah:WindowCommands>
-            <Button>Settings</Button>
-            <Button>Publish</Button>
-        </mah:WindowCommands>
-    </mah:MetroWindow.RightWindowCommands>
-    <mah:MetroWindow.LeftWindowCommands>
-        <mah:WindowCommands>
-            <Button FontSize="20" FontFamily="Wingdings">D</Button>
-            <Button FontSize="20" FontFamily="Wingdings">J</Button>
-        </mah:WindowCommands>
-    </mah:MetroWindow.LeftWindowCommands>
+    </controls:MetroWindow.IconTemplate>
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
             <RowDefinition Height="Auto"></RowDefinition>
         </Grid.RowDefinitions>
-        <Menu IsMainMenu="True" Grid.Row="0" >
-            <MenuItem Header="_File">
-                <MenuItem Header="_New Match" Command="{Binding NewMatch}"></MenuItem>
-                <MenuItem Header="_Publish..." Command="{Binding Publish}" ></MenuItem>
-                <MenuItem Header="_Settings" Command="{Binding Settings}"></MenuItem>
-                <MenuItem Header="E_xit" Command="{Binding Exit}"></MenuItem>
-            </MenuItem>
-            <MenuItem Header="_View">
-                <MenuItem Header="_Matches" Command="{Binding ViewMatches}"></MenuItem>
-                <MenuItem Header="_Stats" Command="{Binding ViewStats}"></MenuItem>
-            </MenuItem>
-        </Menu>
-        <ContentPresenter Grid.Row="1" x:Name="MainArea"></ContentPresenter>
-        <StatusBar Grid.Row="2">
-            <StatusBarItem>Store Keeper</StatusBarItem>
+        <controls:MetroAnimatedTabControl 
+            controls:TabControlHelper.IsUnderlined="True"
+            controls:TabControlHelper.Transition="Up"
+            SelectedIndex="{Binding SelectedTabIndex, Mode=TwoWay}">
+            <controls:MetroTabItem Header="matches">
+                <views:MatchesView DataContext="{Binding MatchesViewModel}" />
+            </controls:MetroTabItem>
+            <controls:MetroTabItem Header="stats">
+                <views:StatsView DataContext="{Binding StatsViewModel}"></views:StatsView>
+            </controls:MetroTabItem>
+            <controls:MetroTabItem Header="edit">
+                <views:EditMatchView DataContext="{Binding EditMatchViewModel}"></views:EditMatchView>
+            </controls:MetroTabItem>
+        </controls:MetroAnimatedTabControl>
+        <StatusBar Grid.Row="1">
+            <StatusBarItem>ScoreKeeper</StatusBarItem>
             <Separator Style="{StaticResource MetroStatusBarSeparator}"></Separator>
             <StatusBarItem>Some status message</StatusBarItem>
         </StatusBar>
     </Grid>
-</mah:MetroWindow>
+</controls:MetroWindow>

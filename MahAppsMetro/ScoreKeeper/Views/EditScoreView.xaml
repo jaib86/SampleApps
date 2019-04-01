@@ -3,13 +3,19 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
+             xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
              mc:Ignorable="d" 
              d:DesignHeight="30" d:DesignWidth="300">
     <StackPanel Orientation="Horizontal">
-        <mah:ToggleSwitch OnLabel="" OffLabel="" IsChecked="{Binding IsApplicable}" VerticalAlignment="Center" Margin="5"></mah:ToggleSwitch>
-        <TextBox IsEnabled="{Binding IsApplicable}"  Width="30" MaxLength="2" Text="{Binding GoalsFor}" Margin="5"></TextBox>
+        <controls:ToggleSwitch 
+            OnLabel="" OffLabel=""
+            IsChecked="{Binding IsApplicable}" VerticalAlignment="Center" Margin="5"></controls:ToggleSwitch>
+        <TextBox IsEnabled="{Binding IsApplicable}"  
+                 VerticalAlignment="Center"
+                 Width="30" MaxLength="2" Text="{Binding GoalsFor, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" Margin="5"></TextBox>
         <Label VerticalAlignment="Center">-</Label>
-        <TextBox IsEnabled="{Binding IsApplicable}"  Width="30" MaxLength="2" Text="{Binding GoalsAgainst}" Margin="5"></TextBox>
+        <TextBox IsEnabled="{Binding IsApplicable}"  
+                 VerticalAlignment="Center"
+                 Width="30" MaxLength="2" Text="{Binding GoalsAgainst, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" Margin="5"></TextBox>
     </StackPanel>
 </UserControl>

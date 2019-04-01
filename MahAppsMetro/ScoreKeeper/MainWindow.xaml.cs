@@ -18,12 +18,10 @@ namespace ScoreKeeper
 
         private void OnLoaded(object sender, RoutedEventArgs routedEventArgs)
         {
-            this.DataContext = new MainWindowViewModel(NavigateToView);
+            this.DataContext = new MainWindowViewModel();
         }
 
-        private void NavigateToView(UserControl view)
-        {
-            MainArea.Content = view;
-        }
+
+        
     }
 }

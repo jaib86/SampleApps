@@ -180,7 +180,6 @@
     <None Include="Matches.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Matches.json.vsspell" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -192,9 +191,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\Images\football-transparent48.png" />
-    <Resource Include="Resources\Images\football48.ico" />
-    <Resource Include="Resources\Images\football48.png" />
+    <Resource Include="Resources\football-transparent48.png" />
+    <Resource Include="Resources\football48.ico" />
+    <Resource Include="Resources\football48.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
