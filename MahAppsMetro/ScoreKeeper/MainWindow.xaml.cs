@@ -1,6 +1,8 @@
-﻿using System.Windows;
+﻿using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Controls;
 using MahApps.Metro.Controls;
+using MahApps.Metro.Controls.Dialogs;
 using ScoreKeeper.ViewModels;
 
 namespace ScoreKeeper
@@ -18,10 +20,9 @@ namespace ScoreKeeper
 
         private void OnLoaded(object sender, RoutedEventArgs routedEventArgs)
         {
-            this.DataContext = new MainWindowViewModel();
+            this.DataContext = new MainWindowViewModel(new DialogService(this));
         }
-
-
-        
     }
+
+
 }

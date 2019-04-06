@@ -2,6 +2,7 @@
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
@@ -12,8 +13,10 @@ namespace ScoreKeeper.ViewModels
 {
     class MainWindowViewModel : ViewModelBase
     {
+        private readonly IDialogService dialogService;
         private EditMatchViewModel editMatchViewModel;
         private int selectedTabIndex;
+        private bool isSettingsFlyoutOpen;
 
         public ObservableCollection<string> AllPlayers { get; private set; }
         public RelayCommand NewMatch { get; private set; }
@@ -23,6 +26,7 @@ namespace ScoreKeeper.ViewModels
 
         public StatsViewModel StatsViewModel { get; set; }
         public MatchesViewModel MatchesViewModel { get; set; }
+        public SettingsViewModel SettingsViewModel { get; set; }
 
         public EditMatchViewModel EditMatchViewModel
         {
@@ -31,6 +35,17 @@ namespace ScoreKeeper.ViewModels
             {
                 if (Equals(value, editMatchViewModel)) return;
                 editMatchViewModel = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public bool IsSettingsFlyoutOpen
+        {
+            get { return isSettingsFlyoutOpen; }
+            set
+            {
+                if (value.Equals(isSettingsFlyoutOpen)) return;
+                isSettingsFlyoutOpen = value;
                 OnPropertyChanged();
             }
         }
@@ -46,8 +61,9 @@ namespace ScoreKeeper.ViewModels
             }
         }
 
-        public MainWindowViewModel()
+        public MainWindowViewModel(IDialogService dialogService)
         {
+            this.dialogService = dialogService;
             Initializate();
             NewMatch = new RelayCommand(_ => EditMatch(null));
             Exit = new RelayCommand(_ => Application.Current.MainWindow.Close());
@@ -57,29 +73,31 @@ namespace ScoreKeeper.ViewModels
 
         private void OnSettingsCommand()
         {
-            var w = new Window();
-            w.Title = "Settings";
-            w.WindowStartupLocation = WindowStartupLocation.CenterOwner;
-            w.Content = new SettingsView();
-            w.SizeToContent = SizeToContent.WidthAndHeight;
-            var vm = new SettingsViewModel(() => w.Close());
-            w.DataContext = vm;
-            w.Owner = Application.Current.MainWindow;
-            w.ShowDialog();
+            IsSettingsFlyoutOpen = true;
         }
 
-        private void OnPublishCommand()
+        private async void OnPublishCommand()
         {
-            var w = new Window();
-            w.Width = 400;
-            w.Height = 150;
-            w.WindowStartupLocation = WindowStartupLocation.CenterOwner; 
-            w.Title = "Publishing";
-            w.Content = new PublishView();
-            var vm = new PublishViewModel(() => w.Close());
-            w.DataContext = vm;
-            w.Owner = Application.Current.MainWindow;
-            w.ShowDialog();
+            var controller = await dialogService.ShowProgressAsync("Publishing", "Uploading Matches");
+            controller.SetCancelable(true);
+            int uploadCount = 0;
+            foreach (var m in MatchesViewModel.Matches)
+            {
+                await UploadMatch(m);
+                if (controller.IsCanceled) break;
+                uploadCount++;
+                controller.SetProgress((double)uploadCount / MatchesViewModel.Matches.Count);
+            }
+            await controller.CloseAsync();
+            if (controller.IsCanceled)
+                await dialogService.ShowMessageAsync("Publishing", "Publish cancelled");
+            else
+                await dialogService.ShowMessageAsync("Publishing", "Publish successful");
+        }
+
+        private Task UploadMatch(MatchViewModel matchViewModel)
+        {
+            return Task.Delay(250);
         }
 
         private void Initializate()
@@ -100,9 +118,12 @@ namespace ScoreKeeper.ViewModels
             MatchesViewModel = new MatchesViewModel(matchViewModels,
                 new RelayCommand(_ => EditMatch(null)),
                 new RelayCommand(m => EditMatch(((MatchViewModel)m).Match),
-                    o => o != null));
+                    o => o != null),
+                    dialogService);
 
             StatsViewModel = new StatsViewModel(matchViewModels);
+
+            SettingsViewModel = new SettingsViewModel(() => IsSettingsFlyoutOpen = false);
         }
 
         private void EditMatch(Match m)

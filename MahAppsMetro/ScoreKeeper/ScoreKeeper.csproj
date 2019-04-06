@@ -65,6 +65,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="DialogService.cs" />
     <Compile Include="Model\GoalscorerStats.cs" />
     <Compile Include="Model\Match.cs" />
     <Compile Include="Model\MatchStats.cs" />

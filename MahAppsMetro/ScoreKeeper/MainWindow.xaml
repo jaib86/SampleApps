@@ -9,7 +9,22 @@
                       GlowBrush="{DynamicResource AccentColorBrush}"
                       Icon="Resources/football48.png"
                       SaveWindowPosition="True"
+                      RightWindowCommandsOverlayBehavior="Never"
                       >
+    <controls:MetroWindow.Flyouts>
+        <controls:FlyoutsControl>
+            <controls:Flyout
+                Position="Right"
+                AreAnimationsEnabled="True"
+                Header="Settings"
+                Theme="Inverse"
+                IsModal="True"
+                IsOpen="{Binding IsSettingsFlyoutOpen, Mode=TwoWay}">
+                <views:SettingsView
+                    DataContext="{Binding SettingsViewModel}"></views:SettingsView>
+            </controls:Flyout>
+        </controls:FlyoutsControl>
+    </controls:MetroWindow.Flyouts>
     <controls:MetroWindow.RightWindowCommands>
         <controls:WindowCommands>
             <Button Command="{Binding Settings}">Settings</Button>
