@@ -1,9 +1,10 @@
 ﻿using Caliburn.Micro;
+using WPFUI.Interfaces;
 using WPFUI.Models;
 
 namespace WPFUI.ViewModels
 {
-    public class ShellViewModel : Conductor<object>
+    public class ShellViewModel : PropertyChangedBase, IShell
     {
         private string firstName = "Jaiprakash";
 
@@ -45,6 +46,18 @@ namespace WPFUI.ViewModels
 
         public string FullName { get => $"{FirstName} {LastName}"; }
 
+        private string infoMessageCaption = "Show Message";
+
+        public string InfoMessageCaption
+        {
+            get { return infoMessageCaption; }
+            set
+            {
+                infoMessageCaption = value;
+                NotifyOfPropertyChange(() => InfoMessageCaption);
+            }
+        }
+
         public BindableCollection<PersonModel> People { get; set; } = new BindableCollection<PersonModel>();
 
         public PersonModel SelectedPerson
@@ -79,12 +92,22 @@ namespace WPFUI.ViewModels
 
         public void LoadPageOne()
         {
-            ActivateItem(new FirstChildViewModel());
+            //ActivateItem(new FirstChildViewModel());
         }
 
         public void LoadPageTwo()
         {
-            ActivateItem(new SecondChildViewModel());
+            //ActivateItem(new SecondChildViewModel());
+        }
+
+        public void InfoMessage()
+        {
+            this.InfoMessageCaption = this.InfoMessageCaption == "Show Message" ? "Show Message - Clicked" : "Show Message";
+        }
+
+        public void HitMe()
+        {
+            this.InfoMessageCaption = this.InfoMessageCaption == "Show Message" ? "Show Message - Clicked" : "Show Message";
         }
     }
 }

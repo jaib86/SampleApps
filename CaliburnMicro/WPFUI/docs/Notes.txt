@@ -1,0 +1,13 @@
+﻿1. NuGut Packages --> add Caliburn.Micro and Caliburn.Micro.Core
+2. App.xaml --> Add local:Bootstrapper in ResourceDictionary
+3. Bootstrapper.cs -->	Add new classBootstrapper.cs, 
+						inherit from BootstrapperBase from Caliburn.Micro namespace
+						call Initialize() from constructor and 
+						override OnStartup method and call DisplayRootViewFor<ShellViewModel>() generic method from within OnStartup().
+4. Add folders for Views, ViewModels and Models
+5. Add ShellViewModel.cs and inherit from Screen class from Caliburn.Micro
+6. Add ShellView.xaml window
+7. 
+						i
+
+* 

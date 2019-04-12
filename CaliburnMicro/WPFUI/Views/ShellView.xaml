@@ -3,9 +3,9 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:WPFUI.Views"
+        xmlns:cal="http://www.caliburnproject.org"
         mc:Ignorable="d"
-        Title="ShellView" Height="300" Width="300">
+        Title="ShellView" Height="300" Width="500">
     <Grid Width="{Binding Path=GridWidth, Mode=OneWayToSource}">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="20" />
@@ -48,6 +48,8 @@
         <!-- Row 5 -->
         <Button x:Name="LoadPageOne" Grid.Row="5" Grid.Column="1" Margin="5" Padding="3">Load First page</Button>
         <Button x:Name="LoadPageTwo" Grid.Row="5" Grid.Column="2" Margin="5" Padding="3">Load Second page</Button>
+        <Button Grid.Row="5" Grid.Column="3" Margin="5" Padding="3" 
+                Content="{Binding Path=InfoMessageCaption}" cal:Message.Attach="HitMe" />
 
         <!-- Row 6 -->
         <ContentControl x:Name="ActiveItem" Grid.Row="6" Grid.Column="1" Grid.ColumnSpan="5" />
