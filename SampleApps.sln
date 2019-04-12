@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28307.329
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.28803.156
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfApp", "WpfApp\WpfApp.csproj", "{E171B579-D5B6-4AA5-8393-5830A3C25C1F}"
 EndProject
@@ -54,6 +54,14 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EmployeeManagement", "KudVenkat\EmployeeManagement\EmployeeManagement.csproj", "{B76BCEE8-6980-4979-9204-C78E54FA63DB}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScoreKeeper", "MahAppsMetro\ScoreKeeper\ScoreKeeper.csproj", "{17E48EFD-0D78-4A53-AA36-49C52996FE32}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "EF", "EF", "{2CC99778-AFEE-4944-A385-5A26CE7DCA2E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SamuraiApp", "EF\SamuraiApp\SamuraiApp.csproj", "{FF09EE24-84B0-4917-BDD7-CA5D3BE4F7B3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SamuraiApp.Data", "EF\SamuraiApp.Data\SamuraiApp.Data.csproj", "{7018328E-89BB-444E-8368-454DAC8B4277}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SamuraiApp.Domain", "EF\SamuraiApp.Domain\SamuraiApp.Domain.csproj", "{04AE0413-A3BD-4449-A2FC-327AEB9A00FE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -141,6 +149,18 @@ Global
 		{17E48EFD-0D78-4A53-AA36-49C52996FE32}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{17E48EFD-0D78-4A53-AA36-49C52996FE32}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{17E48EFD-0D78-4A53-AA36-49C52996FE32}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FF09EE24-84B0-4917-BDD7-CA5D3BE4F7B3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FF09EE24-84B0-4917-BDD7-CA5D3BE4F7B3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FF09EE24-84B0-4917-BDD7-CA5D3BE4F7B3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FF09EE24-84B0-4917-BDD7-CA5D3BE4F7B3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7018328E-89BB-444E-8368-454DAC8B4277}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7018328E-89BB-444E-8368-454DAC8B4277}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7018328E-89BB-444E-8368-454DAC8B4277}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7018328E-89BB-444E-8368-454DAC8B4277}.Release|Any CPU.Build.0 = Release|Any CPU
+		{04AE0413-A3BD-4449-A2FC-327AEB9A00FE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{04AE0413-A3BD-4449-A2FC-327AEB9A00FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{04AE0413-A3BD-4449-A2FC-327AEB9A00FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{04AE0413-A3BD-4449-A2FC-327AEB9A00FE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -162,6 +182,9 @@ Global
 		{09ED8F04-63C3-444C-8DB2-02A3DBF49872} = {918D4159-80C9-4FE5-AFB7-E2A3F18D8358}
 		{B76BCEE8-6980-4979-9204-C78E54FA63DB} = {4917DF3E-E95B-42D1-9A23-55BE670CB7C1}
 		{17E48EFD-0D78-4A53-AA36-49C52996FE32} = {918D4159-80C9-4FE5-AFB7-E2A3F18D8358}
+		{FF09EE24-84B0-4917-BDD7-CA5D3BE4F7B3} = {2CC99778-AFEE-4944-A385-5A26CE7DCA2E}
+		{7018328E-89BB-444E-8368-454DAC8B4277} = {2CC99778-AFEE-4944-A385-5A26CE7DCA2E}
+		{04AE0413-A3BD-4449-A2FC-327AEB9A00FE} = {2CC99778-AFEE-4944-A385-5A26CE7DCA2E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {2829B699-AA3B-47FF-ABEE-405B0FCD4E98}
