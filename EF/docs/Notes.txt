@@ -1,0 +1,121 @@
+* Added NuGet package 'Microsoft.EntityFrameworkCore.SqlServer'
+	It has dependency on 'Microsoft.EntityFrameworkCore.Relational' and 
+		Relation has further dependency on 'Microsoft.EntityFrameworkCore'
+
+* We can also install the above package with the following command:
+	Install-Package Microsoft.EntityFrameworkCore.SqlServer
+
+* Use 'Add New File' extension for creating new files
+	Press Shift+F2 to create new file
+
+* Install Microsoft.EntityFrameworkCore.Tools using the following command
+	Install-Package Microsoft.EntityFrameworkCore.Tools
+
+* Execute the following command for help
+	get-help entityframeworkcore
+
+    The following Entity Framework Core commands are available.
+        Cmdlet                      Description
+        --------------------------  ---------------------------------------------------
+        Add-Migration               Adds a new migration.
+        Drop-Database               Drops the database.
+        Get-DbContext               Gets information about a DbContext type.
+        Remove-Migration            Removes the last migration.
+        Scaffold-DbContext          Scaffolds a DbContext and entity types for a database.
+        Script-Migration            Generates a SQL script from migrations.
+        Update-Database             Updates the database to a specified migration.
+
+* To get help on particular command
+	get-help add-migration
+
+* Set the SamuraiApp.Data core library project as startup and then execute the following command
+	add-migration init
+	-- it will add Migrations folder with snapshot of current data model
+
+* Script-Migration			vs		Update-Database
+	-- More Control					-- Best for local development database
+	-- Production databases
+	-- Apply needed tweaks
+* Update-Database
+	Update-Database --verbose
+		-- verbose will show details
+
+* Reach out to author's website for more help
+	http://thedatafarm.com/
+	http://thedatafarm.com/data-access/no-executable-found-matching-command-dotnet-ef/
+
+*	Add-Migration init
+	Add-Migration JoinTable
+	Add-Migration SecretIdentity
+	Delete-Migration
+	script-migration
+	script-migration -idempotent
+	script-migration -from init
+	script-migration -from init -to SecretIdentity
+	update-database -verbose
+
+* Scaffolding Model from existing database
+	scaffold-dbcontext "Server = (localdb)\mssqllocaldb; Database = SamuraiData; Trusted_Connection = True;" Microsoft.EntityFrameworkCore.SqlServer
+
+* Initial Focus is on simple objects
+	-- 
+* Logging with EF Core
+	-- Microsoft.Extensions.Logging.ILoggerProvider
+	-- To log sensitive data, add following line within OnConfiguring() method of SamuraiContext class
+		optionsBuilder.EnableSensitiveDataLogging();
+* Inserting data
+	-- context.Samurais.Add(new Samurai { Name = "Jaiprakash" });
+	-- context.SaveChanges();
+* Bulk operations when saving
+	-- context.Samurais.AddRange(new List<Samurai>());
+	-- options => options.MaxBatchSize(30)
+* Querying simple data
+	-- LINQ to Entities Execution Methods
+		ToList()			ToListAsync()
+		First()				FirstAsync()
+		FirstOrDefault()	FirstOrDefaultAsync()
+		Single()			SingleAsync()
+		SingleOrDefault()	SingleOrDefaultAsync()
+		Count()				CountAsync()
+		LongCount()			LongCountAsync()
+		Min()				MinAsync()
+		Max()				MaxAsync()
+		-----------------------------------------------
+		Last()				LastAsync()
+		LastOrDefault()		LastOrDefaultAsync()
+		Average()			AverageAsync()
+		----------A DbSet method-----------------------
+		Find(keyValue)		FindAsync(keyValue)
+	-- 
+* Updating objects
+* Disconnected updates
+	-- DbSet.Update(entity)
+	-- DbSet.UpdateRange(entityA, entityB)
+	-- DbContext.Update(entity)
+	-- DbContext.UpdateRange(entityA, entityB)
+	-- DbContext.Entry(entity).State = EntityState.Modified
+* Querying with raw SQL and stored procedures
+	-- DbSet.FromSql()
+	-- DbContext.Database.ExecuteSqlCommand()
+* Executing raw SQL commands
+	-- DbContext.Database.EnsureCreated()
+* Loading Related Data
+	-- Eager Loading via Include()
+	-- Eager via projection
+	-- Explicit Loading
+		* DbContext.Entry(samurai).Collection(s => s.Quotes).Load()
+		* DbContext.Entry(samurai).Reference(s => s.SecretIdentity).Load()
+		* DbContext.Entry(samurai).Collection(s => s.Quotes).Query().Where(q => q.Text.Contains("happy").Load()
+	-- Lazy Loading
+* EF Core's Disconnected Graph Behaviors
+	-- DbSet.Add			DbContext.Add
+	-- DbSet.Attach			DbContext.Attach
+	-- DbSet.Update			DbContext.Update
+	-- DbSet.Remove			DbContext.Remove
+	-- DbSet.AddRange		DbContext.AddRange
+	-- DbSet.AttachRange	DbContext.AttachRange
+	-- DbSet.UpdateRange	DbContext.UpdateRange
+	-- DbSet.RemoveRange	DbContext.RemoveRange
+	-- DbContext.Entry(samurai).State = EntryState.Added
+	-- DbContext.Entry(samurai).State = EntryState.Modified
+	-- Entry.IsKeySet
