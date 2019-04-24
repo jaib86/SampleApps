@@ -1,8 +1,12 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>netcoreapp2.2</TargetFramework>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DefineConstants>TRACE;PostgreSQL</DefineConstants>
   </PropertyGroup>
 
   <ItemGroup>
@@ -12,6 +16,7 @@
   <ItemGroup>
     <ProjectReference Include="..\SamuraiApp.Data\SamuraiApp.Data.csproj" />
     <ProjectReference Include="..\SamuraiApp.Domain\SamuraiApp.Domain.csproj" />
+    <ProjectReference Include="..\SamuraiApp.PostgreSql.Data\SamuraiApp.PostgreSql.Data.csproj" />
   </ItemGroup>
 
 </Project>

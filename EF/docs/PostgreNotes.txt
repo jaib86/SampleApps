@@ -1,0 +1,13 @@
+* Download and install PostgreSQL database from the following URL
+	https://www.enterprisedb.com/downloads/postgres-postgresql-downloads
+* EF Core for PostgreSQL
+	https://medium.com/@RobertKhou/getting-started-with-entity-framework-core-postgresql-c6fa09681624
+
+* Added the following NuGet package with command "install-package"
+	-- Microsoft.EntityFrameworkCore.Design
+	-- Microsoft.EntityFrameworkCore.Tools
+	-- Npgsql.EntityFrameworkCore.PostgreSQL
+	-- Npgsql.EntityFrameworkCore.PostgreSQL.Design
+* Run following command to generate migration file and create database
+	-- add-migration init
+	-- Update-Database --verbose

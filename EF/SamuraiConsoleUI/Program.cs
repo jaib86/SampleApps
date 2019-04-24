@@ -1,10 +1,14 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Infrastructure;
+﻿using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.Extensions.Logging;
-using SamuraiApp.Data;
 using SamuraiApp.Domain;
+
+#if PostgreSQL
+using SamuraiApp.PostgreSql.Data;
+#else
+using SamuraiApp.Data;
+#endif
+
 using System.Collections.Generic;
-using System.Linq;
 
 namespace SamuraiConsoleUI
 {
@@ -22,7 +26,7 @@ namespace SamuraiConsoleUI
             var samuraiRaksha = new Samurai { Name = "Raksha" };
             using (var context = new SamuraiContext())
             {
-                context.GetService<ILoggerFactory>().AddProvider(new MyLoggerProvider());
+                context.GetService<ILoggerFactory>().AddProvider(new SamuraiApp.Data.MyLoggerProvider());
                 context.Samurais.AddRange(new List<Samurai>() { samurai, samuraiRaksha });
                 //context.Samurais.Last
                 context.SaveChanges();
@@ -34,7 +38,7 @@ namespace SamuraiConsoleUI
             var samurai = new Samurai { Name = "Jaiprakash" };
             using (var context = new SamuraiContext())
             {
-                context.GetService<ILoggerFactory>().AddProvider(new MyLoggerProvider());
+                context.GetService<ILoggerFactory>().AddProvider(new SamuraiApp.Data.MyLoggerProvider());
                 context.Samurais.Add(samurai);
                 //context.Add(samurai);
                 context.SaveChanges();
