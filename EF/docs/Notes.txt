@@ -119,3 +119,36 @@
 	-- DbContext.Entry(samurai).State = EntryState.Added
 	-- DbContext.Entry(samurai).State = EntryState.Modified
 	-- Entry.IsKeySet
+* Tracking or Non-tracking Queries
+	-- Track all queries results (default)
+	-- Disable per query:
+		* context.Samurais.AsNoTracking().ToList();
+	-- Tracking per context instance, New to EF Core
+		* context.ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTracking;
+		* QueryTrackingBehavior enum
+			.TrackAll (default)
+			.NoTracking
+		* context.ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTracking;
+	-- Loading data with eager loading
+		* context.Samurais.Include(s => s.SecretIdentity)
+						  .Include(s => s.Quotes)
+						  .FirstOrDefault();
+	-- Track disconnected object to EF Core, new feature
+		* context.ChangeTracker.TrackGraph(samurai, e => ApplyStateUsingIsKeySet(e.Entry));
+		* private static void ApplyStateUsingIsKeySet(EntityEntry entry) {
+            if (entry.IsKeySet) {
+                if (((ClientChangeTracker)entry.Entity).IsDirty) {
+                    entry.State = EntityState.Modified;
+                } else {
+                    entry.State = EntityState.Unchanged;
+                }
+            } else {
+                entry.State = EntityState.Added;
+            }
+         }
+	-- Delete entity from NOT Tracking context instance
+		* var samurai = context.Samurais.Find(101);
+		  context.Entry(samurai).State = EntityState.Deleted;
+		  context.SaveChanges();
+* xUnit Test project using InMemory EF Core
+	-- install-package Microsoft.EntityFrameworkCore.InMemory

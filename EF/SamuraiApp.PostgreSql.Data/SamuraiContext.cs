@@ -3,7 +3,7 @@ using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using SamuraiApp.Domain;
 
-namespace SamuraiApp.PostgreSql.Data
+namespace SamuraiApp.PostgreSQL.Data
 {
     public class SamuraiContext : DbContext
     {
@@ -13,7 +13,7 @@ namespace SamuraiApp.PostgreSql.Data
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseNpgsql("Host=localhost; Database=SamuraiData; Username=postgres; Password=user1", options => options.MaxBatchSize(30));
+            optionsBuilder.UseNpgsql("Host=localhost;Database=SamuraiData;Username=postgres;Password=user1", options => options.MaxBatchSize(30));
 
             optionsBuilder.EnableSensitiveDataLogging();
         }
@@ -25,6 +25,7 @@ namespace SamuraiApp.PostgreSql.Data
             foreach (var entityType in modelBuilder.Model.GetEntityTypes())
             {
                 modelBuilder.Entity(entityType.Name).Property<DateTime>("LastModified");
+                modelBuilder.Entity(entityType.Name).Ignore(nameof(ClientChangeTracker.IsDirty));
             }
 
             base.OnModelCreating(modelBuilder);

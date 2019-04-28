@@ -1,6 +1,6 @@
 ﻿namespace SamuraiApp.Domain
 {
-    public class SamuraiBattle
+    public class SamuraiBattle : ClientChangeTracker
     {
         public int SamuraiId { get; set; }
         public Samurai Samurai { get; set; }

@@ -5,13 +5,13 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using SamuraiApp.Data;
+using SamuraiApp.SQLServer.Data;
 
 namespace SamuraiApp.Data.Migrations
 {
     [DbContext(typeof(SamuraiContext))]
-    [Migration("20190414121116_SecretIdentity")]
-    partial class SecretIdentity
+    [Migration("20190413122923_JoinTable")]
+    partial class JoinTable
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -81,24 +81,6 @@ namespace SamuraiApp.Data.Migrations
                     b.ToTable("SamuraiBattle");
                 });
 
-            modelBuilder.Entity("SamuraiApp.Domain.SecretIdentity", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("RealName");
-
-                    b.Property<int>("SamuraiId");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("SamuraiId")
-                        .IsUnique();
-
-                    b.ToTable("SecretIdentity");
-                });
-
             modelBuilder.Entity("SamuraiApp.Domain.Quote", b =>
                 {
                     b.HasOne("SamuraiApp.Domain.Samurai", "Samurai")
@@ -117,14 +99,6 @@ namespace SamuraiApp.Data.Migrations
                     b.HasOne("SamuraiApp.Domain.Samurai", "Samurai")
                         .WithMany("SamuraiBattles")
                         .HasForeignKey("SamuraiId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("SamuraiApp.Domain.SecretIdentity", b =>
-                {
-                    b.HasOne("SamuraiApp.Domain.Samurai", "Samurai")
-                        .WithOne("SecretIdentity")
-                        .HasForeignKey("SamuraiApp.Domain.SecretIdentity", "SamuraiId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618

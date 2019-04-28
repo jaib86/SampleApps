@@ -3,17 +3,15 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using SamuraiApp.Data;
+using SamuraiApp.SQLServer.Data;
 
 namespace SamuraiApp.Data.Migrations
 {
     [DbContext(typeof(SamuraiContext))]
-    [Migration("20190412170608_init")]
-    partial class init
+    partial class SamuraiContextModelSnapshot : ModelSnapshot
     {
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -29,6 +27,8 @@ namespace SamuraiApp.Data.Migrations
 
                     b.Property<DateTime>("EndDate");
 
+                    b.Property<DateTime>("LastModified");
+
                     b.Property<string>("Name");
 
                     b.Property<DateTime>("StartDate");
@@ -43,6 +43,8 @@ namespace SamuraiApp.Data.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("LastModified");
 
                     b.Property<int>("SamuraiId");
 
@@ -61,15 +63,48 @@ namespace SamuraiApp.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("BattleId");
+                    b.Property<DateTime>("LastModified");
 
                     b.Property<string>("Name");
 
                     b.HasKey("Id");
 
+                    b.ToTable("Samurais");
+                });
+
+            modelBuilder.Entity("SamuraiApp.Domain.SamuraiBattle", b =>
+                {
+                    b.Property<int>("SamuraiId");
+
+                    b.Property<int>("BattleId");
+
+                    b.Property<DateTime>("LastModified");
+
+                    b.HasKey("SamuraiId", "BattleId");
+
                     b.HasIndex("BattleId");
 
-                    b.ToTable("Samurais");
+                    b.ToTable("SamuraiBattle");
+                });
+
+            modelBuilder.Entity("SamuraiApp.Domain.SecretIdentity", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("LastModified");
+
+                    b.Property<string>("RealName");
+
+                    b.Property<int>("SamuraiId");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("SamuraiId")
+                        .IsUnique();
+
+                    b.ToTable("SecretIdentity");
                 });
 
             modelBuilder.Entity("SamuraiApp.Domain.Quote", b =>
@@ -80,11 +115,24 @@ namespace SamuraiApp.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("SamuraiApp.Domain.Samurai", b =>
+            modelBuilder.Entity("SamuraiApp.Domain.SamuraiBattle", b =>
                 {
-                    b.HasOne("SamuraiApp.Domain.Battle")
-                        .WithMany("Samurais")
+                    b.HasOne("SamuraiApp.Domain.Battle", "Battle")
+                        .WithMany("SamuraiBattles")
                         .HasForeignKey("BattleId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("SamuraiApp.Domain.Samurai", "Samurai")
+                        .WithMany("SamuraiBattles")
+                        .HasForeignKey("SamuraiId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("SamuraiApp.Domain.SecretIdentity", b =>
+                {
+                    b.HasOne("SamuraiApp.Domain.Samurai", "Samurai")
+                        .WithOne("SecretIdentity")
+                        .HasForeignKey("SamuraiApp.Domain.SecretIdentity", "SamuraiId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618

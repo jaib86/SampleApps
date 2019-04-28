@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore.Migrations;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
-namespace SamuraiApp.PostgreSql.Data.Migrations
+namespace SamuraiApp.PostgreSQL.Data.Migrations
 {
     public partial class init : Migration
     {

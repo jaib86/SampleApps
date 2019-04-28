@@ -5,13 +5,13 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using SamuraiApp.Data;
+using SamuraiApp.SQLServer.Data;
 
 namespace SamuraiApp.Data.Migrations
 {
     [DbContext(typeof(SamuraiContext))]
-    [Migration("20190413122923_JoinTable")]
-    partial class JoinTable
+    [Migration("20190428051335_LastModified")]
+    partial class LastModified
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -29,6 +29,8 @@ namespace SamuraiApp.Data.Migrations
 
                     b.Property<DateTime>("EndDate");
 
+                    b.Property<DateTime>("LastModified");
+
                     b.Property<string>("Name");
 
                     b.Property<DateTime>("StartDate");
@@ -43,6 +45,8 @@ namespace SamuraiApp.Data.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("LastModified");
 
                     b.Property<int>("SamuraiId");
 
@@ -61,6 +65,8 @@ namespace SamuraiApp.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<DateTime>("LastModified");
+
                     b.Property<string>("Name");
 
                     b.HasKey("Id");
@@ -74,11 +80,33 @@ namespace SamuraiApp.Data.Migrations
 
                     b.Property<int>("BattleId");
 
+                    b.Property<DateTime>("LastModified");
+
                     b.HasKey("SamuraiId", "BattleId");
 
                     b.HasIndex("BattleId");
 
                     b.ToTable("SamuraiBattle");
+                });
+
+            modelBuilder.Entity("SamuraiApp.Domain.SecretIdentity", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("LastModified");
+
+                    b.Property<string>("RealName");
+
+                    b.Property<int>("SamuraiId");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("SamuraiId")
+                        .IsUnique();
+
+                    b.ToTable("SecretIdentity");
                 });
 
             modelBuilder.Entity("SamuraiApp.Domain.Quote", b =>
@@ -99,6 +127,14 @@ namespace SamuraiApp.Data.Migrations
                     b.HasOne("SamuraiApp.Domain.Samurai", "Samurai")
                         .WithMany("SamuraiBattles")
                         .HasForeignKey("SamuraiId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("SamuraiApp.Domain.SecretIdentity", b =>
+                {
+                    b.HasOne("SamuraiApp.Domain.Samurai", "Samurai")
+                        .WithOne("SecretIdentity")
+                        .HasForeignKey("SamuraiApp.Domain.SecretIdentity", "SamuraiId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618

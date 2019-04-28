@@ -4,9 +4,9 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
-using SamuraiApp.PostgreSql.Data;
+using SamuraiApp.PostgreSQL.Data;
 
-namespace SamuraiApp.PostgreSql.Data.Migrations
+namespace SamuraiApp.PostgreSQL.Data.Migrations
 {
     [DbContext(typeof(SamuraiContext))]
     partial class SamuraiContextModelSnapshot : ModelSnapshot

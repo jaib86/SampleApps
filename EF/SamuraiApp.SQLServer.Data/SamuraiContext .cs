@@ -3,7 +3,7 @@ using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using SamuraiApp.Domain;
 
-namespace SamuraiApp.Data
+namespace SamuraiApp.SQLServer.Data
 {
     public class SamuraiContext : DbContext
     {
@@ -20,6 +20,7 @@ namespace SamuraiApp.Data
             foreach (var entityType in modelBuilder.Model.GetEntityTypes())
             {
                 modelBuilder.Entity(entityType.Name).Property<DateTime>("LastModified");
+                modelBuilder.Entity(entityType.Name).Ignore(nameof(ClientChangeTracker.IsDirty));
             }
 
             base.OnModelCreating(modelBuilder);

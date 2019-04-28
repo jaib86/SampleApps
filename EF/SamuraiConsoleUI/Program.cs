@@ -1,14 +1,19 @@
-﻿using Microsoft.EntityFrameworkCore.Infrastructure;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
+using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.Extensions.Logging;
 using SamuraiApp.Domain;
 
 #if PostgreSQL
-using SamuraiApp.PostgreSql.Data;
+
+using SamuraiApp.PostgreSQL.Data;
+
 #else
 using SamuraiApp.Data;
 #endif
 
 using System.Collections.Generic;
+using System.Linq;
 
 namespace SamuraiConsoleUI
 {
@@ -30,6 +35,38 @@ namespace SamuraiConsoleUI
                 context.Samurais.AddRange(new List<Samurai>() { samurai, samuraiRaksha });
                 //context.Samurais.Last
                 context.SaveChanges();
+
+                // Disconnected - No Tracking - per Query
+                context.Samurais.AsNoTracking().ToList();
+                // Disconnected - No Tracking - per instance
+                context.ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTracking;
+                // Attach disconnected entity
+                context.ChangeTracker.TrackGraph(new Samurai { }, e => ApplyStateUsingIsKeySet(e.Entry));
+                // Eager loading
+                context.Samurais.Include(s => s.SecretIdentity).Include(s => s.Quotes).FirstOrDefault();
+                // Delete entity
+                samurai = context.Samurais.Find(1);
+                context.Entry(samurai).State = EntityState.Deleted;
+                context.SaveChanges();
+            }
+        }
+
+        private static void ApplyStateUsingIsKeySet(EntityEntry entry)
+        {
+            if (entry.IsKeySet)
+            {
+                if (((ClientChangeTracker)entry.Entity).IsDirty)
+                {
+                    entry.State = EntityState.Modified;
+                }
+                else
+                {
+                    entry.State = EntityState.Unchanged;
+                }
+            }
+            else
+            {
+                entry.State = EntityState.Added;
             }
         }
 
