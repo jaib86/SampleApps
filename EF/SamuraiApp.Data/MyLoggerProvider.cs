@@ -1,5 +1,4 @@
 ﻿using System;
-using Microsoft.EntityFrameworkCore.Storage;
 using Microsoft.Extensions.Logging;
 
 namespace SamuraiApp.Data
@@ -17,7 +16,6 @@ namespace SamuraiApp.Data
 
         private class MyLogger : ILogger
         {
-
             public bool IsEnabled(LogLevel logLevel)
             {
                 return true;
