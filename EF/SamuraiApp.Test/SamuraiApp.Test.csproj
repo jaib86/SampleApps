@@ -20,6 +20,8 @@
   <ItemGroup>
     <ProjectReference Include="..\SamuraiApp.Domain\SamuraiApp.Domain.csproj" />
     <ProjectReference Include="..\SamuraiApp.PostgreSql.Data\SamuraiApp.PostgreSQL.Data.csproj" />
+    <ProjectReference Include="..\SamuraiApp.InMemory.Data\SamuraiApp.InMemory.Data.csproj" />
+    <ProjectReference Include="..\SamuraiApp.SQLite.Data\SamuraiApp.SQLite.Data.csproj" />
     <ProjectReference Include="..\SamuraiApp.SQLServer.Data\SamuraiApp.SQLServer.Data.csproj" />
   </ItemGroup>
 

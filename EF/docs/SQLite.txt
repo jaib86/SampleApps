@@ -1,0 +1,11 @@
+* Install SQLite package
+	-- install-package Microsoft.EntityFrameworkCore.SQLite
+* Add migration 
+	-- add-migration init
+	-- but install the following package first
+		* install-package Microsoft.EntityFrameworkCore.Design
+* Execute the following command to create database file
+	-- update-database
+* Install extension
+	-- SQLite/SQL Server Compact Toolbox
+* 

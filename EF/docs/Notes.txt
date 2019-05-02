@@ -152,3 +152,9 @@
 		  context.SaveChanges();
 * xUnit Test project using InMemory EF Core
 	-- install-package Microsoft.EntityFrameworkCore.InMemory
+	-- For dropping and then creating database
+		* context.Database.EnsureDeleted();
+		* context.Database.EnsureCreated();
+	-- Inject the following interface to write output
+		* Xunit.Abstractions.ITestOutputHelper
+	-- 

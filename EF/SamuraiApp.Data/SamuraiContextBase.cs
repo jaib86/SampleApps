@@ -11,6 +11,11 @@ namespace SamuraiApp.Data
         public DbSet<Battle> Battles { get; set; }
         public DbSet<Quote> Quotes { get; set; }
 
+        public SamuraiContextBase(DbContextOptions options)
+            : base(options) { }
+
+        public SamuraiContextBase() { }
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             // To log sensitive data
