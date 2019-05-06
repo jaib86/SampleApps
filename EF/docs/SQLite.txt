@@ -6,6 +6,7 @@
 		* install-package Microsoft.EntityFrameworkCore.Design
 * Execute the following command to create database file
 	-- update-database
-* Install extension
-	-- SQLite/SQL Server Compact Toolbox
+* Install 'SQLite/SQL Server Compact Toolbox' extension
+	-- Open 'SQLite/SQL Server Compact Toolbox' from Tools menu
+	-- Browse .db file and test connection, then close.
 * 

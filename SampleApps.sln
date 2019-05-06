@@ -72,9 +72,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Blazor", "Blazor", "{1D60BB
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorClientSideDemo", "Blazor\BlazorClientSideDemo\BlazorClientSideDemo.csproj", "{4D95D05F-F4A4-499A-95CA-237DDF346977}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "documents", "documents", "{C7A73154-BB9C-481E-9245-477D6FAF1583}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{C7A73154-BB9C-481E-9245-477D6FAF1583}"
 	ProjectSection(SolutionItems) = preProject
-		Blazor\documents\Notes.txt = Blazor\documents\Notes.txt
+		Blazor\docs\Notes.txt = Blazor\docs\Notes.txt
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorServerSideDemo", "Blazor\BlazorServerSideDemo\BlazorServerSideDemo.csproj", "{7CD198B8-EF3B-4B4C-BB87-FB55B38319D9}"
@@ -89,7 +89,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SamuraiApp.PostgreSQL.Data"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SamuraiApp.InMemory.Data", "EF\SamuraiApp.InMemory.Data\SamuraiApp.InMemory.Data.csproj", "{C444D061-DC5D-4670-80D7-3D19D6AFB369}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SamuraiApp.SQLite.Data", "EF\SamuraiApp.SQLite.Data\SamuraiApp.SQLite.Data.csproj", "{612E4F9A-C3F8-4123-9CAC-B6040AB0BC09}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SamuraiApp.SQLite.Data", "EF\SamuraiApp.SQLite.Data\SamuraiApp.SQLite.Data.csproj", "{612E4F9A-C3F8-4123-9CAC-B6040AB0BC09}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
