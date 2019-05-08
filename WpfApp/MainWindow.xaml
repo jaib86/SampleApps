@@ -10,7 +10,69 @@
     <Window.DataContext>
         <local:MainViewModel />
     </Window.DataContext>
-    
+
+    <Window.Resources>
+        <Storyboard x:Key="FlashMe" RepeatBehavior="Forever">
+            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)">
+                <DiscreteObjectKeyFrame KeyTime="0:0:0.5">
+                    <DiscreteObjectKeyFrame.Value>
+                        <Visibility>Collapsed</Visibility>
+                    </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+                <DiscreteObjectKeyFrame KeyTime="0:0:1">
+                    <DiscreteObjectKeyFrame.Value>
+                        <Visibility>Visible</Visibility>
+                    </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+            </ObjectAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Key="HighlightMe" RepeatBehavior="Forever">
+            <ColorAnimation To="Red" Storyboard.TargetProperty="(Button.Background).(SolidColorBrush.Color)" Duration="0:0:0.5" />
+            <ColorAnimation To="Yellow" Storyboard.TargetProperty="(Button.Background).(SolidColorBrush.Color)" Duration="0:0:2" />
+        </Storyboard>
+        
+        
+        <!-- Warning Button -->
+        <Style x:Key="WarningButton" TargetType="Button">
+            <Setter Property="SnapsToDevicePixels" Value="true" />
+            <Setter Property="OverridesDefaultStyle" Value="true" />
+            <Setter Property="Focusable" Value="False" />
+            <Setter Property="IsEnabled" Value="False" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Viewbox>
+                            <Grid Name="PathGrid">
+                                <Path Data="M16 0 L32 30 L1 30 Z" Fill="{TemplateBinding Background}" Stroke="{TemplateBinding Foreground}" StrokeThickness="2" />
+                                <Path Data="M15.5 11 L17.25 11 L16.75 22 L15.75 22 Z" Fill="{TemplateBinding Foreground}" Stroke="{TemplateBinding Foreground}" StrokeThickness="1" StrokeLineJoin="Round" />
+                                <Path Data="M15.5 24.5 L17 24.5 L17 26 L15.5 26 Z" Fill="{TemplateBinding Foreground}" Stroke="{TemplateBinding Foreground}" StrokeThickness="1" StrokeLineJoin="Round" />
+                            </Grid>
+                            <!--<Viewbox.Triggers>
+                                <EventTrigger RoutedEvent="Button.Loaded">
+                                    <EventTrigger.Actions>
+                                        --><!--<BeginStoryboard>
+                                            <Storyboard BeginTime="00:00:00" RepeatBehavior="Forever" AutoReverse="True" Storyboard.TargetName="PathGrid" Storyboard.TargetProperty="Opacity">
+                                                <DoubleAnimation From="1" To="0" Duration="0:0:0.5"/>
+                                            </Storyboard>
+                                        </BeginStoryboard>--><!--
+                                        <BeginStoryboard Storyboard="{StaticResource FlashMe}" />
+                                    </EventTrigger.Actions>
+                                </EventTrigger>
+                            </Viewbox.Triggers>-->
+                        </Viewbox>
+                        <ControlTemplate.Triggers>
+                            <EventTrigger RoutedEvent="Button.Loaded">
+                                <BeginStoryboard Storyboard="{StaticResource HighlightMe}" />
+                            </EventTrigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+
+    </Window.Resources>
+
     <Grid ShowGridLines="True">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
@@ -19,16 +81,19 @@
             <ColumnDefinition Width="5" />
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
-        
+
         <TextBlock FontSize="55" HorizontalAlignment="Center" VerticalAlignment="Center" TextWrapping="Wrap"
                    Text="{Binding LeftTextBlockText}" Width="{Binding LeftTextBlockWidth, Mode=OneWayToSource}" ></TextBlock>
-        
         <GridSplitter Grid.Column="1" Width="5" HorizontalAlignment="Stretch" />
 
-        <TextBlock Grid.Column="2" FontSize="55" HorizontalAlignment="Center" VerticalAlignment="Center" TextWrapping="Wrap" Text="{Binding CenterTextBlockText}"></TextBlock>
+        <StackPanel Grid.Column="2" VerticalAlignment="Center">
+            <!--<TextBlock FontSize="12" HorizontalAlignment="Center" VerticalAlignment="Center" TextWrapping="Wrap" Text="{Binding CenterTextBlockText}"></TextBlock>-->
+            <!--<TextBlock FontSize="12" HorizontalAlignment="Center" VerticalAlignment="Center" TextWrapping="Wrap" Text="Sample"></TextBlock>-->
+            <Button Style="{StaticResource WarningButton}" Background="Yellow" Foreground="Black" />
+        </StackPanel>
 
         <GridSplitter Grid.Column="3" Width="5" HorizontalAlignment="Stretch" />
-        
+
         <TextBlock Grid.Column="4" FontSize="55" HorizontalAlignment="Center" VerticalAlignment="Center" TextWrapping="Wrap">Right side</TextBlock>
     </Grid>
 </Window>
