@@ -20,7 +20,11 @@ namespace BathanysPiShop
                 DependencyService.Register<MockDataStore>();
             else
                 DependencyService.Register<AzureDataStore>();
-            MainPage = new AppShell();
+            //MainPage = new AppShell();
+            //MainPage = new ContentPageView();
+            //MainPage = new NavigationPage(new NavigationPageView());
+            //MainPage = new TabbedPageView();
+            MainPage = new LoginPageView();
         }
 
         protected override void OnStart()
