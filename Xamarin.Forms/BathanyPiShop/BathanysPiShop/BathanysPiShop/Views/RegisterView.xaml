@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BathanysPiShop.Views.RegisterView">
+    <ScrollView>
+        <Grid Margin="5">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="200" />
+                <RowDefinition Height="100" />
+                <RowDefinition Height="50" />
+                <RowDefinition Height="50" />
+                <RowDefinition Height="50" />
+                <RowDefinition Height="50" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="4*" />
+                <ColumnDefinition Width="6*" />
+            </Grid.ColumnDefinitions>
+
+            <Image Source="bethanylogo.png" Grid.Row="0" Grid.ColumnSpan="2" Margin="10"
+                   HorizontalOptions="Center" VerticalOptions="Center" />
+            <Label Text="Register now!" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"
+                   FontSize="Large" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
+            <Label Text="User name" Grid.Row="2" Grid.Column="0" FontSize="Medium" VerticalOptions="Center" />
+            <Label Text="Password" Grid.Row="3" Grid.Column="0" FontSize="Medium" VerticalOptions="Center" />
+            <Label Text="Birthday" Grid.Row="4" Grid.Column="0" FontSize="Medium" VerticalOptions="Center" />
+            <Label Text="Preferred delivery time" Grid.Row="5" Grid.Column="0" FontSize="Medium" VerticalOptions="Center" />
+            <Entry Grid.Row="2" Grid.Column="1" Placeholder="Enter your user name" x:Name="UserNameEntry"
+                   HorizontalOptions="StartAndExpand" VerticalOptions="Center" TextChanged="UserNameEntry_OnTextChanged" />
+            <Entry Grid.Row="3" Grid.Column="1" Placeholder="Enter your password" x:Name="PasswordEntry"
+                   HorizontalOptions="StartAndExpand" VerticalOptions="Center" TextChanged="PasswordEntry_OnTextChanged" />
+            <DatePicker Grid.Row="4" Grid.Column="1" MinimumDate="01/01/1900" MaximumDate="12/31/2019"
+                        x:Name="BirthDayDatePicker" DateSelected="BirthDayDatePicker_OnDateSelected" />
+            <TimePicker Grid.Row="5" Grid.Column="1" x:Name="DeliveryTimePicker"
+                        Format="T" Time="10:00:00" />
+            <Button Grid.Row="6" Grid.ColumnSpan="2" x:Name="RegisterButton" 
+                    HorizontalOptions="Center" VerticalOptions="Start" Clicked="RegisterButton_OnClicked" Text="Register now" />
+        </Grid>
+    </ScrollView>
+</ContentPage>

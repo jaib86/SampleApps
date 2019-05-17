@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BathanysPiShop.Views.PieOverview">
+    <!--<ListView x:Name="PiesListView" VerticalOptions="FillAndExpand" CachingStrategy="RecycleElement">
+        <ListView.ItemsSource>
+            <x:Array Type="{x:Type x:String}">
+                <x:String>Apple Pie</x:String>
+                <x:String>Strawberry Cheese Cake</x:String>
+                <x:String>Strawberry Pie</x:String>
+                <x:String>Rhubarb Pie</x:String>
+                <x:String>Blueberry Cheese Cake</x:String>
+                <x:String>Cheese Cake</x:String>
+                <x:String>Cheese Pie</x:String>
+                <x:String>Christmas Apple Pie</x:String>
+                <x:String>Cranberry Pie</x:String>
+                <x:String>Peach Pie</x:String>
+                <x:String>Pumpkin Pie</x:String>
+            </x:Array>
+        </ListView.ItemsSource>
+    </ListView>-->
+
+    <ListView x:Name="PiesListView" ItemSelected="PiesListView_ItemSelected"
+              VerticalOptions="FillAndExpand" CachingStrategy="RecycleElement">
+        <ListView.ItemTemplate>
+            <DataTemplate>
+                <!--<TextCell Text="{Binding PieName}" Detail="{Binding Price}" />-->
+                <!--<ImageCell Text="{Binding PieName}" Detail="{Binding Price}" ImageSource="{Binding ImageUrl}" />-->
+                <ViewCell>
+                    <Grid Margin="5" BackgroundColor="White" RowSpacing="2">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="50" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="50" />
+                        </Grid.ColumnDefinitions>
+                        <Image Grid.Row="0" HeightRequest="100" WidthRequest="100" VerticalOptions="Start" />
+                        
+                    </Grid>
+                </ViewCell>
+            </DataTemplate>
+        </ListView.ItemTemplate>
+    </ListView>
+</ContentPage>

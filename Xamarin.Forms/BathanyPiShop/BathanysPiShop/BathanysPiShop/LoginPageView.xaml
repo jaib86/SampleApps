@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:BathanysPiShop"
              x:Class="BathanysPiShop.LoginPageView"
              BackgroundImage="patternwide.png">
     <Grid Margin="5">
@@ -17,7 +18,7 @@
         <Label Text="Welcome to Bathany's Pie Shop" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" FontSize="Large" HorizontalTextAlignment="Center" VerticalOptions="Center" />
         <Label Text="User name" Grid.Row="1" Grid.Column="0" FontSize="Medium" VerticalOptions="Center" />
         <Label Text="Password" Grid.Row="2" Grid.Column="0" FontSize="Medium" VerticalOptions="Center" />
-        <Entry Grid.Row="1" Grid.Column="1" Placeholder="Enter your user name" HorizontalOptions="StartAndExpand" VerticalOptions="Center" />
+        <local:CustomEntry Grid.Row="1" Grid.Column="1" Placeholder="Enter your user name" HorizontalOptions="StartAndExpand" VerticalOptions="Center" />
         <Entry Grid.Row="2" Grid.Column="1" Placeholder="Enter your password" HorizontalOptions="StartAndExpand" VerticalOptions="Center" />
     </Grid>
 </ContentPage>

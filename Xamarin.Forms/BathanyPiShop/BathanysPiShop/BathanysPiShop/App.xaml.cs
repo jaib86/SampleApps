@@ -24,7 +24,11 @@ namespace BathanysPiShop
             //MainPage = new ContentPageView();
             //MainPage = new NavigationPage(new NavigationPageView());
             //MainPage = new TabbedPageView();
-            MainPage = new LoginPageView();
+            //MainPage = new LoginPageView();
+
+            //MainPage = new LoginView();
+            //MainPage = new RegisterView();
+            MainPage = new PieOverview();
         }
 
         protected override void OnStart()
