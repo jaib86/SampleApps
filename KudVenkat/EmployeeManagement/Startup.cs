@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
@@ -20,7 +16,6 @@ namespace EmployeeManagement
             this.configuration = configuration;
         }
 
-
         // This method gets called by the runtime. Use this method to add services to the container.
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
@@ -32,10 +27,31 @@ namespace EmployeeManagement
         {
             if (env.IsDevelopment())
             {
-                app.UseDeveloperExceptionPage();
+                var developerExceptionPageOptions = new DeveloperExceptionPageOptions
+                {
+                    SourceCodeLineCount = 10
+                };
+                app.UseDeveloperExceptionPage(developerExceptionPageOptions);
             }
 
+            // It will log the information in Output window,
+            // Choose 'ASP.NET Core Web Server' or 'Debug' from 'Show output from:' drop down
             logger.LogInformation("Hello World app started");
+
+            if (env.IsDevelopment())
+            {
+                var defaultFilesOptions = new DefaultFilesOptions();
+                defaultFilesOptions.DefaultFileNames.Clear();
+                defaultFilesOptions.DefaultFileNames.Add("foo.html");
+                app.UseDefaultFiles();
+            }
+            else
+            {
+                var fileServerOptions = new FileServerOptions();
+                fileServerOptions.DefaultFilesOptions.DefaultFileNames.Clear();
+                fileServerOptions.DefaultFilesOptions.DefaultFileNames.Add("foo.html");
+                app.UseFileServer();
+            }
 
             app.UseStaticFiles();
 
