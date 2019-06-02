@@ -35,7 +35,7 @@ namespace SampleMasterDetail.Views
 
             await Navigation.PushAsync(new ItemDetailPage(new ItemDetailViewModel(item)));
 
-            // Manually deselect item.
+            // Manually de-select item.
             ItemsListView.SelectedItem = null;
         }
 

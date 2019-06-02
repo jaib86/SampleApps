@@ -109,9 +109,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SampleMasterDetail.Android"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SampleMasterDetail.iOS", "Xamarin.Forms\SampleMasterDetailApp\SampleMasterDetail\SampleMasterDetail.iOS\SampleMasterDetail.iOS.csproj", "{6ED51F72-AF2A-4EC5-9C6D-1619A3094B40}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SampleMasterDetail.MobileAppService", "Xamarin.Forms\SampleMasterDetailApp\SampleMasterDetail\SampleMasterDetail.MobileAppService\SampleMasterDetail.MobileAppService.csproj", "{2D7557E0-81E5-408F-906A-20E91037B9D5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SampleMasterDetail.MobileAppService", "Xamarin.Forms\SampleMasterDetailApp\SampleMasterDetail\SampleMasterDetail.MobileAppService\SampleMasterDetail.MobileAppService.csproj", "{2D7557E0-81E5-408F-906A-20E91037B9D5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SampleMasterDetail", "Xamarin.Forms\SampleMasterDetailApp\SampleMasterDetail\SampleMasterDetail\SampleMasterDetail.csproj", "{239B2FD4-7E18-471A-B41A-6D46FCC0A045}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SampleMasterDetail", "Xamarin.Forms\SampleMasterDetailApp\SampleMasterDetail\SampleMasterDetail\SampleMasterDetail.csproj", "{239B2FD4-7E18-471A-B41A-6D46FCC0A045}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WebAPI", "WebAPI", "{D075D8DC-D6DE-4D4B-9CA3-775F94F65EAD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TokenBasedAuthentication", "WebAPI\TokenBasedAuthentication\TokenBasedAuthentication.csproj", "{EF5AEE69-55F6-47AC-AA9B-1DFEA00293C7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -571,6 +575,18 @@ Global
 		{239B2FD4-7E18-471A-B41A-6D46FCC0A045}.Release|iPhone.Build.0 = Release|Any CPU
 		{239B2FD4-7E18-471A-B41A-6D46FCC0A045}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
 		{239B2FD4-7E18-471A-B41A-6D46FCC0A045}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
+		{EF5AEE69-55F6-47AC-AA9B-1DFEA00293C7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EF5AEE69-55F6-47AC-AA9B-1DFEA00293C7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EF5AEE69-55F6-47AC-AA9B-1DFEA00293C7}.Debug|iPhone.ActiveCfg = Debug|Any CPU
+		{EF5AEE69-55F6-47AC-AA9B-1DFEA00293C7}.Debug|iPhone.Build.0 = Debug|Any CPU
+		{EF5AEE69-55F6-47AC-AA9B-1DFEA00293C7}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
+		{EF5AEE69-55F6-47AC-AA9B-1DFEA00293C7}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
+		{EF5AEE69-55F6-47AC-AA9B-1DFEA00293C7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EF5AEE69-55F6-47AC-AA9B-1DFEA00293C7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EF5AEE69-55F6-47AC-AA9B-1DFEA00293C7}.Release|iPhone.ActiveCfg = Release|Any CPU
+		{EF5AEE69-55F6-47AC-AA9B-1DFEA00293C7}.Release|iPhone.Build.0 = Release|Any CPU
+		{EF5AEE69-55F6-47AC-AA9B-1DFEA00293C7}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
+		{EF5AEE69-55F6-47AC-AA9B-1DFEA00293C7}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -614,6 +630,7 @@ Global
 		{6ED51F72-AF2A-4EC5-9C6D-1619A3094B40} = {09AFEC88-220D-4BBD-B314-A5BCBD82836E}
 		{2D7557E0-81E5-408F-906A-20E91037B9D5} = {09AFEC88-220D-4BBD-B314-A5BCBD82836E}
 		{239B2FD4-7E18-471A-B41A-6D46FCC0A045} = {09AFEC88-220D-4BBD-B314-A5BCBD82836E}
+		{EF5AEE69-55F6-47AC-AA9B-1DFEA00293C7} = {D075D8DC-D6DE-4D4B-9CA3-775F94F65EAD}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {2829B699-AA3B-47FF-ABEE-405B0FCD4E98}
