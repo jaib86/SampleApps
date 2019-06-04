@@ -115,7 +115,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SampleMasterDetail", "Xamar
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WebAPI", "WebAPI", "{D075D8DC-D6DE-4D4B-9CA3-775F94F65EAD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TokenBasedAuthentication", "WebAPI\TokenBasedAuthentication\TokenBasedAuthentication.csproj", "{EF5AEE69-55F6-47AC-AA9B-1DFEA00293C7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TokenBasedAuthentication", "WebAPI\TokenBasedAuthentication\TokenBasedAuthentication.csproj", "{EF5AEE69-55F6-47AC-AA9B-1DFEA00293C7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{B4196B6A-FA83-4E17-BB7D-EAEC8E7E07CA}"
+	ProjectSection(SolutionItems) = preProject
+		WebAPI\docs\TokenBasedAuthentication.txt = WebAPI\docs\TokenBasedAuthentication.txt
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -631,6 +636,7 @@ Global
 		{2D7557E0-81E5-408F-906A-20E91037B9D5} = {09AFEC88-220D-4BBD-B314-A5BCBD82836E}
 		{239B2FD4-7E18-471A-B41A-6D46FCC0A045} = {09AFEC88-220D-4BBD-B314-A5BCBD82836E}
 		{EF5AEE69-55F6-47AC-AA9B-1DFEA00293C7} = {D075D8DC-D6DE-4D4B-9CA3-775F94F65EAD}
+		{B4196B6A-FA83-4E17-BB7D-EAEC8E7E07CA} = {D075D8DC-D6DE-4D4B-9CA3-775F94F65EAD}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {2829B699-AA3B-47FF-ABEE-405B0FCD4E98}

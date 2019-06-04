@@ -1,0 +1,5 @@
+* Add new ASP.NET Core EMPTY project
+* Add ApplicationDbContext.cs
+* Add ApplicationUser.cs
+* Install-Package Microsoft.AspNetCore.Identity.EntityFrameworkCore
+* Install-Package Microsoft.EntityFrameworkCore.SqlServer
