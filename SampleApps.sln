@@ -126,14 +126,14 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "AspNetCoreWeb", "AspNetCore
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SampleWeb", "AspNetCoreWeb\SampleWeb\SampleWeb.csproj", "{1321BCF5-A51C-4141-AF61-F6288A8B1FA9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RazorPagesProject", "AspNetCoreWeb\RazorPagesProject\RazorPagesProject.csproj", "{C45BC238-80B4-4B5D-9C1C-EE3D8B51897A}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebAppsIntegrationTests", "AspNetCoreWeb\WebAppsIntegrationTests\WebAppsIntegrationTests.csproj", "{CBCA9969-F7E8-4F64-A6C9-24F066B326A9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RazorPagesProject", "AspNetCoreWeb\RazorPagesProject\RazorPagesProject.csproj", "{C45BC238-80B4-4B5D-9C1C-EE3D8B51897A}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{13443ED5-AABB-4D59-9026-E24606F457E8}"
 	ProjectSection(SolutionItems) = preProject
 		AspNetCoreWeb\docs\WebAppsIntegrationTests.txt = AspNetCoreWeb\docs\WebAppsIntegrationTests.txt
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebAppsIntegrationTests", "AspNetCoreWeb\WebAppsIntegrationTests\WebAppsIntegrationTests.csproj", "{E949B817-C110-44CE-AA65-E950A1D18BAC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -629,18 +629,18 @@ Global
 		{C45BC238-80B4-4B5D-9C1C-EE3D8B51897A}.Release|iPhone.Build.0 = Release|Any CPU
 		{C45BC238-80B4-4B5D-9C1C-EE3D8B51897A}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
 		{C45BC238-80B4-4B5D-9C1C-EE3D8B51897A}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
-		{CBCA9969-F7E8-4F64-A6C9-24F066B326A9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{CBCA9969-F7E8-4F64-A6C9-24F066B326A9}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{CBCA9969-F7E8-4F64-A6C9-24F066B326A9}.Debug|iPhone.ActiveCfg = Debug|Any CPU
-		{CBCA9969-F7E8-4F64-A6C9-24F066B326A9}.Debug|iPhone.Build.0 = Debug|Any CPU
-		{CBCA9969-F7E8-4F64-A6C9-24F066B326A9}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
-		{CBCA9969-F7E8-4F64-A6C9-24F066B326A9}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
-		{CBCA9969-F7E8-4F64-A6C9-24F066B326A9}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{CBCA9969-F7E8-4F64-A6C9-24F066B326A9}.Release|Any CPU.Build.0 = Release|Any CPU
-		{CBCA9969-F7E8-4F64-A6C9-24F066B326A9}.Release|iPhone.ActiveCfg = Release|Any CPU
-		{CBCA9969-F7E8-4F64-A6C9-24F066B326A9}.Release|iPhone.Build.0 = Release|Any CPU
-		{CBCA9969-F7E8-4F64-A6C9-24F066B326A9}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
-		{CBCA9969-F7E8-4F64-A6C9-24F066B326A9}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
+		{E949B817-C110-44CE-AA65-E950A1D18BAC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E949B817-C110-44CE-AA65-E950A1D18BAC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E949B817-C110-44CE-AA65-E950A1D18BAC}.Debug|iPhone.ActiveCfg = Debug|Any CPU
+		{E949B817-C110-44CE-AA65-E950A1D18BAC}.Debug|iPhone.Build.0 = Debug|Any CPU
+		{E949B817-C110-44CE-AA65-E950A1D18BAC}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
+		{E949B817-C110-44CE-AA65-E950A1D18BAC}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
+		{E949B817-C110-44CE-AA65-E950A1D18BAC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E949B817-C110-44CE-AA65-E950A1D18BAC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E949B817-C110-44CE-AA65-E950A1D18BAC}.Release|iPhone.ActiveCfg = Release|Any CPU
+		{E949B817-C110-44CE-AA65-E950A1D18BAC}.Release|iPhone.Build.0 = Release|Any CPU
+		{E949B817-C110-44CE-AA65-E950A1D18BAC}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
+		{E949B817-C110-44CE-AA65-E950A1D18BAC}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -688,8 +688,8 @@ Global
 		{B4196B6A-FA83-4E17-BB7D-EAEC8E7E07CA} = {D075D8DC-D6DE-4D4B-9CA3-775F94F65EAD}
 		{1321BCF5-A51C-4141-AF61-F6288A8B1FA9} = {E671C2B7-51CC-4C76-94F5-0169B4E0C837}
 		{C45BC238-80B4-4B5D-9C1C-EE3D8B51897A} = {E671C2B7-51CC-4C76-94F5-0169B4E0C837}
-		{CBCA9969-F7E8-4F64-A6C9-24F066B326A9} = {E671C2B7-51CC-4C76-94F5-0169B4E0C837}
 		{13443ED5-AABB-4D59-9026-E24606F457E8} = {E671C2B7-51CC-4C76-94F5-0169B4E0C837}
+		{E949B817-C110-44CE-AA65-E950A1D18BAC} = {E671C2B7-51CC-4C76-94F5-0169B4E0C837}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {2829B699-AA3B-47FF-ABEE-405B0FCD4E98}

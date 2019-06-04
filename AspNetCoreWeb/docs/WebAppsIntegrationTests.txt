@@ -1,0 +1,7 @@
+* Add xUnit test project 'WebAppsIntegrationTests'
+* Install-Package Microsoft.AspNetCore.Mvc.Testing
+* Change test project TargetFramework to "netcoreapp2.2"
+* Add project web application project reference
+* Add the following package reference to .csproj file
+	* <PackageReference Include="Microsoft.AspNetCore.App" />
+* 
