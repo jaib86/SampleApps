@@ -133,7 +133,16 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{13443ED5-A
 		AspNetCoreWeb\docs\WebAppsIntegrationTests.txt = AspNetCoreWeb\docs\WebAppsIntegrationTests.txt
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebAppsIntegrationTests", "AspNetCoreWeb\WebAppsIntegrationTests\WebAppsIntegrationTests.csproj", "{E949B817-C110-44CE-AA65-E950A1D18BAC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebAppsIntegrationTests", "AspNetCoreWeb\WebAppsIntegrationTests\WebAppsIntegrationTests.csproj", "{E949B817-C110-44CE-AA65-E950A1D18BAC}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WpfApps", "WpfApps", "{DFEBDE80-D394-495F-9812-0C91087D7057}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{807C116C-3897-4788-846A-282F046ED154}"
+	ProjectSection(SolutionItems) = preProject
+		WpfApps\docs\DotNetCoreWpfApp.txt = WpfApps\docs\DotNetCoreWpfApp.txt
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotNetCoreWpfApp", "WpfApps\DotNetCoreWpfApp\DotNetCoreWpfApp.csproj", "{8388C8A3-0464-4B90-B231-32FD8437699B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -641,6 +650,18 @@ Global
 		{E949B817-C110-44CE-AA65-E950A1D18BAC}.Release|iPhone.Build.0 = Release|Any CPU
 		{E949B817-C110-44CE-AA65-E950A1D18BAC}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
 		{E949B817-C110-44CE-AA65-E950A1D18BAC}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
+		{8388C8A3-0464-4B90-B231-32FD8437699B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8388C8A3-0464-4B90-B231-32FD8437699B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8388C8A3-0464-4B90-B231-32FD8437699B}.Debug|iPhone.ActiveCfg = Debug|Any CPU
+		{8388C8A3-0464-4B90-B231-32FD8437699B}.Debug|iPhone.Build.0 = Debug|Any CPU
+		{8388C8A3-0464-4B90-B231-32FD8437699B}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
+		{8388C8A3-0464-4B90-B231-32FD8437699B}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
+		{8388C8A3-0464-4B90-B231-32FD8437699B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8388C8A3-0464-4B90-B231-32FD8437699B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8388C8A3-0464-4B90-B231-32FD8437699B}.Release|iPhone.ActiveCfg = Release|Any CPU
+		{8388C8A3-0464-4B90-B231-32FD8437699B}.Release|iPhone.Build.0 = Release|Any CPU
+		{8388C8A3-0464-4B90-B231-32FD8437699B}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
+		{8388C8A3-0464-4B90-B231-32FD8437699B}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -690,6 +711,8 @@ Global
 		{C45BC238-80B4-4B5D-9C1C-EE3D8B51897A} = {E671C2B7-51CC-4C76-94F5-0169B4E0C837}
 		{13443ED5-AABB-4D59-9026-E24606F457E8} = {E671C2B7-51CC-4C76-94F5-0169B4E0C837}
 		{E949B817-C110-44CE-AA65-E950A1D18BAC} = {E671C2B7-51CC-4C76-94F5-0169B4E0C837}
+		{807C116C-3897-4788-846A-282F046ED154} = {DFEBDE80-D394-495F-9812-0C91087D7057}
+		{8388C8A3-0464-4B90-B231-32FD8437699B} = {DFEBDE80-D394-495F-9812-0C91087D7057}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {2829B699-AA3B-47FF-ABEE-405B0FCD4E98}
