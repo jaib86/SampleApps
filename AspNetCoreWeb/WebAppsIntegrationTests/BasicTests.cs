@@ -1,3 +1,4 @@
+using System;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc.Testing;
@@ -26,7 +27,7 @@ namespace WebAppsIntegrationTests
             // Assert
             response.EnsureSuccessStatusCode(); // Status Code 200-299
 
-            this.output.WriteLine($"{nameof(HttpResponseMessage.StatusCode)}: {response.StatusCode}");
+            this.output.WriteLine($"{DateTime.Now}: {nameof(HttpResponseMessage.StatusCode)}: {response.StatusCode}");
 
             Assert.Equal("text/html; charset=utf-8", response.Content.Headers.ContentType.ToString());
         }
