@@ -1,4 +1,4 @@
-﻿namespace Factory.FactoryMethod
+﻿namespace Factory
 {
     public interface IPizza
     {

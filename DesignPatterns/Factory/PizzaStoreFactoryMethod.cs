@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using Factory.FactoryMethod;
 
 namespace Factory.FactoryMethod
 {

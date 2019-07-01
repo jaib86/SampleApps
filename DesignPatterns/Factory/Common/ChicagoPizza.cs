@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
+using System.Diagnostics;
 
-namespace Factory.FactoryMethod
+namespace Factory
 {
     public class ChicagoPizza : IPizza
     {
@@ -13,17 +14,17 @@ namespace Factory.FactoryMethod
 
         public void Bake()
         {
-            throw new System.NotImplementedException();
+            Debug.WriteLine($"{nameof(ChicagoPizza)} Pizza baked.");
         }
 
         public void Box()
         {
-            throw new System.NotImplementedException();
+            Debug.WriteLine($"{nameof(ChicagoPizza)} Pizza boxed.");
         }
 
         public void Cut()
         {
-            throw new System.NotImplementedException();
+            Debug.WriteLine($"{nameof(ChicagoPizza)} Pizza cut.");
         }
     }
 }

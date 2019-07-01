@@ -18,7 +18,7 @@ namespace DesignPatterns.Tests
         [Fact]
         public void CreateNewYorkPizza()
         {
-            IPizza pizza = SimplePizzaFactory.CreatePizza(PizzaType.NewYork, new List<string>());
+            IPizza pizza = SimplePizzaFactory.CreatePizza(Factory.PizzaType.NewYork, new List<string>());
             this.output.WriteLine($"Pizza Type: {pizza.GetType()}");
             Assert.NotNull(pizza as NewYorkPizza);
         }
@@ -26,7 +26,7 @@ namespace DesignPatterns.Tests
         [Fact]
         public void CreateChicagoPizza()
         {
-            IPizza pizza = SimplePizzaFactory.CreatePizza(PizzaType.Chicago, new List<string>());
+            IPizza pizza = SimplePizzaFactory.CreatePizza(Factory.PizzaType.Chicago, new List<string>());
             this.output.WriteLine($"Pizza Type: {pizza.GetType()}");
             Assert.NotNull(pizza as ChicagoPizza);
         }
@@ -34,31 +34,31 @@ namespace DesignPatterns.Tests
         [Fact]
         public void CreateCaliforniaPizza()
         {
-            IPizza pizza = SimplePizzaFactory.CreatePizza(PizzaType.California, new List<string>());
+            IPizza pizza = SimplePizzaFactory.CreatePizza(Factory.PizzaType.California, new List<string>());
             this.output.WriteLine($"Pizza Type: {pizza.GetType()}");
             Assert.NotNull(pizza as CaliforniaPizza);
         }
 
         [Theory]
-        [InlineData(PizzaType.California)]
-        [InlineData(PizzaType.Chicago)]
-        [InlineData(PizzaType.NewYork)]
-        public void ShouldCreateSpecificPizza(PizzaType pizzaType)
+        [InlineData(Factory.PizzaType.California)]
+        [InlineData(Factory.PizzaType.Chicago)]
+        [InlineData(Factory.PizzaType.NewYork)]
+        public void ShouldCreateSpecificPizza(Factory.PizzaType pizzaType)
         {
             IPizza pizza = SimplePizzaFactory.CreatePizza(pizzaType, new List<string>());
             this.output.WriteLine($"Pizza Type: {pizza.GetType()}");
 
             switch (pizzaType)
             {
-                case PizzaType.California:
+                case Factory.PizzaType.California:
                     Assert.NotNull(pizza as CaliforniaPizza);
                     break;
 
-                case PizzaType.Chicago:
+                case Factory.PizzaType.Chicago:
                     Assert.NotNull(pizza as ChicagoPizza);
                     break;
 
-                case PizzaType.NewYork:
+                case Factory.PizzaType.NewYork:
                     Assert.NotNull(pizza as NewYorkPizza);
                     break;
             }
