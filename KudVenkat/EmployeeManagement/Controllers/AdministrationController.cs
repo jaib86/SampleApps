@@ -64,7 +64,6 @@ namespace EmployeeManagement.Controllers
             if (role == null)
             {
                 this.ViewBag.Error = $"Role with Id = {id} cannot be found";
-
                 return this.View("NotFound");
             }
             else
@@ -84,6 +83,38 @@ namespace EmployeeManagement.Controllers
                 }
 
                 return this.View(model);
+            }
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> EditRole(EditRoleViewModel model)
+        {
+            var role = await this.roleManager.FindByIdAsync(model.Id).ConfigureAwait(false);
+
+            if (role == null)
+            {
+                this.ViewBag.Error = $"Role with Id = {model.Id} cannot be found";
+                return this.View("NotFound");
+            }
+            else
+            {
+                role.Name = model.RoleName;
+
+                var result = await this.roleManager.UpdateAsync(role).ConfigureAwait(false);
+
+                if (result.Succeeded)
+                {
+                    return this.RedirectToAction(nameof(AdministrationController.ListRoles));
+                }
+                else
+                {
+                    foreach (var error in result.Errors)
+                    {
+                        this.ModelState.AddModelError("", error.Description);
+                    }
+
+                    return this.View(model);
+                }
             }
         }
     }

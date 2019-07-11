@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace EmployeeManagement.ViewModels
 {
@@ -14,6 +11,6 @@ namespace EmployeeManagement.ViewModels
         [Display(Name = "Role Name")]
         public string RoleName { get; set; }
 
-        public List<string> Users { get; set; }
+        public List<string> Users { get; set; } = new List<string>();
     }
 }
