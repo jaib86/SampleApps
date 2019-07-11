@@ -2,8 +2,10 @@
 using System.IO;
 using EmployeeManagement.Models;
 using EmployeeManagement.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 
 namespace EmployeeManagement.Controllers
 {
@@ -11,19 +13,30 @@ namespace EmployeeManagement.Controllers
     {
         private readonly IEmployeeRepository employeeRepository;
         private readonly IHostingEnvironment hostingEnvironment;
+        private readonly ILogger<HomeController> logger;
 
-        public HomeController(IEmployeeRepository employeeRepository, IHostingEnvironment hostingEnvironment)
+        public HomeController(IEmployeeRepository employeeRepository, IHostingEnvironment hostingEnvironment, ILogger<HomeController> logger)
         {
             this.employeeRepository = employeeRepository;
             this.hostingEnvironment = hostingEnvironment;
+            this.logger = logger;
         }
 
+        [AllowAnonymous]
         public ViewResult Index()
         {
+            this.logger.LogTrace("Trace Log");
+            this.logger.LogDebug("Debug Log");
+            this.logger.LogInformation("Information Log");
+            this.logger.LogWarning("Warning Log");
+            this.logger.LogError("Error Log");
+            this.logger.LogCritical("Critical Log");
+
             return this.View(this.employeeRepository.GetAllEmployee());
         }
 
-        public ViewResult Details(int? id)
+        [AllowAnonymous]
+        public ViewResult Details(int id)
         {
 #if TEMP
             return this.View("Test", this.employeeRepository.GetEmployee(1));
@@ -31,36 +44,38 @@ namespace EmployeeManagement.Controllers
             return this.View("../Test/Update", this.employeeRepository.GetEmployee(1));
             return this.View("../../MyViews/Test", this.employeeRepository.GetEmployee(1));
 #else
-            var homeDetailsViewModel = new HomeDetailsViewModel
+            var employee = this.employeeRepository.GetEmployee(id);
+
+            if (employee == null)
             {
-                Employee = this.employeeRepository.GetEmployee(id ?? 1),
-                PageTitle = "Employee Details"
-            };
-            return this.View(homeDetailsViewModel);
+                return this.View("EmployeeNotFound", id);
+            }
+            else
+            {
+                var homeDetailsViewModel = new HomeDetailsViewModel
+                {
+                    Employee = employee,
+                    PageTitle = "Employee Details"
+                };
+                return this.View(homeDetailsViewModel);
+            }
 #endif
         }
 
+        [HttpGet]
+        [Authorize]
         public ViewResult Create()
         {
             return this.View();
         }
 
         [HttpPost]
+        [Authorize]
         public IActionResult Create(EmployeeCreateViewModel model)
         {
             if (this.ModelState.IsValid)
             {
-                string uniqueFileName = null;
-                if (model.Photos?.Count > 1)
-                {
-                    foreach (var photo in model.Photos)
-                    {
-                        var uploadsFolder = Path.Combine(this.hostingEnvironment.WebRootPath, "images");
-                        uniqueFileName = $"{Guid.NewGuid()}_{photo.FileName}";
-                        var filePath = Path.Combine(uploadsFolder, uniqueFileName);
-                        photo.CopyTo(new FileStream(filePath, FileMode.Create));
-                    }
-                }
+                string uniqueFileName = this.ProcessUploadedFile(model);
 
                 var newEmployee = new Employee
                 {
@@ -76,6 +91,71 @@ namespace EmployeeManagement.Controllers
             {
                 return this.View();
             }
+        }
+
+        [HttpGet]
+        [Authorize]
+        public ViewResult Edit(int id)
+        {
+            var employee = this.employeeRepository.GetEmployee(id);
+            var employeeEditViewModel = new EmployeeEditViewModel
+            {
+                Id = employee.Id,
+                Name = employee.Name,
+                Email = employee.Email,
+                Department = employee.Department,
+                ExistingPhotoPath = employee.PhotoPath
+            };
+            return this.View(employeeEditViewModel);
+        }
+
+        [HttpPost]
+        [Authorize]
+        public IActionResult Edit(EmployeeEditViewModel model)
+        {
+            if (this.ModelState.IsValid)
+            {
+                var employee = this.employeeRepository.GetEmployee(model.Id);
+                employee.Name = model.Name;
+                employee.Email = model.Email;
+                employee.Department = model.Department;
+
+                if (model.Photo != null)
+                {
+                    if (System.IO.File.Exists(Path.Combine(this.hostingEnvironment.ImagesWebRootPath(), model.ExistingPhotoPath)))
+                    {
+                        System.IO.File.Delete(Path.Combine(this.hostingEnvironment.ImagesWebRootPath(), model.ExistingPhotoPath));
+                    }
+
+                    string uniqueFileName = this.ProcessUploadedFile(model);
+                    employee.PhotoPath = uniqueFileName;
+                }
+
+                this.employeeRepository.Update(employee);
+                return this.RedirectToAction(nameof(Index));
+            }
+            else
+            {
+                return this.View();
+            }
+        }
+
+        private string ProcessUploadedFile(EmployeeCreateViewModel model)
+        {
+            string uniqueFileName = null;
+
+            if (model.Photo != null)
+            {
+                var uploadsFolder = Path.Combine(this.hostingEnvironment.ImagesWebRootPath());
+                uniqueFileName = $"{Guid.NewGuid()}_{model.Photo.FileName}";
+                var filePath = Path.Combine(uploadsFolder, uniqueFileName);
+                using (var fileStream = new FileStream(filePath, FileMode.Create))
+                {
+                    model.Photo.CopyTo(fileStream);
+                }
+            }
+
+            return uniqueFileName;
         }
     }
 }

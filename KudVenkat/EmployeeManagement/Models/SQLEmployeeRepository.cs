@@ -1,16 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
 using EmployeeManagement.DataAccess;
+using Microsoft.Extensions.Logging;
 
 namespace EmployeeManagement.Models
 {
     public class SqlEmployeeRepository : IEmployeeRepository
     {
         private readonly AppDbContext context;
+        private readonly ILogger<SqlEmployeeRepository> logger;
 
-        public SqlEmployeeRepository(AppDbContext context)
+        public SqlEmployeeRepository(AppDbContext context, ILogger<SqlEmployeeRepository> logger)
         {
             this.context = context;
+            this.logger = logger;
         }
 
         public Employee Add(Employee employee)
@@ -40,6 +43,13 @@ namespace EmployeeManagement.Models
 
         public Employee GetEmployee(int id)
         {
+            this.logger.LogTrace("Trace Log");
+            this.logger.LogDebug("Debug Log");
+            this.logger.LogInformation("Information Log");
+            this.logger.LogWarning("Warning Log");
+            this.logger.LogError("Error Log");
+            this.logger.LogCritical("Critical Log");
+
             return this.context.Employees.Find(id);
         }
 

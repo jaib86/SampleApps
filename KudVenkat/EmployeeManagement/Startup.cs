@@ -1,8 +1,11 @@
 ﻿using System;
 using EmployeeManagement.DataAccess;
 using EmployeeManagement.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -24,8 +27,17 @@ namespace EmployeeManagement
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContextPool<AppDbContext>(options => options.UseSqlServer(this.configuration.GetConnectionString("EmployeeDBConnection")));
+            services.AddIdentity<ApplicationUser, IdentityRole>(options =>
+            {
+                options.Password.RequiredLength = 4;
+                options.Password.RequiredUniqueChars = 2;
+            }).AddEntityFrameworkStores<AppDbContext>();
 
-            services.AddMvc().AddXmlSerializerFormatters();
+            services.AddMvc(options =>
+            {
+                var policy = new AuthorizationPolicyBuilder().RequireAuthenticatedUser().Build();
+                options.Filters.Add(new AuthorizeFilter(policy));
+            }).AddXmlSerializerFormatters();
             services.AddScoped<IEmployeeRepository, SqlEmployeeRepository>();
         }
 
@@ -40,10 +52,14 @@ namespace EmployeeManagement
                 };
                 app.UseDeveloperExceptionPage(developerExceptionPageOptions);
             }
+            else
+            {
+                app.UseExceptionHandler("/Error");
+                app.UseStatusCodePagesWithReExecute("/Error/{0}");
+            }
 
             // It will log the information in Output window,
             // Choose 'ASP.NET Core Web Server' or 'Debug' from 'Show output from:' drop down
-            logger.LogInformation("Hello World app started");
             logger.LogWarning($"MyKey value is: {this.configuration["MyKey"]}");
             logger.LogWarning($"Environment: {env.EnvironmentName}{Environment.NewLine}WebRootPath: {env.WebRootPath}{Environment.NewLine}ContentRootPath: {env.ContentRootPath}{Environment.NewLine}ApplicationName: {env.ApplicationName}{Environment.NewLine}ContentRootFileProvider: {env.ContentRootFileProvider}{Environment.NewLine}WebRootFileProvider: {env.WebRootFileProvider}");
 
@@ -62,6 +78,8 @@ namespace EmployeeManagement
                 fileServerOptions.DefaultFilesOptions.DefaultFileNames.Add("foo.html");
                 app.UseFileServer();
             }
+
+            app.UseAuthentication();
 
             app.UseMvc(routes =>
             {

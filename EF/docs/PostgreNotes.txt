@@ -11,3 +11,18 @@
 * Run following command to generate migration file and create database
 	-- add-migration init
 	-- Update-Database --verbose
+
+
+
+PostgreSQL PivotTable QUERY example:
+CREATE TABLE MyTable(
+	Student TEXT,
+	Subject TEXT,
+	Rating INT);
+INSERT INTO MyTable(Student, Subject, Rating) VALUES ('Ashish', 'Math', 8), ('Ashish', 'English', 7), ('Ashish', 'Hindi', 6),
+('Jaiprakash', 'Math', 9), ('Jaiprakash', 'English', 6), ('Jaiprakash', 'Hindi', 7);
+SELECT * FROM MyTable;
+CREATE EXTENSION tablefunc;
+SELECT * 
+FROM crosstab('select Student, Subject, Rating from MyTable order by 1, 2')
+AS ct("Student" TEXT, "English" INT, "Hindi" INT, "Math" INT);
