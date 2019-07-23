@@ -1,6 +1,8 @@
 ﻿using System;
 using System.IO;
+using System.Linq;
 using EmployeeManagement.Models;
+using EmployeeManagement.Utilities;
 using EmployeeManagement.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
@@ -33,6 +35,26 @@ namespace EmployeeManagement.Controllers
             this.logger.LogCritical("Critical Log");
 
             return this.View(this.employeeRepository.GetAllEmployee());
+        }
+
+        [IsMobile(2)]
+        [AllowAnonymous]
+        [Route("Home/Index")]
+        public ViewResult AndroidIndex()
+        {
+            var employees = this.employeeRepository.GetAllEmployee().ToList();
+            employees.Insert(0, new Employee { Id = 0, Name = "Android 2", Email = "android.index@techjp.in" });
+            return this.View(nameof(Index), employees);
+        }
+
+        [IsMobile(1)]
+        [AllowAnonymous]
+        [Route("Home/Index")]
+        public ViewResult AndroidIndex2()
+        {
+            var employees = this.employeeRepository.GetAllEmployee().ToList();
+            employees.Insert(0, new Employee { Id = 0, Name = "Android 1", Email = "android.index@techjp.in" });
+            return this.View(nameof(Index), employees);
         }
 
         [AllowAnonymous]

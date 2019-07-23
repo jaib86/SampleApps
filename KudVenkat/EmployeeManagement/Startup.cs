@@ -1,5 +1,6 @@
 ﻿using System;
 using EmployeeManagement.DataAccess;
+using EmployeeManagement.Middleware;
 using EmployeeManagement.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
@@ -57,6 +58,8 @@ namespace EmployeeManagement
                 app.UseExceptionHandler("/Error");
                 app.UseStatusCodePagesWithReExecute("/Error/{0}");
             }
+
+            app.UseMiddleware<LoggingMiddleware>();
 
             // It will log the information in Output window,
             // Choose 'ASP.NET Core Web Server' or 'Debug' from 'Show output from:' drop down
