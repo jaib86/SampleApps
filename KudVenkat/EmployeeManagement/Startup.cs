@@ -17,22 +17,31 @@ namespace EmployeeManagement
     public class Startup
     {
         private readonly IConfiguration configuration;
+        private readonly IHostingEnvironment environment;
 
-        public Startup(IConfiguration configuration)
+        public Startup(IConfiguration configuration, IHostingEnvironment env)
         {
             this.configuration = configuration;
+            this.environment = env;
         }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContextPool<AppDbContext>(options => options.UseSqlServer(this.configuration.GetConnectionString("EmployeeDBConnection")));
-            services.AddIdentity<ApplicationUser, IdentityRole>(options =>
+            if (this.environment.IsEnvironment("Testing"))
             {
-                options.Password.RequiredLength = 4;
-                options.Password.RequiredUniqueChars = 2;
-            }).AddEntityFrameworkStores<AppDbContext>();
+                services.AddDbContext<AppDbContext>(options => options.UseInMemoryDatabase());
+            }
+            else
+            {
+                services.AddDbContextPool<AppDbContext>(options => options.UseSqlServer(this.configuration.GetConnectionString("EmployeeDBConnection")));
+                services.AddIdentity<ApplicationUser, IdentityRole>(options =>
+                {
+                    options.Password.RequiredLength = 4;
+                    options.Password.RequiredUniqueChars = 2;
+                }).AddEntityFrameworkStores<AppDbContext>();
+            }
 
             services.AddMvc(options =>
             {

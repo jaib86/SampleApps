@@ -12,8 +12,8 @@ namespace EmployeeManagement.Models
 
         public SqlEmployeeRepository(AppDbContext context, ILogger<SqlEmployeeRepository> logger)
         {
-            this.context = context;
-            this.logger = logger;
+            this.context = context ?? throw new ArgumentNullException(nameof(context));
+            this.logger = logger ?? throw new ArgumentNullException(nameof(logger));
         }
 
         public Employee Add(Employee employee)
@@ -36,7 +36,7 @@ namespace EmployeeManagement.Models
             return employee;
         }
 
-        public IEnumerable<Employee> GetAllEmployee()
+        public IEnumerable<Employee> GetAllEmployees()
         {
             return this.context.Employees;
         }

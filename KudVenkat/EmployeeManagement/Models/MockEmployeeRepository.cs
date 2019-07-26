@@ -22,7 +22,7 @@ namespace EmployeeManagement.Models
             return this.employees.FirstOrDefault(e => e.Id == id);
         }
 
-        public IEnumerable<Employee> GetAllEmployee()
+        public IEnumerable<Employee> GetAllEmployees()
         {
             return this.employees;
         }

@@ -34,7 +34,7 @@ namespace EmployeeManagement.Controllers
             this.logger.LogError("Error Log");
             this.logger.LogCritical("Critical Log");
 
-            return this.View(this.employeeRepository.GetAllEmployee());
+            return this.View(this.employeeRepository.GetAllEmployees());
         }
 
         [IsMobile(2)]
@@ -42,7 +42,7 @@ namespace EmployeeManagement.Controllers
         [Route("Home/Index")]
         public ViewResult AndroidIndex()
         {
-            var employees = this.employeeRepository.GetAllEmployee().ToList();
+            var employees = this.employeeRepository.GetAllEmployees().ToList();
             employees.Insert(0, new Employee { Id = 0, Name = "Android 2", Email = "android.index@techjp.in" });
             return this.View(nameof(Index), employees);
         }
@@ -52,7 +52,7 @@ namespace EmployeeManagement.Controllers
         [Route("Home/Index")]
         public ViewResult AndroidIndex2()
         {
-            var employees = this.employeeRepository.GetAllEmployee().ToList();
+            var employees = this.employeeRepository.GetAllEmployees().ToList();
             employees.Insert(0, new Employee { Id = 0, Name = "Android 1", Email = "android.index@techjp.in" });
             return this.View(nameof(Index), employees);
         }
@@ -60,12 +60,11 @@ namespace EmployeeManagement.Controllers
         [AllowAnonymous]
         public ViewResult Details(int id)
         {
-#if TEMP
-            return this.View("Test", this.employeeRepository.GetEmployee(1));
-            return this.View("~/MyViews/Test.cshtml", this.employeeRepository.GetEmployee(1));
-            return this.View("../Test/Update", this.employeeRepository.GetEmployee(1));
-            return this.View("../../MyViews/Test", this.employeeRepository.GetEmployee(1));
-#else
+            //return this.View("Test", this.employeeRepository.GetEmployee(1));
+            //return this.View("~/MyViews/Test.cshtml", this.employeeRepository.GetEmployee(1));
+            //return this.View("../Test/Update", this.employeeRepository.GetEmployee(1));
+            //return this.View("../../MyViews/Test", this.employeeRepository.GetEmployee(1));
+
             var employee = this.employeeRepository.GetEmployee(id);
 
             if (employee == null)
@@ -81,12 +80,11 @@ namespace EmployeeManagement.Controllers
                 };
                 return this.View(homeDetailsViewModel);
             }
-#endif
         }
 
         [HttpGet]
         [Authorize]
-        public ViewResult Create()
+        public IActionResult Create()
         {
             return this.View();
         }
@@ -106,18 +104,18 @@ namespace EmployeeManagement.Controllers
                     Department = model.Department,
                     PhotoPath = uniqueFileName
                 };
-                this.employeeRepository.Add(newEmployee);
+                newEmployee = this.employeeRepository.Add(newEmployee);
                 return this.RedirectToAction(nameof(Details), new { id = newEmployee.Id });
             }
             else
             {
-                return this.View();
+                return this.View(model);
             }
         }
 
         [HttpGet]
         [Authorize]
-        public ViewResult Edit(int id)
+        public IActionResult Edit(int id)
         {
             var employee = this.employeeRepository.GetEmployee(id);
             var employeeEditViewModel = new EmployeeEditViewModel
