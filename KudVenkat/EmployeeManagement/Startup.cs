@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc.Authorization;
+using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -31,24 +32,40 @@ namespace EmployeeManagement
         {
             if (this.environment.IsEnvironment("Testing"))
             {
-                services.AddDbContext<AppDbContext>(options => options.UseInMemoryDatabase());
+                services.AddDbContextPool<AppDbContext>(options => options.UseSqlServer(this.configuration["TestEmpDBConn"]));
+
+                //services.AddDbContext<AppDbContext>(options => options.UseInMemoryDatabase("TestDb"));
+                //services.AddMvc();
             }
             else
             {
                 services.AddDbContextPool<AppDbContext>(options => options.UseSqlServer(this.configuration.GetConnectionString("EmployeeDBConnection")));
-                services.AddIdentity<ApplicationUser, IdentityRole>(options =>
-                {
-                    options.Password.RequiredLength = 4;
-                    options.Password.RequiredUniqueChars = 2;
-                }).AddEntityFrameworkStores<AppDbContext>();
             }
+
+            services.AddIdentity<ApplicationUser, IdentityRole>(options =>
+            {
+                options.Password.RequiredLength = 4;
+                options.Password.RequiredUniqueChars = 2;
+            }).AddEntityFrameworkStores<AppDbContext>();
 
             services.AddMvc(options =>
             {
                 var policy = new AuthorizationPolicyBuilder().RequireAuthenticatedUser().Build();
                 options.Filters.Add(new AuthorizeFilter(policy));
             }).AddXmlSerializerFormatters();
+
+            if (!this.environment.IsEnvironment("Testing"))
+            {
+                services.AddAntiforgery(options =>
+                {
+                    options.HeaderName = "X-XSRF-TOKEN";
+                    options.Cookie.Name = "MyCookieHaHa";
+                });
+            }
+
             services.AddScoped<IEmployeeRepository, SqlEmployeeRepository>();
+
+            services.AddResponseCompression(options => options.Providers.Add<GzipCompressionProvider>());
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

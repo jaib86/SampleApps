@@ -1,8 +1,15 @@
-Project: EmployeeManagement.IntegrationTests
---------------------------------------------------------------------------------
-* Install NuGet "Microsoft.AspNetCore.TestHost"
-* Add meta-package <PackageReference Include="Microsoft.AspNetCore.App" />
---------------------------------------------------------------------------------
-Project: EmployeeManagement
---------------------------------------------------------------------------------
-* Install NuGet "Microsoft.EntityFrameworkCore.InMemory"
+
+=========================================================================================
+-- https://app.pluralsight.com/library/courses/aspdotnet-core-mvc-testing-fundamentals --
+-----------------------------------------------------------------------------------------
+-------- Project: EmployeeManagement.Tests ----------------------------------------------
+-------- Project: EmployeeManagement.IntegrationTests -----------------------------------
+=========================================================================================
+
+
+=========================================================================================
+-------------------- Project: EmployeeManagement.IntegrationTests -----------------------
+-----------------------------------------------------------------------------------------
+-------- * Install NuGet "Microsoft.AspNetCore.TestHost" --------------------------------
+-------- * Add meta-package <PackageReference Include="Microsoft.AspNetCore.App" /> -----
+=========================================================================================
