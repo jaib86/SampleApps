@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Threading;
-using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 
 namespace EmployeeManagement.UITests
@@ -8,14 +7,17 @@ namespace EmployeeManagement.UITests
     public class BaseUIWebDriver : IDisposable
     {
         private bool disposed;
-        protected readonly IWebDriver webDriver;
+        protected readonly ChromeDriver driver;
 
+        private const string URL = "http://localhost:56624/";
         protected const string Email = "Jack@techjp.in";
         protected const string Password = "Jack@1234";
 
         public BaseUIWebDriver()
         {
-            this.webDriver = new ChromeDriver(Environment.CurrentDirectory);
+            this.driver = new ChromeDriver(Environment.CurrentDirectory);
+
+            this.driver.Navigate().GoToUrl(URL);
         }
 
         /// <summary>
@@ -45,8 +47,8 @@ namespace EmployeeManagement.UITests
             }
 
             // Free unmanaged objects here.
-            this.webDriver.Quit();
-            this.webDriver.Dispose();
+            this.driver.Quit();
+            this.driver.Dispose();
 
             this.disposed = true;
         }

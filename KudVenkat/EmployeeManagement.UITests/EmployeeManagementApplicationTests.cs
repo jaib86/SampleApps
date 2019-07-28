@@ -1,4 +1,3 @@
-using OpenQA.Selenium;
 using Xunit;
 
 namespace EmployeeManagement.UITests
@@ -8,11 +7,9 @@ namespace EmployeeManagement.UITests
         [Fact]
         public void ShouldLoadApplicationPage_SmokeTest()
         {
-            this.webDriver.Navigate().GoToUrl("http://localhost:56624");
+            this.driver.Navigate().GoToUrl("http://localhost:56624");
 
-            Assert.Equal("Employee List", this.webDriver.Title);
+            Assert.Equal("Employee List", this.driver.Title);
         }
-
-        
     }
 }
