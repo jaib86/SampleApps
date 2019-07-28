@@ -6,12 +6,19 @@ using Xunit;
 
 namespace EmployeeManagement.IntegrationTests
 {
-    public class AdministrationControllerShould : BaseControllerShould
+    public class AdministrationControllerShould : IClassFixture<TestServerFixture>
     {
+        private readonly TestServerFixture fixture;
+
+        public AdministrationControllerShould(TestServerFixture fixture)
+        {
+            this.fixture = fixture;
+        }
+
         [Fact]
         public async Task ReturnLoginUrlWhenNotLoggedInForCreateRole()
         {
-            var response = await this.httpClient.GetAsync("/Administration/CreateRole");
+            var response = await this.fixture.HttpClient.GetAsync("/Administration/CreateRole");
 
             Assert.Equal(System.Net.HttpStatusCode.Found, response.StatusCode);
             Assert.NotNull(response.Headers);
@@ -28,10 +35,14 @@ namespace EmployeeManagement.IntegrationTests
             var postRequest = new HttpRequestMessage(HttpMethod.Post, "/Administration/CreateRole");
             var formData = new Dictionary<string, string> { { "RoleName", $"Role_{ticks}" } };
             postRequest.Content = new FormUrlEncodedContent(formData);
-            await this.SetLoginCookies(postRequest);
+
+            // .AspNetCore.Identity.Application
+            var accountController = new AccountControllerShould(this.fixture);
+            var loginCookies = await accountController.LoginApplication();
+            this.fixture.SetLoginCookies(postRequest, loginCookies);
 
             // Post Response
-            HttpResponseMessage postResponse = await this.httpClient.SendAsync(postRequest);
+            HttpResponseMessage postResponse = await this.fixture.HttpClient.SendAsync(postRequest);
 
             Assert.Equal(System.Net.HttpStatusCode.Found, postResponse.StatusCode);
             Assert.NotNull(postResponse.Headers);
@@ -41,8 +52,8 @@ namespace EmployeeManagement.IntegrationTests
 
             // Issue New Get with login cookie to check newly created role
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, listRolesLocation);
-            await this.SetLoginCookies(httpRequest);
-            var response = await this.httpClient.SendAsync(httpRequest);
+            this.fixture.SetLoginCookies(httpRequest, loginCookies);
+            var response = await this.fixture.HttpClient.SendAsync(httpRequest);
             response.EnsureSuccessStatusCode();
 
             var responseString = await response.Content.ReadAsStringAsync();

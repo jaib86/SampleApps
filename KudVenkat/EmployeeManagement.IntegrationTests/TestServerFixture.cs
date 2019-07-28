@@ -17,9 +17,10 @@ namespace EmployeeManagement.IntegrationTests
         private bool disposed;
 
         private readonly TestServer testServer;
-        protected Dictionary<string, string> loginCookies;
-        private const string AntiForgeryFieldName = "__AFTField";
-        private const string AntiForgeryCookieName = "AFTCookie";
+
+        public const string AntiForgeryFieldName = "__AFTField";
+        public const string AntiForgeryCookieName = "AFTCookie";
+
         public HttpClient HttpClient { get; }
 
         public TestServerFixture()
@@ -44,6 +45,15 @@ namespace EmployeeManagement.IntegrationTests
         {
             return (this.ExtractAntiforgeryToken(await responseMessage.Content.ReadAsStringAsync()),
                     this.ExtractAntiforgeryCookieValue(responseMessage));
+        }
+
+        public void SetLoginCookies(HttpRequestMessage httpRequest, Dictionary<string, string> loginCookies)
+        {
+            if (httpRequest != null && loginCookies?.Count > 0)
+            {
+                // .AspNetCore.Identity.Application
+                httpRequest.Headers.Add("Cookie", loginCookies.Select(c => new CookieHeaderValue(c.Key, c.Value).ToString()));
+            }
         }
 
         private string ExtractAntiforgeryToken(string htmlBody)
