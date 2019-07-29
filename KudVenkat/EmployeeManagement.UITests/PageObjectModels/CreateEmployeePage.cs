@@ -1,4 +1,5 @@
-﻿using OpenQA.Selenium;
+﻿using System.Diagnostics;
+using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 
 namespace EmployeeManagement.UITests.PageObjectModels
@@ -6,6 +7,7 @@ namespace EmployeeManagement.UITests.PageObjectModels
     internal class CreateEmployeePage : BasePage
     {
         private const string PagePath = "Home/Create";
+        internal const string PageTitle = "Create Employee";
 
         public CreateEmployeePage(ChromeDriver driver) : base(driver, PagePath)
         { }
@@ -16,11 +18,7 @@ namespace EmployeeManagement.UITests.PageObjectModels
 
         private IWebElement Department => this.Driver.FindElementById("Department");
 
-        private IWebElement SumbitButton => this.Driver.FindElementByCssSelector(".btn, .btn-primary");
-
-        private IWebElement FirstError => this.Driver.FindElementByCssSelector(".validation-summary-errors ul > li");
-
-        public string FirstErrorMessage => this.FirstError?.Text;
+        private IWebElement SumbitButton => this.Driver.FindElementByCssSelector("button[type=submit].btn.btn-primary");
 
         public void EnterEmployeeInfo(string name, string email, int department)
         {
@@ -28,14 +26,13 @@ namespace EmployeeManagement.UITests.PageObjectModels
             this.Name.SendKeys(name);
             this.Email.Clear();
             this.Email.SendKeys(email);
-            if (this.Department != null)
-            {
-
-            }
+            
+            // TODO: Select Department Drop-down
         }
 
-        public void SubmitLoginPage()
+        public void SubmitCreateEmployeePage()
         {
+            Debug.WriteLine($"Clicking '{this.SumbitButton.Text}' button...");
             this.SumbitButton.Click();
         }
     }

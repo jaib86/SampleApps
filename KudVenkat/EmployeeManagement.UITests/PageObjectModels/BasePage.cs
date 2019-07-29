@@ -1,4 +1,5 @@
 ﻿using System;
+using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 
 namespace EmployeeManagement.UITests.PageObjectModels
@@ -14,6 +15,10 @@ namespace EmployeeManagement.UITests.PageObjectModels
             this.Driver = driver;
             this.pagePath = pagePath;
         }
+
+        private IWebElement FirstError => this.Driver.FindElementByCssSelector(".validation-summary-errors ul > li");
+
+        public string FirstErrorMessage => this.FirstError?.Text;
 
         public void NavigateTo()
         {

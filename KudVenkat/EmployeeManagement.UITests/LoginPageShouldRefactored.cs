@@ -27,7 +27,7 @@ namespace EmployeeManagement.UITests
         [Fact]
         public void LoadLoginPageWithCorrectPageTitle()
         {
-            Assert.Equal("User Login", this.loginPage.Driver.Title);
+            Assert.Equal(LoginPage.PageTitle, this.loginPage.Driver.Title);
         }
 
         [Fact]
@@ -40,7 +40,7 @@ namespace EmployeeManagement.UITests
             this.loginPage.SubmitLoginPage();
 
             // Make some delay
-            this.DelayForDemoVideo();
+            DelayForDemoVideo();
 
             // Validate Email
             Assert.Equal("The Email field is required.", this.loginPage.FirstErrorMessage);
@@ -53,13 +53,13 @@ namespace EmployeeManagement.UITests
             this.loginPage.EnterLoginCredential(Email, string.Empty);
 
             // Make some delay
-            this.DelayForDemoVideo();
+            DelayForDemoVideo();
 
             // Submit button
             this.loginPage.SubmitLoginPage();
 
             // Make some delay
-            this.DelayForDemoVideo();
+            DelayForDemoVideo();
 
             // Validate Password
             Assert.Equal("The Password field is required.", this.loginPage.FirstErrorMessage);
@@ -72,13 +72,13 @@ namespace EmployeeManagement.UITests
             this.loginPage.EnterLoginCredential("ABC", Password);
 
             // Make some delay
-            this.DelayForDemoVideo();
+            DelayForDemoVideo();
 
             // Submit button
             this.loginPage.SubmitLoginPage();
 
             // Make some delay
-            this.DelayForDemoVideo();
+            DelayForDemoVideo();
 
             // Validate Password
             Assert.Equal("The Email field is not a valid e-mail address.", this.loginPage.FirstErrorMessage);
@@ -91,13 +91,13 @@ namespace EmployeeManagement.UITests
             this.loginPage.EnterLoginCredential(Email, "ABC");
 
             // Make some delay
-            this.DelayForDemoVideo();
+            DelayForDemoVideo();
 
             // Submit button
             this.loginPage.SubmitLoginPage();
 
             // Make some delay
-            this.DelayForDemoVideo();
+            DelayForDemoVideo();
 
             // Validate Invalid Login
             Assert.Equal("Invalid login attempt", this.loginPage.FirstErrorMessage);
@@ -109,12 +109,12 @@ namespace EmployeeManagement.UITests
             // Enter Email & Password
             this.loginPage.EnterLoginCredential(Email, Password);
 
-            this.DelayForDemoVideo();
+            DelayForDemoVideo();
 
             // Submit button
             this.loginPage.SubmitLoginPage();
 
-            this.DelayForDemoVideo();
+            DelayForDemoVideo();
 
             // Check whether redirect to employee list
             Assert.Equal("Employee List", this.loginPage.Driver.Title);

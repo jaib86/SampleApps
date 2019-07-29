@@ -9,22 +9,26 @@ namespace EmployeeManagement.UITests
         private bool disposed;
         protected readonly ChromeDriver driver;
 
-        private const string URL = "http://localhost:56624/";
-        protected const string Email = "Jack@techjp.in";
-        protected const string Password = "Jack@1234";
+        #region Constants
+
+        protected const string BaseUrl = "http://localhost:56624/";
+        internal const string Email = "Jack@techjp.in";
+        internal const string Password = "Jack@1234";
+
+        #endregion Constants
 
         public BaseUIWebDriver()
         {
             this.driver = new ChromeDriver(Environment.CurrentDirectory);
 
-            this.driver.Navigate().GoToUrl(URL);
+            this.driver.Navigate().GoToUrl(BaseUrl);
         }
 
         /// <summary>
         /// Brief delay to slow down browser interactions for
         /// demo video recording purposes
         /// </summary>
-        protected void DelayForDemoVideo(int milliseconds = 1000)
+        internal static void DelayForDemoVideo(int milliseconds = 1000)
         {
             Thread.Sleep(milliseconds);
         }
