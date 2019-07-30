@@ -41,6 +41,25 @@
                     <li class="nav-item">
                         <a asp-action="@nameof(HomeController.Create)" asp-controller="@Utility.GetControllerRoutingName(nameof(HomeController))" class="nav-link">Create</a>
                     </li>
+                    @if (signInManager.IsSignedIn(User) && User.IsInRole("Admin") && User.IsInRole("User"))
+                    {
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropDonwMenuLink"
+                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Manage
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropDonwMenuLink">
+                                <a class="dropdown-item" asp-action="@nameof(AdministrationController.ListUsers)"
+                                   asp-controller="@Utility.GetControllerRoutingName(nameof(AdministrationController))">
+                                    Users
+                                </a>
+                                <a class="dropdown-item" asp-action="@nameof(AdministrationController.ListRoles)"
+                                   asp-controller="@Utility.GetControllerRoutingName(nameof(AdministrationController))">
+                                    Roles
+                                </a>
+                            </div>
+                        </li>
+                    }
                 </ul>
                 <ul class="navbar-nav ml-auto">
                     @if (signInManager.IsSignedIn(User))

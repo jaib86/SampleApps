@@ -80,8 +80,15 @@ namespace EmployeeManagement.Controllers
 
                 if (result.Succeeded)
                 {
-                    await this.signInManager.SignInAsync(user, false).ConfigureAwait(false);
-                    return this.RedirectToAction(nameof(HomeController.Index), Utility.GetControllerRoutingName(nameof(HomeController)));
+                    if (this.signInManager.IsSignedIn(this.User) && this.User.IsInRole("Admin") && this.User.IsInRole("User"))
+                    {
+                        return this.RedirectToAction(nameof(AdministrationController.ListUsers), Utility.GetControllerRoutingName(nameof(AdministrationController)));
+                    }
+                    else
+                    {
+                        await this.signInManager.SignInAsync(user, isPersistent: false).ConfigureAwait(false);
+                        return this.RedirectToAction(nameof(HomeController.Index), Utility.GetControllerRoutingName(nameof(HomeController)));
+                    }
                 }
 
                 foreach (var error in result.Errors)
@@ -107,6 +114,13 @@ namespace EmployeeManagement.Controllers
             {
                 return this.Json($"Email '{email}' is already taken.");
             }
+        }
+
+        [HttpGet]
+        [AllowAnonymous]
+        public IActionResult AccessDenied()
+        {
+            return this.View();
         }
     }
 }
