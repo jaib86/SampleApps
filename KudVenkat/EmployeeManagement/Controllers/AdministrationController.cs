@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using EmployeeManagement.DataAccess;
 using EmployeeManagement.Models;
@@ -26,6 +27,69 @@ namespace EmployeeManagement.Controllers
         public IActionResult ListUsers()
         {
             return this.View(this.userManager.Users);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> EditUser(string id)
+        {
+            var user = await this.userManager.FindByIdAsync(id);
+
+            if (user == null)
+            {
+                this.ViewBag.ErrorMessage = $"User with Id = {id} cannot be found";
+                return this.View("NotFound");
+            }
+            else
+            {
+                var userClaims = await this.userManager.GetClaimsAsync(user);
+                var userRoles = await this.userManager.GetRolesAsync(user);
+
+                var model = new EditUserViewModel
+                {
+                    Id = user.Id,
+                    UserName = user.UserName,
+                    Email = user.Email,
+                    City = user.City,
+                    Claims = userClaims.Select(c => c.Value).ToList(),
+                    Roles = userRoles
+                };
+
+                return this.View(model);
+            }
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> EditUser(EditUserViewModel model)
+        {
+            var user = await this.userManager.FindByIdAsync(model.Id);
+
+            if (user == null)
+            {
+                this.ViewBag.ErrorMessage = $"User with Id = {model.Id} cannot be found";
+                return this.View("NotFound");
+            }
+            else
+            {
+                user.Email = model.Email;
+                user.UserName = model.UserName;
+                user.City = model.City;
+
+                var result = await this.userManager.UpdateAsync(user);
+
+                if (result.Succeeded)
+                {
+                    return this.RedirectToAction(nameof(ListUsers));
+                }
+                else
+                {
+                    foreach (var error in result.Errors)
+                    {
+                        this.ModelState.AddModelError("", error.Description);
+                    }
+
+                    return this.View(model);
+                }
+            }
         }
 
         [HttpGet]

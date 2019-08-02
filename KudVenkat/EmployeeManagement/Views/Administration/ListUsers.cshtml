@@ -23,7 +23,9 @@
                 <h5 class="card-title">@user.UserName</h5>
             </div>
             <div class="card-footer">
-                <a href="#" class="btn btn-primary">Edit</a>
+                <a asp-controller="@Utility.GetControllerRoutingName(nameof(AdministrationController))"
+                   asp-action="@nameof(AdministrationController.EditUser)" asp-route-id="@user.Id"
+                   class="btn btn-primary">Edit</a>
                 <a href="#" class="btn btn-danger">Delete</a>
             </div>
         </div>
