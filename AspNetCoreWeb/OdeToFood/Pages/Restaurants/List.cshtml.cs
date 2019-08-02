@@ -16,6 +16,7 @@ namespace OdeToFood.Pages.Restaurants
         [BindProperty(SupportsGet = true)]
         public string SearchTerm { get; set; }
 
+        [TempData]
         public string Message { get; set; }
 
         public ListModel(IConfiguration configuration, IRestaurantData restaurantData)
@@ -26,7 +27,6 @@ namespace OdeToFood.Pages.Restaurants
 
         public void OnGet()
         {
-            this.Message = this.configuration["Message"];
             this.Restaurants = this.restaurantData.GetRestaurantsByName(this.SearchTerm);
         }
     }

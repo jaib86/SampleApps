@@ -170,11 +170,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ritambhara", "Logical\Ritam
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ritambhara.UnitTests", "Logical\Ritambhara.UnitTests\Ritambhara.UnitTests.csproj", "{1A176F1B-22E1-41FD-836A-FBF6015B4C26}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OdeToFood", "AspNetCoreWeb\OdeToFood\OdeToFood.csproj", "{4BB097A0-7653-4D3E-B8B0-9AE75E271798}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OdeToFood", "AspNetCoreWeb\OdeToFood\OdeToFood.csproj", "{4BB097A0-7653-4D3E-B8B0-9AE75E271798}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OdeToFood.Core", "AspNetCoreWeb\OdeToFood.Core\OdeToFood.Core.csproj", "{830CEB99-7C99-430F-9871-70846837B0E8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OdeToFood.Core", "AspNetCoreWeb\OdeToFood.Core\OdeToFood.Core.csproj", "{830CEB99-7C99-430F-9871-70846837B0E8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OdeToFood.Data", "AspNetCoreWeb\OdeToFood.Data\OdeToFood.Data.csproj", "{69256B33-E87B-4464-8BA3-4FF9E11676D4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OdeToFood.Data", "AspNetCoreWeb\OdeToFood.Data\OdeToFood.Data.csproj", "{69256B33-E87B-4464-8BA3-4FF9E11676D4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
