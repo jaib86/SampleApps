@@ -30,11 +30,12 @@ namespace EmployeeManagement.IntegrationTests
                           .UseEnvironment("Testing")
                           .UseSetting("TestEmpDBConn", "server=JAIPRAKASH31496\\SQLEXPRESS;database=EmployeeDb;Trusted_Connection=true")
                           .UseStartup<Startup>()
-                          .ConfigureServices(x => x.AddAntiforgery(t =>
-                           {
-                               t.FormFieldName = AntiForgeryFieldName;
-                               t.Cookie.Name = AntiForgeryCookieName;
-                           }));
+                          .ConfigureServices(services =>
+                                services.AddAntiforgery(options =>
+                                {
+                                    options.FormFieldName = AntiForgeryFieldName;
+                                    options.Cookie.Name = AntiForgeryCookieName;
+                                }));
 
             this.testServer = new TestServer(builder);
 

@@ -15,6 +15,7 @@ namespace EmployeeManagement.Controllers
         }
 
         [Route("/Error/{statusCode}")]
+        [AllowAnonymous]
         public IActionResult HttpStatusCodeHandler(int statusCode)
         {
             var statusCodeResult = this.HttpContext.Features.Get<IStatusCodeReExecuteFeature>();
@@ -25,7 +26,7 @@ namespace EmployeeManagement.Controllers
                     this.ViewBag.ErrorMessage = "Sorry, the resource you requested could not be found";
                     this.logger.LogWarning($"404 Error Occurred. Path = {statusCodeResult.OriginalPath} and QueryString = {statusCodeResult.OriginalQueryString}");
                     return this.View("NotFound");
-                    
+
             }
 
             return this.View();
