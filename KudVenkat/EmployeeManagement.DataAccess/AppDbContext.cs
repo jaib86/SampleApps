@@ -1,4 +1,5 @@
-﻿using EmployeeManagement.Models;
+﻿using System.Linq;
+using EmployeeManagement.Models;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
@@ -26,6 +27,11 @@ namespace EmployeeManagement.DataAccess
         {
             base.OnModelCreating(builder);
             builder.Seed();
+
+            foreach (var foreignKey in builder.Model.GetEntityTypes().SelectMany(x => x.GetForeignKeys()))
+            {
+                foreignKey.DeleteBehavior = DeleteBehavior.Restrict;
+            }
         }
     }
 }

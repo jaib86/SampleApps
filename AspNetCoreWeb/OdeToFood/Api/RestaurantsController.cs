@@ -29,23 +29,5 @@ namespace OdeToFood.Api
         {
             return this.restaurantData.GetById(id);
         }
-
-        // POST: api/Restaurants
-        [HttpPost]
-        public void Post([FromBody] string value)
-        {
-        }
-
-        // PUT: api/Restaurants/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
-        {
-        }
-
-        // DELETE: api/ApiWithActions/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
-        }
     }
 }
