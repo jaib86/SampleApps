@@ -69,7 +69,9 @@ namespace EmployeeManagement.Tests
         [Fact]
         public void ReturnViewForCreateWhenInvalidModelState()
         {
-            this.homeController.ModelState.AddModelError("", "Test model error");
+            var modelError = "Test model error";
+
+            this.homeController.ModelState.AddModelError("", modelError);
 
             var employeeCreateViewModel = new EmployeeCreateViewModel { Name = "Jack" };
             IActionResult result = this.homeController.Create(employeeCreateViewModel);
@@ -79,6 +81,8 @@ namespace EmployeeManagement.Tests
             var model = Assert.IsType<EmployeeCreateViewModel>(viewResult.Model);
 
             Assert.Equal(employeeCreateViewModel.Name, model.Name);
+
+            Assert.Equal(modelError, viewResult.ViewData.ModelState.Values.First().Errors.First().ErrorMessage);
         }
 
         [Fact]
