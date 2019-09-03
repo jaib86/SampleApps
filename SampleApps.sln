@@ -128,6 +128,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RazorPagesProject", "AspNet
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{13443ED5-AABB-4D59-9026-E24606F457E8}"
 	ProjectSection(SolutionItems) = preProject
+		AspNetCoreWeb\docs\Library.API.txt = AspNetCoreWeb\docs\Library.API.txt
 		AspNetCoreWeb\docs\WebAppsIntegrationTests.txt = AspNetCoreWeb\docs\WebAppsIntegrationTests.txt
 	EndProjectSection
 EndProject
