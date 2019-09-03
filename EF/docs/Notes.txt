@@ -18,12 +18,12 @@
         Cmdlet                      Description
         --------------------------  ---------------------------------------------------
         Add-Migration               Adds a new migration.
+        Remove-Migration            Removes the last migration.
+        Script-Migration            Generates a SQL script from migrations.
+        Scaffold-DbContext          Scaffolds a DbContext and entity types for a database.
+        Update-Database             Updates the database to a specified migration.
         Drop-Database               Drops the database.
         Get-DbContext               Gets information about a DbContext type.
-        Remove-Migration            Removes the last migration.
-        Scaffold-DbContext          Scaffolds a DbContext and entity types for a database.
-        Script-Migration            Generates a SQL script from migrations.
-        Update-Database             Updates the database to a specified migration.
 
 * To get help on particular command
 	get-help add-migration
