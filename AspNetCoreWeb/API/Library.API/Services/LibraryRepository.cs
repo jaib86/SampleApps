@@ -20,7 +20,7 @@ namespace Library.API.Services
             this.context.Authors.Add(author);
 
             // the repository fills the id (instead of using identity columns)
-            if (author.Books.Any())
+            if (author.Books.Count > 0)
             {
                 foreach (var book in author.Books)
                 {
@@ -67,6 +67,11 @@ namespace Library.API.Services
         public IEnumerable<Author> GetAuthors()
         {
             return this.context.Authors.OrderBy(a => a.FirstName).ThenBy(a => a.LastName);
+        }
+
+        public IEnumerable<Author> GetAuthors(IEnumerable<Guid> authorIDs)
+        {
+            return this.context.Authors.Where(a => authorIDs.Contains(a.Id)).OrderBy(a => a.FirstName).ThenBy(a => a.LastName);
         }
 
         public void UpdateAuthor(Author author)

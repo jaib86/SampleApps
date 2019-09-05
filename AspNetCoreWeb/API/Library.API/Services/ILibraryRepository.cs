@@ -8,6 +8,8 @@ namespace Library.API.Services
     {
         IEnumerable<Author> GetAuthors();
 
+        IEnumerable<Author> GetAuthors(IEnumerable<Guid> authorIDs);
+
         Author GetAuthor(Guid authorId);
 
         void AddAuthor(Author author);
