@@ -2,16 +2,20 @@
 using System.Collections.Generic;
 using System.Linq;
 using Library.API.Entities;
+using Library.API.Helpers;
+using Library.API.Models;
 
 namespace Library.API.Services
 {
     public class LibraryRepository : ILibraryRepository
     {
         private readonly LibraryContext context;
+        private readonly IPropertyMappingService propertyMappingService;
 
-        public LibraryRepository(LibraryContext context)
+        public LibraryRepository(LibraryContext context, IPropertyMappingService propertyMappingService)
         {
             this.context = context;
+            this.propertyMappingService = propertyMappingService;
         }
 
         public void AddAuthor(Author author)
@@ -64,9 +68,32 @@ namespace Library.API.Services
             return this.context.Authors.FirstOrDefault(a => a.Id == authorId);
         }
 
-        public IEnumerable<Author> GetAuthors()
+        public PagedList<Author> GetAuthors(AuthorsResourceParameters authorsResourceParameters)
         {
-            return this.context.Authors.OrderBy(a => a.FirstName).ThenBy(a => a.LastName);
+            //var collectionBeforePaging = this.context.Authors.OrderBy(a => a.FirstName).ThenBy(a => a.LastName).AsQueryable()
+
+            var collectionBeforePaging = this.context.Authors.ApplySort(authorsResourceParameters.OrderBy, this.propertyMappingService.GetPropertyMapping<AuthorDto, Author>());
+
+
+            if (!string.IsNullOrEmpty(authorsResourceParameters.Genre))
+            {
+                // trim & ignore casing
+                var genreForWhereClause = authorsResourceParameters.Genre.Trim().ToLowerInvariant();
+
+                collectionBeforePaging = collectionBeforePaging.Where(a => a.Genre.ToLowerInvariant() == genreForWhereClause);
+            }
+
+            if (!string.IsNullOrEmpty(authorsResourceParameters.SearchQuery))
+            {
+                // trim & ignore casing
+                var searchQueryForWhereClause = authorsResourceParameters.SearchQuery.Trim().ToLowerInvariant();
+
+                collectionBeforePaging = collectionBeforePaging.Where(a => a.Genre.ToLowerInvariant().Contains(searchQueryForWhereClause) || a.FirstName.ToLowerInvariant().Contains(searchQueryForWhereClause) || a.LastName.ToLowerInvariant().Contains(searchQueryForWhereClause));
+            }
+
+            return PagedList<Author>.Create(collectionBeforePaging,
+                                            authorsResourceParameters.PageNumber,
+                                            authorsResourceParameters.PageSize);
         }
 
         public IEnumerable<Author> GetAuthors(IEnumerable<Guid> authorIDs)

@@ -48,11 +48,11 @@
 	Add-Migration JoinTable
 	Add-Migration SecretIdentity
 	Delete-Migration
-	script-migration
-	script-migration -idempotent
-	script-migration -from init
-	script-migration -from init -to SecretIdentity
-	update-database -verbose
+	Script-Migration
+	Script-Migration -idempotent
+	Script-Migration -from init
+	Script-Migration -from init -to SecretIdentity
+	Update-Database -verbose
 
 * Scaffolding Model from existing database
 	scaffold-dbcontext "Server = (localdb)\mssqllocaldb; Database = SamuraiData; Trusted_Connection = True;" Microsoft.EntityFrameworkCore.SqlServer
