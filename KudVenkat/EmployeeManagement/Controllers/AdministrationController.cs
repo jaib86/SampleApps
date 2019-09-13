@@ -14,8 +14,9 @@ using Microsoft.Extensions.Logging;
 
 namespace EmployeeManagement.Controllers
 {
-    [Authorize(Roles = "Admin")]
-    [Authorize(Roles = "User")]
+    //[Authorize(Roles = "Admin")]
+    //[Authorize(Roles = "User")]
+    //[Authorize(Policy = "AdminRolePolicy")]
     public class AdministrationController : Controller
     {
         private readonly RoleManager<IdentityRole> roleManager;
@@ -30,6 +31,14 @@ namespace EmployeeManagement.Controllers
         }
 
         [HttpGet]
+        [AllowAnonymous]
+        public IActionResult AccessDenied()
+        {
+            return this.View();
+        }
+
+        [HttpGet]
+        [Authorize(Policy = "EditRolePolicy")]
         public async Task<IActionResult> ManageUserClaims(string userId)
         {
             var user = await this.userManager.FindByIdAsync(userId);
@@ -54,7 +63,7 @@ namespace EmployeeManagement.Controllers
                     model.Claims.Add(new UserClaim
                     {
                         ClaimType = claim.Type,
-                        IsSelected = existingUserClaims.Any(c => c.Type == claim.Type)
+                        IsSelected = existingUserClaims.Any(c => c.Type == claim.Type && c.Value == "true")
                     });
                 }
 
@@ -63,6 +72,7 @@ namespace EmployeeManagement.Controllers
         }
 
         [HttpPost]
+        [Authorize(Policy = "EditRolePolicy")]
         public async Task<IActionResult> ManageUserClaims(UserClaimsViewModel model)
         {
             var user = await this.userManager.FindByIdAsync(model.UserId);
@@ -85,7 +95,7 @@ namespace EmployeeManagement.Controllers
                 else
                 {
                     // Add Selected Claims
-                    result = await this.userManager.AddClaimsAsync(user, model.Claims.Where(c => c.IsSelected).Select(c => new Claim(c.ClaimType, c.ClaimType)));
+                    result = await this.userManager.AddClaimsAsync(user, model.Claims.Select(c => new Claim(c.ClaimType, c.IsSelected ? "true" : "false")));
 
                     if (!result.Succeeded)
                     {
@@ -101,6 +111,7 @@ namespace EmployeeManagement.Controllers
         }
 
         [HttpGet]
+        [Authorize(Policy = "EditRolePolicy")]
         public async Task<IActionResult> ManagerUserRoles(string userId)
         {
             this.ViewBag.userId = userId;
@@ -130,6 +141,7 @@ namespace EmployeeManagement.Controllers
         }
 
         [HttpPost]
+        [Authorize(Policy = "EditRolePolicy")]
         public async Task<IActionResult> ManagerUserRoles(List<UserRolesViewModel> model, string userId)
         {
             var user = await this.userManager.FindByIdAsync(userId);
@@ -261,7 +273,7 @@ namespace EmployeeManagement.Controllers
                     UserName = user.UserName,
                     Email = user.Email,
                     City = user.City,
-                    Claims = userClaims.Select(c => c.Value).ToList(),
+                    Claims = userClaims.Select(c => $"{c.Type} - {c.Value}").ToList(),
                     Roles = userRoles
                 };
 
@@ -342,6 +354,7 @@ namespace EmployeeManagement.Controllers
         }
 
         [HttpGet]
+        [Authorize(Policy = "EditRolePolicy")]
         public async Task<IActionResult> EditRole(string id)
         {
             var role = await this.roleManager.FindByIdAsync(id).ConfigureAwait(false);
@@ -372,6 +385,7 @@ namespace EmployeeManagement.Controllers
         }
 
         [HttpPost]
+        [Authorize(Policy = "EditRolePolicy")]
         public async Task<IActionResult> EditRole(EditRoleViewModel model)
         {
             var role = await this.roleManager.FindByIdAsync(model.Id).ConfigureAwait(false);

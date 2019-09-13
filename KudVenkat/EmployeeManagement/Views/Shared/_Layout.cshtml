@@ -41,7 +41,7 @@
                     <li class="nav-item">
                         <a asp-action="@nameof(HomeController.Create)" asp-controller="@Utility.GetControllerRoutingName(nameof(HomeController))" class="nav-link">Create</a>
                     </li>
-                    @if (signInManager.IsSignedIn(User) && User.IsInRole("Admin") && User.IsInRole("User"))
+                    @if (signInManager.IsSignedIn(User) && (User.IsInRole("Admin") || User.IsInRole("Super Admin")))
                     {
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropDonwMenuLink"

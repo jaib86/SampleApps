@@ -2,9 +2,11 @@
 using EmployeeManagement.DataAccess;
 using EmployeeManagement.Middleware;
 using EmployeeManagement.Models;
+using EmployeeManagement.Security;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.AspNetCore.ResponseCompression;
@@ -54,6 +56,11 @@ namespace EmployeeManagement
                 options.Filters.Add(new AuthorizeFilter(policy));
             }).AddXmlSerializerFormatters();
 
+            services.ConfigureApplicationCookie(options =>
+            {
+                options.AccessDeniedPath = new PathString("/Administration/AccessDenied");
+            });
+
             if (!this.environment.IsEnvironment("Testing"))
             {
                 services.AddAntiforgery(options =>
@@ -65,11 +72,26 @@ namespace EmployeeManagement
 
             services.AddAuthorization(options =>
             {
-                options.AddPolicy("DeleteRolePolicy", policy => policy.RequireClaim("Delete Role")
-                                                                      .RequireClaim("Create Role"));
+                options.AddPolicy("DeleteRolePolicy", policy => policy.RequireClaim("Delete Role"));
+
+                //options.AddPolicy("EditRolePolicy", policy => policy.RequireClaim("Edit Role", "true"));
+                //options.AddPolicy("EditRolePolicy", policy => policy.RequireRole("Super Admin")
+                //                                                    .RequireClaim("Edit Role", "true")
+                //                                                    .RequireRole("Admin"));
+                //options.AddPolicy("EditRolePolicy", policy => policy.RequireAssertion(context =>
+                //{
+                //    return (context.User.IsInRole("Admin")
+                //            && context.User.HasClaim(claim => claim.Type == "Edit Role" && claim.Value == "true"))
+                //            || context.User.IsInRole("Super Admin");
+                //}));
+
+                options.AddPolicy("EditRolePolicy", policy => policy.AddRequirements(new ManageAdminRolesAndClaimsRequirement()));
+
+                options.AddPolicy("AdminRolePolicy", policy => policy.RequireRole("Admin"));
             });
 
             services.AddScoped<IEmployeeRepository, SqlEmployeeRepository>();
+            services.AddSingleton<IAuthorizationHandler, CanEditOnlyOtherAdminRolesAndClaimsHandler>();
 
             services.AddResponseCompression(options => options.Providers.Add<GzipCompressionProvider>());
         }

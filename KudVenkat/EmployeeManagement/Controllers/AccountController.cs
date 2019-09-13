@@ -115,12 +115,5 @@ namespace EmployeeManagement.Controllers
                 return this.Json($"Email '{email}' is already taken.");
             }
         }
-
-        [HttpGet]
-        [AllowAnonymous]
-        public IActionResult AccessDenied()
-        {
-            return this.View();
-        }
     }
 }
