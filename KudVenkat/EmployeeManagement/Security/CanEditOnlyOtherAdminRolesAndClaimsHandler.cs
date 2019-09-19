@@ -30,6 +30,14 @@ namespace EmployeeManagement.Security
                     context.Succeed(requirement);
                 }
 
+                // If any of the handler return Fail, policy fails even if other handlers return Success.
+#if ExcludedCode
+                else
+                {
+                    context.Fail();
+                }
+#endif
+
                 return Task.CompletedTask;
             }
         }

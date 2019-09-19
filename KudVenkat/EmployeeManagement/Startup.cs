@@ -28,16 +28,21 @@ namespace EmployeeManagement
             this.environment = env;
         }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
-        // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
+        /// <summary>
+        /// This method gets called by the runtime. Use this method to add services to the container.
+        /// For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
+        /// </summary>
+        /// <param name="services">IServiceCollection</param>
         public void ConfigureServices(IServiceCollection services)
         {
             if (this.environment.IsEnvironment("Testing"))
             {
                 services.AddDbContextPool<AppDbContext>(options => options.UseSqlServer(this.configuration["TestEmpDBConn"]));
 
-                //services.AddDbContext<AppDbContext>(options => options.UseInMemoryDatabase("TestDb"));
-                //services.AddMvc();
+#if ExcludedCode
+                services.AddDbContext<AppDbContext>(options => options.UseInMemoryDatabase("TestDb"));
+                services.AddMvc();
+#endif
             }
             else
             {
@@ -74,29 +79,40 @@ namespace EmployeeManagement
             {
                 options.AddPolicy("DeleteRolePolicy", policy => policy.RequireClaim("Delete Role"));
 
-                //options.AddPolicy("EditRolePolicy", policy => policy.RequireClaim("Edit Role", "true"));
-                //options.AddPolicy("EditRolePolicy", policy => policy.RequireRole("Super Admin")
-                //                                                    .RequireClaim("Edit Role", "true")
-                //                                                    .RequireRole("Admin"));
-                //options.AddPolicy("EditRolePolicy", policy => policy.RequireAssertion(context =>
-                //{
-                //    return (context.User.IsInRole("Admin")
-                //            && context.User.HasClaim(claim => claim.Type == "Edit Role" && claim.Value == "true"))
-                //            || context.User.IsInRole("Super Admin");
-                //}));
+#if ExcludedCode
+                options.AddPolicy("EditRolePolicy", policy => policy.RequireClaim("Edit Role", "true"));
+                options.AddPolicy("EditRolePolicy", policy => policy.RequireRole("Super Admin")
+                                                                    .RequireClaim("Edit Role", "true")
+                                                                    .RequireRole("Admin"));
+                options.AddPolicy("EditRolePolicy", policy => policy.RequireAssertion(context =>
+                {
+                    return (context.User.IsInRole("Admin")
+                            && context.User.HasClaim(claim => claim.Type == "Edit Role" && claim.Value == "true"))
+                            || context.User.IsInRole("Super Admin");
+                }));
+#endif
 
                 options.AddPolicy("EditRolePolicy", policy => policy.AddRequirements(new ManageAdminRolesAndClaimsRequirement()));
 
                 options.AddPolicy("AdminRolePolicy", policy => policy.RequireRole("Admin"));
+
+                // Restrict other handlers to be called after any one handler returned Failure.
+                options.InvokeHandlersAfterFailure = false;
             });
 
             services.AddScoped<IEmployeeRepository, SqlEmployeeRepository>();
             services.AddSingleton<IAuthorizationHandler, CanEditOnlyOtherAdminRolesAndClaimsHandler>();
+            services.AddSingleton<IAuthorizationHandler, SuperAdminHandler>();
 
             services.AddResponseCompression(options => options.Providers.Add<GzipCompressionProvider>());
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+        /// <summary>
+        /// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+        /// </summary>
+        /// <param name="app">IApplicationBuilder</param>
+        /// <param name="env">IHostingEnvironment</param>
+        /// <param name="logger">ILogger<Startup></param>
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILogger<Startup> logger)
         {
             if (env.IsDevelopment())
@@ -122,18 +138,20 @@ namespace EmployeeManagement
 
             if (env.IsDevelopment())
             {
-                var defaultFilesOptions = new DefaultFilesOptions();
-                defaultFilesOptions.DefaultFileNames.Clear();
-                defaultFilesOptions.DefaultFileNames.Add("foo.html");
-                app.UseDefaultFiles();
-                app.UseStaticFiles();
-            }
-            else
-            {
                 var fileServerOptions = new FileServerOptions();
                 fileServerOptions.DefaultFilesOptions.DefaultFileNames.Clear();
                 fileServerOptions.DefaultFilesOptions.DefaultFileNames.Add("foo.html");
+                //app.UseFileServer(fileServerOptions)
                 app.UseFileServer();
+            }
+            else
+            {
+                var defaultFilesOptions = new DefaultFilesOptions();
+                defaultFilesOptions.DefaultFileNames.Clear();
+                defaultFilesOptions.DefaultFileNames.Add("foo.html");
+                //app.UseDefaultFiles(defaultFilesOptions)
+                app.UseDefaultFiles();
+                app.UseStaticFiles();
             }
 
             app.UseAuthentication();
