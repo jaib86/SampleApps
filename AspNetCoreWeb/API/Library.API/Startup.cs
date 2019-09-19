@@ -19,6 +19,8 @@ namespace Library.API
 {
     public class Startup
     {
+        private readonly string AllowSpecificOrigins = "allowSpecificOrigins";
+
         public Startup(IConfiguration configuration)
         {
             this.Configuration = configuration;
@@ -58,6 +60,11 @@ namespace Library.API
             {
                 var actionContext = implementationFactory.GetService<IActionContextAccessor>().ActionContext;
                 return new UrlHelper(actionContext);
+            });
+
+            services.AddCors(options =>
+            {
+                options.AddPolicy(this.AllowSpecificOrigins, builder => builder.WithOrigins("http://localhost:4200"));
             });
 
             services.AddTransient<IPropertyMappingService, PropertyMappingService>();
@@ -116,6 +123,8 @@ namespace Library.API
             });
 
             libraryContext.EnsureSeedDataForContext();
+
+            app.UseCors(this.AllowSpecificOrigins);
 
             app.UseHttpsRedirection();
             app.UseMvc();
