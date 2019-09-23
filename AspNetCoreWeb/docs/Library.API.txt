@@ -5,3 +5,7 @@
 	  https://github.com/nlog/NLog/wiki/configuration-file
 	* Configure NLog either in Startup.Configure method or in Program.cs file.
 * Install NuGet "System.Linq.Dynamic.Core"
+  -- For generating LINQ where condition from string
+* Install NuGet "CacheCow.Server.Core.Mvc"
+* Install NuGet "AspNetCoreRateLimit", 
+  -- Check dependent "Microsoft.AspNetCore.Http" version while installing

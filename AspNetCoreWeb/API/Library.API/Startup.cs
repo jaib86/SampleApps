@@ -1,4 +1,7 @@
-﻿using Library.API.Entities;
+﻿using System.Linq;
+using AspNetCoreRateLimit;
+using CacheCow.Server.Core.Mvc;
+using Library.API.Entities;
 using Library.API.Helpers;
 using Library.API.Services;
 using Microsoft.AspNetCore.Builder;
@@ -37,8 +40,29 @@ namespace Library.API
             services.AddMvc(setupAction =>
             {
                 setupAction.ReturnHttpNotAcceptable = true;
-                setupAction.OutputFormatters.Add(new XmlDataContractSerializerOutputFormatter());
-                setupAction.InputFormatters.Add(new XmlDataContractSerializerInputFormatter());
+
+                // Add XML Output Formatter
+                var xmlDataContractSerializerOutputFormatter = new XmlDataContractSerializerOutputFormatter();
+                xmlDataContractSerializerOutputFormatter.SupportedMediaTypes.Add("application/vnd.nagarro.hateoas+xml");
+                setupAction.OutputFormatters.Add(xmlDataContractSerializerOutputFormatter);
+
+                // Add XML Input Formatter
+                var xmlDataContractSerializerInputFormatter = new XmlDataContractSerializerInputFormatter(setupAction);
+                xmlDataContractSerializerInputFormatter.SupportedMediaTypes.Add("application/vnd.nagarro.authorwithdateofdeath.full+xml");
+                setupAction.InputFormatters.Add(new XmlDataContractSerializerInputFormatter(setupAction));
+
+                // Custom JSON Output Formatters Media Types
+                if (setupAction.OutputFormatters.OfType<JsonOutputFormatter>().FirstOrDefault() is JsonOutputFormatter jsonOutputFormatter)
+                {
+                    jsonOutputFormatter.SupportedMediaTypes.Add("application/vnd.nagarro.hateoas+json");
+                }
+
+                // Custom JSON Input Formatters Media Types
+                if (setupAction.InputFormatters.OfType<JsonInputFormatter>().FirstOrDefault() is JsonInputFormatter jsonInputFormatter)
+                {
+                    jsonInputFormatter.SupportedMediaTypes.Add("application/vnd.nagarro.author.full+json");
+                    jsonInputFormatter.SupportedMediaTypes.Add("application/vnd.nagarro.authorwithdateofdeath.full+json");
+                }
             })
             .SetCompatibilityVersion(CompatibilityVersion.Version_2_1)
             .AddJsonOptions(options =>
@@ -69,6 +93,23 @@ namespace Library.API
 
             services.AddTransient<IPropertyMappingService, PropertyMappingService>();
             services.AddTransient<ITypeHelperService, TypeHelperService>();
+
+            // Configure Caching
+            services.AddHttpCachingMvc();
+            services.AddResponseCaching();
+
+            // Configure Memory Cache
+            services.AddMemoryCache();
+            services.Configure<IpRateLimitOptions>(options =>
+            {
+                options.GeneralRules = new System.Collections.Generic.List<RateLimitRule>
+                {
+                    new RateLimitRule { Endpoint = "*", Limit = 1000, Period = "1m" },
+                    new RateLimitRule { Endpoint = "*", Limit = 200, Period = "10s" }
+                };
+            });
+            services.AddSingleton<IRateLimitCounterStore, MemoryCacheRateLimitCounterStore>();
+            services.AddSingleton<IIpPolicyStore, MemoryCacheIpPolicyStore>();
         }
 
         /// <summary>
@@ -78,8 +119,10 @@ namespace Library.API
         /// <param name="env"></param>
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, LibraryContext libraryContext, ILoggerFactory loggerFactory)
         {
-            //loggerFactory.AddProvider(new NLogLoggerProvider());
-            //loggerFactory.AddNLog();
+#if ExcludedCode
+            loggerFactory.AddProvider(new NLogLoggerProvider());
+            loggerFactory.AddNLog();
+#endif
 
             if (env.IsDevelopment())
             {
@@ -109,22 +152,29 @@ namespace Library.API
             {
                 config.CreateMap<Author, Models.AuthorDto>()
                       .ForMember(dest => dest.Name, opt => opt.MapFrom(src => $"{src.FirstName} {src.LastName}"))
-                      .ForMember(dest => dest.Age, opt => opt.MapFrom(src => src.DateOfBirth.GetCurrentAge()));
+                      .ForMember(dest => dest.Age, opt => opt.MapFrom(src => src.DateOfBirth.GetCurrentAge(src.DateOfDeath)));
 
                 config.CreateMap<Book, Models.BookDto>();
 
                 config.CreateMap<Models.AuthorForCreationDto, Author>();
+                config.CreateMap<Models.AuthorForCreationWithDateOfDeatchDto, Author>();
+                config.CreateMap<Models.AuthorForUpdateDto, Author>();
 
                 config.CreateMap<Models.BookForCreationDto, Book>();
-
                 config.CreateMap<Models.BookForUpdateDto, Book>();
-
                 config.CreateMap<Book, Models.BookForUpdateDto>();
             });
 
             libraryContext.EnsureSeedDataForContext();
 
+            // Rate Limiting Middleware - Before other Request Pipeline
+            app.UseIpRateLimiting();
+
+            // Configure CORS
             app.UseCors(this.AllowSpecificOrigins);
+
+            // Response Caching
+            app.UseResponseCaching();
 
             app.UseHttpsRedirection();
             app.UseMvc();

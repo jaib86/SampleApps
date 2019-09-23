@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using AutoMapper;
+using CacheCow.Server.Core.Mvc;
 using Library.API.Entities;
 using Library.API.Helpers;
 using Library.API.Models;
@@ -48,6 +49,7 @@ namespace Library.API.Controllers
         }
 
         [HttpGet("{id}", Name = "GetBookForAuthor")]
+        [HttpCacheFactory(60)]
         public IActionResult GetBookForAuthor(Guid authorId, Guid id)
         {
             if (!this.libraryRepository.AuthorExists(authorId))
@@ -197,10 +199,8 @@ namespace Library.API.Controllers
                     }
                     else
                     {
-                        var bookToReturn = Mapper.Map<BookDto>(bookForAuthorFromRepo);
-
                         // Its up to us to either return 204-No Content or 200-OK status
-                        return this.Ok(bookToReturn);
+                        return this.NoContent();
                     }
                 }
             }
