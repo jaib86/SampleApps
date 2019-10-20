@@ -4,16 +4,10 @@ namespace EmployeeManagement.Models
 {
     public static class Utility
     {
-        public static string GetControllerRoutingName(string controllerClassName)
+        public static string GetControllerRouteName<T>()
+            where T : Controller
         {
-            if (string.IsNullOrWhiteSpace(controllerClassName))
-            {
-                return string.Empty;
-            }
-            else
-            {
-                return controllerClassName.Replace(nameof(Controller), string.Empty);
-            }
+            return typeof(T).Name.Replace(nameof(Controller), string.Empty);
         }
     }
 }

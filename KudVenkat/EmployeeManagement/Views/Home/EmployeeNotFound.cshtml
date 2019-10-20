@@ -10,7 +10,7 @@
     <h5>Employee with ID = @Model  cannot be found</h5>
 </div>
 <a asp-action="@nameof(HomeController.Index)" 
-   asp-controller="@Utility.GetControllerRoutingName(nameof(HomeController))"
+   asp-controller="@(Utility.GetControllerRouteName<HomeController>())"
    class="btn btn-outline-success" style="width: auto">
     Click here to see the list of all employees
 </a>

@@ -36,10 +36,10 @@
             <div class="collapse navbar-collapse" id="collapsibleNavbar">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a asp-action="@nameof(HomeController.Index)" asp-controller="@Utility.GetControllerRoutingName(nameof(HomeController))" class="nav-link">List</a>
+                        <a asp-action="@nameof(HomeController.Index)" asp-controller="@(Utility.GetControllerRouteName<HomeController>())" class="nav-link">List</a>
                     </li>
                     <li class="nav-item">
-                        <a asp-action="@nameof(HomeController.Create)" asp-controller="@Utility.GetControllerRoutingName(nameof(HomeController))" class="nav-link">Create</a>
+                        <a asp-action="@nameof(HomeController.Create)" asp-controller="@(Utility.GetControllerRouteName<HomeController>())" class="nav-link">Create</a>
                     </li>
                     @if (signInManager.IsSignedIn(User) && (User.IsInRole("Admin") || User.IsInRole("Super Admin")))
                     {
@@ -50,11 +50,11 @@
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropDonwMenuLink">
                                 <a class="dropdown-item" asp-action="@nameof(AdministrationController.ListUsers)"
-                                   asp-controller="@Utility.GetControllerRoutingName(nameof(AdministrationController))">
+                                   asp-controller="@(Utility.GetControllerRouteName<AdministrationController>())">
                                     Users
                                 </a>
                                 <a class="dropdown-item" asp-action="@nameof(AdministrationController.ListRoles)"
-                                   asp-controller="@Utility.GetControllerRoutingName(nameof(AdministrationController))">
+                                   asp-controller="@(Utility.GetControllerRouteName<AdministrationController>())">
                                     Roles
                                 </a>
                             </div>
@@ -65,7 +65,7 @@
                     @if (signInManager.IsSignedIn(User))
                     {
                         <li class="nav-item">
-                            <form method="post" asp-action="@nameof(AccountController.Logout)" asp-controller="@Utility.GetControllerRoutingName(nameof(AccountController))">
+                            <form method="post" asp-action="@nameof(AccountController.Logout)" asp-controller="@(Utility.GetControllerRouteName<AccountController>())">
                                 <button type="submit" class="nav-link btn btn-link py-0" style="width:auto">
                                     Logout <span class="text-success">@User.Identity.Name</span>
                                 </button>
@@ -75,10 +75,10 @@
                     else
                     {
                         <li class="nav-item">
-                            <a asp-action="@nameof(AccountController.Register)" asp-controller="@Utility.GetControllerRoutingName(nameof(AccountController))" class="nav-link">Register</a>
+                            <a asp-action="@nameof(AccountController.Register)" asp-controller="@(Utility.GetControllerRouteName<AccountController>())" class="nav-link">Register</a>
                         </li>
                         <li class="nav-item">
-                            <a asp-action="@nameof(AccountController.Login)" asp-controller="@Utility.GetControllerRoutingName(nameof(AccountController))" class="nav-link">Login</a>
+                            <a asp-action="@nameof(AccountController.Login)" asp-controller="@(Utility.GetControllerRouteName<AccountController>())" class="nav-link">Login</a>
                         </li>
                     }
                 </ul>

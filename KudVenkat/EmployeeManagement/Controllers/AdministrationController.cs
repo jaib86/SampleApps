@@ -332,7 +332,7 @@ namespace EmployeeManagement.Controllers
 
                 if (result.Succeeded)
                 {
-                    return this.RedirectToAction(nameof(AdministrationController.ListRoles), Utility.GetControllerRoutingName(nameof(AdministrationController)));
+                    return this.RedirectToAction(nameof(AdministrationController.ListRoles), Utility.GetControllerRouteName<AdministrationController>());
                 }
                 else
                 {

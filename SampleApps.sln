@@ -159,6 +159,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EmployeeManagement.Integrat
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{478999E9-C2A1-49E4-B576-C81E4BB05DD7}"
 	ProjectSection(SolutionItems) = preProject
+		KudVenkat\docs\client_secret_1079169627422-vboh5b3ce694flaidgb72dnvnk6ac63u.apps.googleusercontent.com.json = KudVenkat\docs\client_secret_1079169627422-vboh5b3ce694flaidgb72dnvnk6ac63u.apps.googleusercontent.com.json
 		KudVenkat\docs\IntegrationTests.txt = KudVenkat\docs\IntegrationTests.txt
 		KudVenkat\docs\UITests.txt = KudVenkat\docs\UITests.txt
 	EndProjectSection
@@ -181,7 +182,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoreCodeCamp", "AspNetCoreW
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "API", "API", "{7B3463F0-E78F-4529-89D1-D142BCF4C0A6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Library.API", "AspNetCoreWeb\API\Library.API\Library.API.csproj", "{07CE6982-E804-41EF-B5C3-D3A739F64F34}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Library.API", "AspNetCoreWeb\API\Library.API\Library.API.csproj", "{07CE6982-E804-41EF-B5C3-D3A739F64F34}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

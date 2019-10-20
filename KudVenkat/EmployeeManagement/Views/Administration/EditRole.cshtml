@@ -49,7 +49,7 @@
         </div>
         <div class="card-footer">
             <a asp-action="@nameof(AdministrationController.EditUsersInRole)" 
-               asp-controller="@Utility.GetControllerRoutingName(nameof(AdministrationController))" 
+               asp-controller="@(Utility.GetControllerRouteName<AdministrationController>())" 
                asp-route-roleId="@Model.Id" class="btn btn-primary" style="width:auto">Add or Remove Users</a>
         </div>
     </div>

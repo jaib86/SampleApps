@@ -12,7 +12,7 @@
 {
     <a class="btn btn-primary" style="width:auto"
        asp-action="@nameof(AdministrationController.CreateRole)"
-       asp-controller="@Utility.GetControllerRoutingName(nameof(AdministrationController))">Create Role</a>
+       asp-controller="@(Utility.GetControllerRouteName<AdministrationController>())">Create Role</a>
 
     foreach (var role in Model)
     {
@@ -28,7 +28,7 @@
 
                     @if ((await authorizationService.AuthorizeAsync(User, null, "EditRolePolicy")).Succeeded)
                     {
-                        <a class="btn btn-primary" asp-controller="@Utility.GetControllerRoutingName(nameof(AdministrationController))"
+                        <a class="btn btn-primary" asp-controller="@(Utility.GetControllerRouteName<AdministrationController>())"
                            asp-action="@nameof(AdministrationController.EditRole)" asp-route-id="@role.Id">Edit</a>
                     }
 
@@ -61,7 +61,7 @@ else
             </h5>
             <a class="btn btn-primary" style="width:auto"
                asp-action="@nameof(AdministrationController.CreateRole)"
-               asp-controller="@Utility.GetControllerRoutingName(nameof(AdministrationController))">Create Role</a>
+               asp-controller="@(Utility.GetControllerRouteName<AdministrationController>())">Create Role</a>
         </div>
     </div>
 }

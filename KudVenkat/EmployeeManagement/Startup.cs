@@ -53,13 +53,30 @@ namespace EmployeeManagement
             {
                 options.Password.RequiredLength = 4;
                 options.Password.RequiredUniqueChars = 2;
-            }).AddEntityFrameworkStores<AppDbContext>();
+
+                options.SignIn.RequireConfirmedEmail = true;
+            })
+            .AddEntityFrameworkStores<AppDbContext>()
+            .AddDefaultTokenProviders();
 
             services.AddMvc(options =>
             {
                 var policy = new AuthorizationPolicyBuilder().RequireAuthenticatedUser().Build();
                 options.Filters.Add(new AuthorizeFilter(policy));
             }).AddXmlSerializerFormatters();
+
+            services.AddAuthentication()
+                .AddGoogle(options =>
+                {
+                    options.ClientId = this.configuration["ExternalOAuthInfo:Google:ClientId"];
+                    options.ClientSecret = this.configuration["ExternalOAuthInfo:Google:ClientSecret"];
+                    //options.CallbackPath = "";
+                })
+                .AddFacebook(options =>
+                {
+                    options.AppId = this.configuration["ExternalOAuthInfo:Facebook:AppId"];
+                    options.AppSecret = this.configuration["ExternalOAuthInfo:Facebook:AppSecret"];
+                });
 
             services.ConfigureApplicationCookie(options =>
             {
