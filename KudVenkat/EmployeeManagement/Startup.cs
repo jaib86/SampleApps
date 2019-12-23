@@ -55,9 +55,18 @@ namespace EmployeeManagement
                 options.Password.RequiredUniqueChars = 2;
 
                 options.SignIn.RequireConfirmedEmail = true;
+
+                options.Tokens.EmailConfirmationTokenProvider = "CustomEmailConfirmation";
             })
             .AddEntityFrameworkStores<AppDbContext>()
-            .AddDefaultTokenProviders();
+            .AddDefaultTokenProviders()
+            .AddTokenProvider<CustomEmailConfirmationTokenProvider<ApplicationUser>>("CustomEmailConfirmation");
+
+            // Changes token lifespan of all token types
+            services.Configure<DataProtectionTokenProviderOptions>(o => o.TokenLifespan = TimeSpan.FromHours(2));
+
+            // Changes token lifespan of just the Email Confirmation Token type
+            services.Configure<CustomEmailConfirmationTokenProviderOptions>(o => o.TokenLifespan = TimeSpan.FromDays(3));
 
             services.AddMvc(options =>
             {
@@ -120,6 +129,7 @@ namespace EmployeeManagement
             services.AddScoped<IEmployeeRepository, SqlEmployeeRepository>();
             services.AddSingleton<IAuthorizationHandler, CanEditOnlyOtherAdminRolesAndClaimsHandler>();
             services.AddSingleton<IAuthorizationHandler, SuperAdminHandler>();
+            services.AddSingleton<DataProtectionPurposeStrings>();
 
             services.AddResponseCompression(options => options.Providers.Add<GzipCompressionProvider>());
         }

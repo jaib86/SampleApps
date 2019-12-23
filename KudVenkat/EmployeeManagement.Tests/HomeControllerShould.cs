@@ -33,7 +33,7 @@ namespace EmployeeManagement.Tests
             this.mockLogger = new Mock<ILogger<HomeController>>();
             //this.mockLogger.Setup(x => x.LogTrace(It.IsAny<string>()));
 
-            this.homeController = new HomeController(this.mockEmployeeRepository.Object, null, this.mockLogger.Object);
+            //this.homeController = new HomeController(this.mockEmployeeRepository.Object, null, this.mockLogger.Object);
         }
 
         [Fact]
@@ -147,7 +147,7 @@ namespace EmployeeManagement.Tests
             this.mockEmployeeRepository.Setup(x => x.GetEmployee(It.IsAny<int>()))
                                        .Returns(default(Employee));
 
-            var viewResult = this.homeController.Details(int.MinValue);
+            var viewResult = this.homeController.Details(int.MinValue.ToString());
 
             Assert.Equal("EmployeeNotFound", viewResult.ViewName);
 
@@ -162,7 +162,7 @@ namespace EmployeeManagement.Tests
             this.mockEmployeeRepository.Setup(x => x.GetEmployee(It.IsAny<int>()))
                                        .Returns(new Employee { Id = 1, Name = "Jack" });
 
-            var viewResult = this.homeController.Details(1);
+            var viewResult = this.homeController.Details("1");
 
             Assert.Null(viewResult.ViewName);
 

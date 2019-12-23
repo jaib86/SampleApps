@@ -5,6 +5,7 @@ using EmployeeManagement.Models;
 using EmployeeManagement.Utilities;
 using EmployeeManagement.ViewModels;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.DataProtection;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -16,12 +17,14 @@ namespace EmployeeManagement.Controllers
         private readonly IEmployeeRepository employeeRepository;
         private readonly IHostingEnvironment hostingEnvironment;
         private readonly ILogger<HomeController> logger;
+        private readonly IDataProtector protector;
 
-        public HomeController(IEmployeeRepository employeeRepository, IHostingEnvironment hostingEnvironment, ILogger<HomeController> logger)
+        public HomeController(IEmployeeRepository employeeRepository, IHostingEnvironment hostingEnvironment, ILogger<HomeController> logger, IDataProtectionProvider dataProtectionProvider, DataProtectionPurposeStrings dataProtectionPurposeStrings)
         {
             this.employeeRepository = employeeRepository;
             this.hostingEnvironment = hostingEnvironment;
             this.logger = logger;
+            this.protector = dataProtectionProvider.CreateProtector(dataProtectionPurposeStrings.EmployeeIdRouteValue);
         }
 
         [AllowAnonymous]
@@ -34,7 +37,12 @@ namespace EmployeeManagement.Controllers
             this.logger.LogError("Error Log");
             this.logger.LogCritical("Critical Log");
 
-            return this.View(this.employeeRepository.GetAllEmployees());
+            var model = this.employeeRepository.GetAllEmployees().Select(e =>
+            {
+                e.EncryptedId = this.protector.Protect(e.Id.ToString());
+                return e;
+            });
+            return this.View(model);
         }
 
         [IsMobile(2)]
@@ -58,18 +66,20 @@ namespace EmployeeManagement.Controllers
         }
 
         [AllowAnonymous]
-        public ViewResult Details(int id)
+        public ViewResult Details(string id)
         {
             //return this.View("Test", this.employeeRepository.GetEmployee(1));
             //return this.View("~/MyViews/Test.cshtml", this.employeeRepository.GetEmployee(1));
             //return this.View("../Test/Update", this.employeeRepository.GetEmployee(1));
             //return this.View("../../MyViews/Test", this.employeeRepository.GetEmployee(1));
 
-            var employee = this.employeeRepository.GetEmployee(id);
+            int employeeId = Convert.ToInt32(this.protector.Unprotect(id));
+
+            var employee = this.employeeRepository.GetEmployee(employeeId);
 
             if (employee == null)
             {
-                return this.View("EmployeeNotFound", id);
+                return this.View("EmployeeNotFound", employeeId);
             }
             else
             {

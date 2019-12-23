@@ -21,7 +21,7 @@
 
                 <a asp-controller="@(Utility.GetControllerRouteName<HomeController>())" 
                    asp-action="@nameof(HomeController.Details)" 
-                   asp-route-id="@employee.Id" class="btn btn-primary m-1">View</a> 
+                   asp-route-id="@employee.EncryptedId" class="btn btn-primary m-1">View</a> 
                 <a asp-controller="@(Utility.GetControllerRouteName<HomeController>())" 
                    asp-action="@nameof(HomeController.Edit)" 
                    asp-route-id="@employee.Id" class="btn btn-primary m-1">Edit</a>
