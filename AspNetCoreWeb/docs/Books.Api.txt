@@ -1,0 +1,32 @@
+* Add Core 2.1 Web API project
+* Remove ValuesController
+* Add Author.cs, Book.cs in Entities folder
+* Add BooksContext.cs in Contexts folder
+* Add BooksDBConnectionString to appsettings.json
+* Register the BooksContext to ConfigureServices of Startup.cs
+* Run 'Add-Migration InitialMigration' from 'Package Manager Console'
+* Add database migration code in Program.cs
+* Add IBooksRepository.cs and BooksRepository.cs in Services folder
+* Register IBooksRepository service in ConfigureServices method of Startup.cs
+* Add BooksController in Controllers folder
+* Move 'app.UseHttpsRedirection();' to non Development section so can be accessed from Postman using HTTP
+* Install WebSurge from https://websurge.west-wind.com/download.aspx
+* Enter Url https://localhost:44343/api/books in Request tab, click on Test button to get response.
+* Enter 20 in Time and 3 in Threads fields respectively, click on Start button for load testing.
+* Add SynchronousBooksController in Controllers folder
+* Set maximum thread count to processor count using ThreadPool in Program.Main method.
+* Delay database using SQL command before actually returning the results in BooksRepository.cs
+* Test the performance using WebSurge
+* Add BookResultFilterAttribute.cs in Filters folder and override method OnResultExecutionAsync()
+* Install AutoMapper.Extensions.Microsoft.DependencyInjection
+* Add BooksProfile.cs in root project folder
+* Add Book.cs in Models folder
+* Add Entity to Model mapping in BooksProfile constructor
+* Register AutoMapper 'services.AddAutoMapper();' in Startup.ConfigureServices()
+* Add BooksResultFilterAttribute.cs & BookResultFilterAttribute.cs in Filters folder
+* Access IMapper service using 'context.HttpContext.RequestServices.GetService(typeof(IMapper))'
+* Add CreateBook() Post method in BooksController.cs
+* Add BookForCreation.cs in Models folder
+* Add methods 'AddBook()' and 'SaveChangesAsync()' in IBookRepository.cs
+* Create Mapper for Models.BookForCration to Entities.Book in BooksProfile constructor.
+* 
