@@ -1,0 +1,16 @@
+=======================================================================================================
+------------------------------------ BlazorServer project ---------------------------------------------
+---------- 1. Added BlazorServer project and gone through its structure -------------------------------
+---------- 2. Added Separated C# code from Counter.razor ----------------------------------------------
+---------- 3. We can add a partial class with Component class, or -------------------------------------
+---------- 4. We can create {Component}Base class and inherit this class to the Component -------------
+=======================================================================================================
+
+
+=======================================================================================================
+--------------------------------- EmployeeManagement blazor projects ----------------------------------
+---------- 1. Added EmployeeManagement.Models project and added required model classes ----------------
+---------- 2. Added EmployeeManagement.Web project and removed non-required components ----------------
+---------- 3. Add EmployeeList Razor Component -------------------------------------
+---------- 4.  -------------
+=======================================================================================================

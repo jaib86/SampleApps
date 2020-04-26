@@ -193,6 +193,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmployeeManagement.Models",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmployeeManagement.Web", "KudVenkat\Blazor\EmployeeManagement.Web\EmployeeManagement.Web.csproj", "{289C1F76-CBB1-46E4-82DB-354B8968C287}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "documents", "documents", "{91A1CBC7-AE59-49F7-B3C8-86FB44E541B4}"
+	ProjectSection(SolutionItems) = preProject
+		KudVenkat\Blazor\documents\Notes.txt = KudVenkat\Blazor\documents\Notes.txt
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -973,6 +978,7 @@ Global
 		{EFCE9CFC-F614-4756-81C2-C781920FDCA1} = {10321264-7873-4ECB-9A59-DAF6DDC091B9}
 		{C661D5B6-50A8-4FE4-AD6F-80EFADFAC6CA} = {10321264-7873-4ECB-9A59-DAF6DDC091B9}
 		{289C1F76-CBB1-46E4-82DB-354B8968C287} = {10321264-7873-4ECB-9A59-DAF6DDC091B9}
+		{91A1CBC7-AE59-49F7-B3C8-86FB44E541B4} = {10321264-7873-4ECB-9A59-DAF6DDC091B9}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {2829B699-AA3B-47FF-ABEE-405B0FCD4E98}
