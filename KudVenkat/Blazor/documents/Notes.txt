@@ -9,8 +9,9 @@
 
 =======================================================================================================
 --------------------------------- EmployeeManagement blazor projects ----------------------------------
----------- 1. Added EmployeeManagement.Models project and added required model classes ----------------
+---------- 1. Added EmployeeManagement.Models .NET Standard class library -----------------------------
 ---------- 2. Added EmployeeManagement.Web project and removed non-required components ----------------
----------- 3. Add EmployeeList Razor Component -------------------------------------
----------- 4.  -------------
+---------- 3. Add EmployeeList Razor Component, partial class or ComponentBase to separate C# code ----
+---------- 4. Displaying Spinner/Loader in EmployeeList component -------------------------------------
+---------- 5. Added EmployeeManagement.Api MVC Core API project ---------------------------------------
 =======================================================================================================
