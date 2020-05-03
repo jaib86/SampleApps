@@ -2,7 +2,10 @@
 
 <div class="card m-3" style="min-width: 18rem; max-width:30.5%;">
     <div class="card-header">
-        <h3>@Employee.FirstName @Employee.LastName</h3>
+        <h3>
+            <input type="checkbox" id="@($"employeeName{Employee.EmployeeId}")" @onchange="CheckBoxChanged" />
+            <label for="@($"employeeName{Employee.EmployeeId}")">@Employee.FirstName @Employee.LastName</label>
+        </h3>
     </div>
     <img class="card-img-top imageThumbnail" src="@Employee.PhotoPath" alt="Employee Photo Path" />
     @if (ShowFooter)
