@@ -186,6 +186,7 @@ app {
     height: 200px;
     width: auto;
 }
+
 .spinner{
     border: 16px solid silver;
     border-top: 16px solid #337AB7;
@@ -204,4 +205,8 @@ app {
     100% {
         transform: rotate(360deg)
     }
+}
+
+.HideFooter {
+    display: none;
 }
