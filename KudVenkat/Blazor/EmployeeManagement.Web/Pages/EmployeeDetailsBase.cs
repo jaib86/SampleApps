@@ -13,7 +13,7 @@ namespace EmployeeManagement.Web.Pages
         [Inject]
         public IEmployeeService EmployeeService { get; set; }
 
-        public Employee Employee { get; set; } = new Employee();
+        public Employee Employee { get; set; }
 
         protected async override Task OnInitializedAsync()
         {
