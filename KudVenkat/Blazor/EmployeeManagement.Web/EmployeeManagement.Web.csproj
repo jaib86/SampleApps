@@ -10,6 +10,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\EmployeeManagement.Models\EmployeeManagement.Models.csproj" />
+    <ProjectReference Include="..\SampleApp.Components\SampleApp.Components.csproj" />
   </ItemGroup>
 
 </Project>

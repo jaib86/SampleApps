@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Components.Forms;
 
-namespace EmployeeManagement.Web.Pages
+namespace SampleApp.Components
 {
     public class CustomInputSelect<TValue> : InputSelect<TValue>
     {
