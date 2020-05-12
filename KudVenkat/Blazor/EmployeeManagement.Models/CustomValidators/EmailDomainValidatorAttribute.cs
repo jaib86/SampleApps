@@ -10,7 +10,7 @@ namespace EmployeeManagement.Models.CustomValidators
         {
             string[] strings = value.ToString().Split('@');
 
-            if (strings[1].ToUpper() == AllowedDomain.ToUpper()) return null;
+            if (strings.Length > 1 && strings[1].ToUpper() == AllowedDomain.ToUpper()) return null;
 
             string errorMessage = this.ErrorMessage ?? $"Domain must be {AllowedDomain}";
 
