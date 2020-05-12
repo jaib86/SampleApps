@@ -15,4 +15,6 @@
 ---------- 4. Displaying Spinner/Loader in EmployeeList component -------------------------------------
 ---------- 5. Added EmployeeManagement.Api MVC Core API project ---------------------------------------
 ---------- 6. Install Microsoft.AspNetCore.Blazor.HttpClient NuGet from prerelease --------------------
+---------- 7. Install Microsoft.AspNetCore.Components.DataAnnotations.Validation from prerelease ------
+---------- 8. Install AutoMapper.Extensions.Microsoft.DependencyInjection -----------------------------
 =======================================================================================================
