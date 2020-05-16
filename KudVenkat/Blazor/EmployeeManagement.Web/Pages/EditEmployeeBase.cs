@@ -26,6 +26,8 @@ namespace EmployeeManagement.Web.Pages
         [Parameter]
         public string Id { get; set; }
 
+        public string PageHeaderText { get; set; }
+
         private Employee Employee { get; set; } = new Employee();
         public EditEmployeeModel EditEmployeeModel { get; set; } = new EditEmployeeModel();
 
@@ -37,10 +39,12 @@ namespace EmployeeManagement.Web.Pages
 
             if (employeeId != 0)
             {
+                PageHeaderText = "Edit Employee";
                 Employee = await EmployeeService.GetEmployee(employeeId);
             }
             else
             {
+                PageHeaderText = "Create Employee";
                 Employee = new Employee
                 {
                     DepartmentId = 1,

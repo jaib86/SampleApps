@@ -13,8 +13,8 @@
             </NavLink>
         </li>
         <li class="nav-item px-3">
-            <NavLink class="nav-link" href="/create-employee">
-                <span class="oi oi-file" aria-hidden="true"></span> Create
+            <NavLink class="nav-link" href="/create-employee" @onclick="HandleClick" Match="NavLinkMatch.All">
+                <span class="oi oi-person" aria-hidden="true"></span> Create
             </NavLink>
         </li>
     </ul>
@@ -24,6 +24,13 @@
     private bool collapseNavMenu = true;
 
     private string NavMenuCssClass => collapseNavMenu ? "collapse" : null;
+
+    @inject NavigationManager NavigationManager;
+
+    private void HandleClick()
+    {
+        NavigationManager.NavigateTo("/create-employee", true);
+    }
 
     private void ToggleNavMenu()
     {
